@@ -1,6 +1,6 @@
 :root {
-    --clr-gradient-left: hsl(184, 82%, 45%);
-    --clr-gradient-right: hsl(228, 84%, 25%);
+    --clr-gradient-left: hsl(184, 100%, 36%);
+    --clr-gradient-right: hsl(233, 84%, 25%);
     
     --clr-neutral-100: hsl(0, 0%, 100%);
     --clr-neutral-900: hsl(0, 0%, 0%);
