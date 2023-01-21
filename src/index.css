@@ -1,19 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
 :root {
     --clr-gradient-left: hsl(184, 100%, 36%);
     --clr-gradient-right: hsl(233, 84%, 25%);
     
-    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-neutral-100: hsl(0, 0%, 90%);
     --clr-neutral-900: hsl(0, 0%, 0%);
 
-    --ff-primary: sans-serif;
-    --ff-secondary: sans-serif;
+    --ff-primary: 'Space Mono', monospace;
+    --ff-secondary: 'Space Mono', monospace;
 
     --fs-200: 1rem;
     --fs-250: 1.15rem;
+    --fs-300: 1.5rem;
 
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
 
+    --size-50: 1rem;
+    --size-75: 1.25rem;
     --size-150: 2rem;
+    --size-450: 5.75rem;
 }
 
 /* CSS Reset */
@@ -77,7 +83,7 @@ picture {
 body {
     font-family: var(--ff-secondary);
     font-size: var(--fs-body);
-    color: var(--clr-neutral-900);
+    color: var(--clr-neutral-100);
     background: linear-gradient(to right bottom, var(--clr-gradient-left), var(--clr-gradient-right));
 }
 
@@ -94,3 +100,6 @@ body {
     width: min(var(--max-width), 100% - (var(--inline-gap) * 2));
     margin-inline: auto;
 }
+
+/* Utility classes */
+

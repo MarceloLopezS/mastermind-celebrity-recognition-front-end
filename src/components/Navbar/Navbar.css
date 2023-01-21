@@ -1,0 +1,37 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: hsl(0, 0%, 0%, 0.025);
+    padding: var(--size-50);
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--size-50);
+    max-width: var(--size-450);
+    user-select: none;
+}
+
+.navbar__brand > span {
+    font-size: var(--fs-300);
+}
+
+.navbar__brand img {
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.navbar__nav {
+    display: flex;
+    gap: var(--size-75);
+    margin-left: auto;
+}
+
+.navbar__button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

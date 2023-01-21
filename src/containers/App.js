@@ -7,7 +7,7 @@ import UserValidation from '../pages/UserValidation';
 function App() {
     return (
         <React.StrictMode>
-            <ParticlesBg />
+            {/* <ParticlesBg /> */}
             <Navbar />
             <UserValidation />
             <Footer />
