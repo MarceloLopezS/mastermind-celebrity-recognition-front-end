@@ -1,13 +1,96 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+    --clr-gradient-left: hsl(184, 82%, 45%);
+    --clr-gradient-right: hsl(228, 84%, 25%);
+    
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-neutral-900: hsl(0, 0%, 0%);
+
+    --ff-primary: sans-serif;
+    --ff-secondary: sans-serif;
+
+    --fs-200: 1rem;
+    --fs-250: 1.15rem;
+
+    --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
+
+    --size-150: 2rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* CSS Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  scroll-behavior: smooth;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+a:not([class]) {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* General Styling */
+
+body {
+    min-width: 100vh;
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-body);
+    color: var(--clr-neutral-900);
+    background: linear-gradient(to right bottom, var(--clr-gradient-left), var(--clr-gradient-right));
+}
+
+#root {
+    max-width: 120rem;
+    margin-inline: auto;
+}
+
+.container {
+    --max-width: 120rem;
+    --inline-gap: var(--size-150);
+
+    width: min(var(--max-width), 100% - (var(--inline-gap) * 2));
+    margin-inline: auto;
 }
