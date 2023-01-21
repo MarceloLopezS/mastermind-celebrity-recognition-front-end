@@ -75,7 +75,6 @@ picture {
 /* General Styling */
 
 body {
-    min-width: 100vh;
     font-family: var(--ff-secondary);
     font-size: var(--fs-body);
     color: var(--clr-neutral-900);
@@ -83,6 +82,7 @@ body {
 }
 
 #root {
+    min-height: 100vh;
     max-width: 120rem;
     margin-inline: auto;
 }
