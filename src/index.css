@@ -25,6 +25,7 @@
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
     --fs-nav-links: ;
     --fs-secondary-text: clamp(var(--fs-125), 1.2vw, var(--fs-200));
+    --fs-footer: clamp(var(--fs-125), 1vw, var(--fs-175));
 
     --size-15: 0.25rem;
     --size-25: 0.5rem;
@@ -101,6 +102,7 @@ body {
 }
 
 a {
+    color: var(--clr-neutral-100);
     outline: 0;
 }
 
