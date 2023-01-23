@@ -14,7 +14,7 @@
 }
 
 .navbar__brand > span {
-    font-size: var(--fs-300);
+    font-size: clamp(var(--fs-250), 1.35vw, var(--fs-275));
 }
 
 .navbar__brand img {
@@ -34,4 +34,10 @@
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+@media (max-width: 69em) {
+    .navbar__brand > span {
+        display: none;
+    }
 }

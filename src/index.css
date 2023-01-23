@@ -12,7 +12,7 @@
 
     --fs-200: 1rem;
     --fs-250: 1.15rem;
-    --fs-300: 1.5rem;
+    --fs-275: 1.4rem;
 
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
 
