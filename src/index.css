@@ -117,6 +117,7 @@ input:focus-visible {
 button {
     cursor: pointer;
     color: var(--clr-neutral-100);
+    background-color: transparent;
     border: 0;
     outline: 0;
 }
