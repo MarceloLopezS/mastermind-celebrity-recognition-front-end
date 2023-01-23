@@ -6,8 +6,8 @@
 
 .user-validation__form {
     display: grid;
+    width: 100%;
     gap: var(--size-75);
-    width: clamp(20rem, 18vw, 30rem);
     background-color: var(--clr-faded-900);
     border-radius: var(--size-25);
     padding: var(--size-100);
@@ -43,5 +43,9 @@
 @media (min-width: 28em) {
     .user-validation {
         padding-block-start: min(6vw, var(--size-450));
+    }
+
+    .user-validation__form {
+        width: clamp(20rem, 25vw, 24rem);
     }
 }

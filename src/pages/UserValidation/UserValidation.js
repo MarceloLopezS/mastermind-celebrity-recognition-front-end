@@ -3,7 +3,7 @@ import './UserValidation.css';
 
 const UserValidation = () => {
     return (
-        <section className='user-validation'>
+        <section className='user-validation container'>
             <form className='user-validation__form'>
                 <h2 className='justify-self-center'>Enter your account credentials</h2>
                 <div className='form-group'>
