@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    background-color: hsl(0, 0%, 0%, 0.025);
+    background-color: var(--clr-faded-900);
     padding: var(--size-50);
 }
 
@@ -34,6 +34,10 @@
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+.navbar__button:hover, .navbar__button:active {
+    color: var(--clr-neutral-300);
 }
 
 @media (max-width: 69em) {
