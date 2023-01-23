@@ -23,7 +23,6 @@
     --fs-275: 1.4rem;
 
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
-    --fs-nav-links: ;
     --fs-secondary-text: clamp(var(--fs-125), 1.2vw, var(--fs-200));
     --fs-footer: clamp(var(--fs-125), 1vw, var(--fs-175));
 
