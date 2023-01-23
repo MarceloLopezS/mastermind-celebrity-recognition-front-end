@@ -4,12 +4,18 @@
     --clr-gradient-left: hsl(184, 100%, 36%);
     --clr-gradient-right: hsl(233, 84%, 25%);
     
+    --clr-faded-800: hsl(0, 0%, 0%, 0.05);
+    --clr-faded-900: hsl(0, 0%, 0%, 0.025);
+
     --clr-neutral-100: hsl(0, 0%, 90%);
+    --clr-neutral-300: hsl(0, 0%, 79%);
     --clr-neutral-900: hsl(0, 0%, 0%);
 
     --ff-primary: 'Space Mono', monospace;
     --ff-secondary: 'Space Mono', monospace;
 
+    --fs-125: 0.7rem;
+    --fs-175: 0.85rem;
     --fs-200: 1rem;
     --fs-250: 1.15rem;
     --fs-275: 1.4rem;
@@ -18,6 +24,7 @@
 
     --size-50: 1rem;
     --size-75: 1.25rem;
+    --size-100: 1.5rem;
     --size-150: 2rem;
     --size-450: 5.75rem;
 }
@@ -88,6 +95,8 @@ body {
 }
 
 #root {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     max-width: 120rem;
     margin-inline: auto;

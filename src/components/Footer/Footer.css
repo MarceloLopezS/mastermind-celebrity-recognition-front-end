@@ -1,0 +1,30 @@
+footer {
+    padding: var(--size-50);
+    font-size: clamp(var(--fs-125), 1vw, var(--fs-175));
+    display: grid;
+    justify-items: center;
+    color: var(--clr-neutral-200);
+    background: var(--clr-faded-800);
+    margin-top: auto;
+}
+
+.contact-info {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-100);
+}
+
+.contact-info__link {
+    color: var(--clr-neutral-200);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+}
+
+.contact-info__link:hover, .contact-info__link:active {
+    color: var(--clr-neutral-300);
+}
