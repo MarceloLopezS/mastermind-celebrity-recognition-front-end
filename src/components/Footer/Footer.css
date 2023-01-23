@@ -1,6 +1,6 @@
 footer {
     padding: var(--size-50);
-    font-size: clamp(var(--fs-125), 1vw, var(--fs-175));
+    font-size: var(--fs-footer);
     display: grid;
     justify-items: center;
     color: var(--clr-neutral-200);
@@ -17,14 +17,9 @@ footer {
 }
 
 .contact-info__link {
-    color: var(--clr-neutral-200);
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 0.25em;
-}
-
-.contact-info__link:hover, .contact-info__link:active {
-    color: var(--clr-neutral-300);
 }
