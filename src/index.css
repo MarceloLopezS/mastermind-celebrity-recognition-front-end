@@ -4,11 +4,13 @@
     --clr-gradient-left: hsl(184, 100%, 36%);
     --clr-gradient-right: hsl(233, 84%, 25%);
     
+    --clr-faded-500: hsl(0, 0%, 0%, 0.2);
     --clr-faded-800: hsl(0, 0%, 0%, 0.05);
     --clr-faded-900: hsl(0, 0%, 0%, 0.025);
 
     --clr-neutral-100: hsl(0, 0%, 90%);
     --clr-neutral-300: hsl(0, 0%, 79%);
+    --clr-neutral-800: hsl(0, 0%, 20%);
     --clr-neutral-900: hsl(0, 0%, 0%);
 
     --ff-primary: 'Space Mono', monospace;
@@ -21,7 +23,11 @@
     --fs-275: 1.4rem;
 
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
+    --fs-nav-links: ;
+    --fs-secondary-text: clamp(var(--fs-125), 1.2vw, var(--fs-200));
 
+    --size-15: 0.25rem;
+    --size-25: 0.5rem;
     --size-50: 1rem;
     --size-75: 1.25rem;
     --size-100: 1.5rem;
@@ -94,6 +100,31 @@ body {
     background: linear-gradient(to right bottom, var(--clr-gradient-left), var(--clr-gradient-right));
 }
 
+a {
+    outline: 0;
+}
+
+input {
+    outline: 0;
+    border: 1px solid var(--clr-neutral-100);
+}
+
+input:focus-visible {
+    border-color: var(--clr-neutral-100);
+    box-shadow: 0 0 0.5rem var(--clr-neutral-100);
+}
+
+button {
+    cursor: pointer;
+    color: var(--clr-neutral-100);
+    border: 0;
+    outline: 0;
+}
+
+button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
+    color: var(--clr-neutral-300);
+}
+
 #root {
     display: flex;
     flex-direction: column;
@@ -112,3 +143,14 @@ body {
 
 /* Utility classes */
 
+.secondary-text {
+    font-size: var(--fs-secondary-text);
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.justify-self-center {
+    justify-self: center;
+}
