@@ -1,0 +1,91 @@
+.face-detection {
+    --section-gap: var(--size-50);
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    gap: var(--section-gap);
+    padding-block-start: var(--section-gap);
+}
+
+.face-detection__count {
+    line-height: 1;
+    font-size: var(--fs-count);
+}
+
+.face-detection__form {
+    --border-radius: 0.25em;
+    --elements-padding: var(--size-25);
+    
+    justify-self: stretch;
+    display: grid;
+    gap: var(--size-35);
+}
+
+.face-detection__form > input {
+    padding: var(--elements-padding);
+    border-radius: var(--border-radius);
+}
+.face-detection__form > :is(input, input::placeholder) {
+    font-size: var(--fs-input);
+}
+
+.face-detection__form > button {
+    justify-self: center;
+    padding: var(--elements-padding);
+    border-radius: var(--border-radius);
+    background-color: var(--clr-highlight);
+}
+
+.face-detection__image-container {
+    border: 2px solid var(--clr-neutral-100);
+    max-height: 35vh;
+}
+
+.face-detection__image-container > img {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 69em) {
+    .face-detection > p {
+        max-width: 70ch;
+    }
+
+    .face-detection__form {
+        grid-template-columns: 80% 20%;
+        gap: 0;
+    }
+
+    .face-detection__form > input {
+        border-start-end-radius: 0;
+        border-end-end-radius: 0;
+    }
+
+    .face-detection__form > button {
+        width: 100%;
+        border-start-start-radius: 0;
+        border-end-start-radius: 0;
+    }
+
+    .face-detection__form > button:is(:hover, :focus-visible) {
+        color: var(--clr-neutral-100);
+        background-color: var(--clr-highlight-hover);
+    }
+
+    .face-detection__image-container {
+        max-width: 80%;
+        max-height: 38vh;
+    }
+}
+
+@media (min-width: 118em) {
+    .face-detection {
+        --section-gap: var(--size-75);
+    }
+
+    .face-detection__image-container {
+        max-height: 42.5vh;
+    }
+}
