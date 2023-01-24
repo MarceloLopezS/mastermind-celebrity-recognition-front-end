@@ -9,11 +9,11 @@
     display: flex;
     align-items: center;
     gap: var(--size-50);
-    max-width: var(--size-450);
+    width: clamp(var(--size-350), 6vw,var(--size-450));
     user-select: none;
 }
 
-.navbar__brand > span {
+.navbar__brand > h1 {
     font-size: clamp(var(--fs-250), 1.35vw, var(--fs-275));
 }
 
@@ -29,7 +29,7 @@
 }
 
 @media (max-width: 69em) {
-    .navbar__brand > span {
+    .navbar__brand > h1 {
         display: none;
     }
 }
