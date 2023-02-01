@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
@@ -24,7 +25,9 @@ const Register = () => {
                 </div>
                 <button className='justify-self-center' type='submit'>Register</button>
                 <span className='secondary-text justify-self-center'>Already have an account?</span>
-                <button className='form-switch | secondary-text justify-self-center text-underline'>Log In</button>
+                <button className='form-switch | secondary-text justify-self-center text-underline'>
+                    <Link to='/'>Log In</Link>
+                </button>
             </form>
         </section>
     )
