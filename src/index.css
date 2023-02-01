@@ -35,9 +35,10 @@
     --fs-body: clamp(var(--fs-200), 1.25vw, var(--fs-250));
     --fs-secondary-text: clamp(var(--fs-125), 1.15vw, var(--fs-175));
     --fs-count: clamp(var(--fs-500), 1.5vw, var(--fs-600));
-    --fs-input: clamp(var(--fs-150), 1.5vw, var(--fs-200));
+    --fs-input: clamp(var(--fs-150), 1.2vw, var(--fs-200));
     --fs-footer: clamp(var(--fs-125), 1vw, var(--fs-175));
 
+    --size-10: 0.15rem;
     --size-15: 0.25rem;
     --size-25: 0.5rem;
     --size-35: 0.75rem;
@@ -45,6 +46,7 @@
     --size-75: 1.25rem;
     --size-100: 1.5rem;
     --size-150: 2rem;
+    --size-300: 4rem;
     --size-350: 4.5rem;
     --size-450: 5.75rem;
 }
@@ -122,12 +124,20 @@ a {
 
 input {
     outline: 0;
+    font-size: var(--fs-input);
     border: 1px solid var(--clr-neutral-100);
+    padding: var(--size-10) var(--size-15);
 }
 
 input:focus-visible {
     border-color: var(--clr-neutral-100);
     box-shadow: 0 0 0.5rem var(--clr-neutral-100);
+}
+
+@media (min-width: 118rem) {
+    input {
+        padding: var(--size-15) var(--size-25);
+    }
 }
 
 button {
