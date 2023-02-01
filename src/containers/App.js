@@ -11,8 +11,8 @@ function App() {
         <React.StrictMode>
             {/* <ParticlesBg /> */}
             <Navbar />
-            <Register />
-            {/* <LogIn /> */}
+            {/* <Register /> */}
+            <LogIn />
             {/* <FaceDetection /> */}
             <Footer />
         </React.StrictMode>
