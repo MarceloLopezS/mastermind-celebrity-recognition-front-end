@@ -1,51 +1,9 @@
-.log-in {
-    display: grid;
-    place-items: center;
-    padding-block-start: min(7vh, var(--size-350));
-}
-
-.log-in__form {
-    display: grid;
-    width: 100%;
-    gap: var(--size-75);
-    background-color: var(--clr-faded-900);
-    border-radius: var(--size-25);
-    padding: var(--size-100);
-    box-shadow: 0 0 var(--size-25) var(--clr-neutral-800);
-}
-
-.log-in__form h2 {
-    text-align: center;
-    max-width: 20ch;
-}
-
-.log-in__form > .form-group {
-    display: grid;
-    gap: var(--size-25);
-}
-
-.log-in__form > button {
-    width: max-content;
-    background-color: transparent;
-}
-
-.log-in__form > [type='submit'] {
-    padding: var(--size-15) var(--size-25);
-    border: 2px solid var(--clr-neutral-100);
-    border-radius: 0.25em;
-}
-
-.log-in__form > [type='submit']:is(:hover, :focus-visible) {
-    color: var(--clr-neutral-100);
-    background-color: var(--clr-faded-500);
-}
-
 @media (min-width: 28em) {
     .log-in {
         padding-block-start: min(6vw, var(--size-450));
     }
 
     .log-in__form {
-        width: clamp(20rem, 25vw, 24rem);
+        width: clamp(20rem, 26vw, 26rem);
     }
 }

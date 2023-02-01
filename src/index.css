@@ -168,6 +168,48 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     margin-inline: auto;
 }
 
+.form-section {
+    display: grid;
+    place-items: center;
+    padding-block-start: min(7vh, var(--size-350));
+}
+
+.form-section__form {
+    display: grid;
+    width: 100%;
+    gap: var(--size-50);
+    background-color: var(--clr-faded-900);
+    border-radius: var(--size-25);
+    padding: var(--size-100);
+    box-shadow: 0 0 var(--size-25) var(--clr-neutral-800);
+}
+
+.form-section__form h2 {
+    text-align: center;
+    max-width: 30ch;
+}
+
+.form-section__form > .form-group {
+    display: grid;
+    gap: var(--size-25);
+}
+
+.form-section__form > button {
+    width: max-content;
+    background-color: transparent;
+}
+
+.form-section__form > [type='submit'] {
+    padding: var(--size-15) var(--size-25);
+    border: 2px solid var(--clr-neutral-100);
+    border-radius: 0.25em;
+}
+
+.form-section__form > [type='submit']:is(:hover, :focus-visible) {
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-faded-500);
+}
+
 /* Utility classes */
 
 .secondary-text {

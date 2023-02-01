@@ -3,9 +3,9 @@ import './LogIn.css';
 
 const LogIn = () => {
     return (
-        <section className='log-in container'>
-            <form className='log-in__form'>
-                <h2 className='justify-self-center'>Enter your account credentials</h2>
+        <section className='form-section log-in container'>
+            <form className='form-section__form log-in__form'>
+                <h2 className='justify-self-center'>Enter your account credentials to access face detection</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
                     <input type='email' id='user-email' name='user-email'></input>

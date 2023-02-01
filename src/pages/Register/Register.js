@@ -3,8 +3,8 @@ import './Register.css';
 
 const Register = () => {
     return (
-        <section className='register container'>
-            <form className='register__form'>
+        <section className='form-section register container'>
+            <form className='form-section__form register__form'>
                 <h2 className='justify-self-center'>Enter your information to register</h2>
                 <div className='form-group'>
                     <label htmlFor='user-name'>Name:</label>
