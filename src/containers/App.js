@@ -3,15 +3,15 @@ import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
 import ParticlesBg from '../components/ParticlesBg/ParticlesBg';
 import FaceDetection from '../pages/FaceDetection/FaceDetection';
-import UserValidation from '../pages/UserValidation/UserValidation';
+import LogIn from '../pages/LogIn/LogIn';
 
 function App() {
     return (
         <React.StrictMode>
             {/* <ParticlesBg /> */}
             <Navbar />
-            {/* <UserValidation /> */}
-            <FaceDetection />
+            <LogIn />
+            {/* <FaceDetection /> */}
             <Footer />
         </React.StrictMode>
     );

@@ -1,10 +1,10 @@
 import React from 'react';
-import './UserValidation.css';
+import './LogIn.css';
 
-const UserValidation = () => {
+const LogIn = () => {
     return (
-        <section className='user-validation container'>
-            <form className='user-validation__form'>
+        <section className='log-in container'>
+            <form className='log-in__form'>
                 <h2 className='justify-self-center'>Enter your account credentials</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
@@ -22,4 +22,4 @@ const UserValidation = () => {
     )
 }
 
-export default UserValidation
+export default LogIn
