@@ -29,6 +29,7 @@
     --fs-250: 1.15rem;
     --fs-275: 1.4rem;
     --fs-300: 1.5rem;
+    --fs-350: 2rem;
     --fs-500: 3rem;
     --fs-600: 4rem;
 
@@ -208,6 +209,27 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
 .form-section__form > [type='submit']:is(:hover, :focus-visible) {
     color: var(--clr-neutral-100);
     background-color: var(--clr-faded-500);
+}
+
+.email-verification-section {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding-block-start: min(7vh, var(--size-350));
+}
+
+.email-verification-section div {
+    display: grid;
+    gap: var(--size-150);
+    max-width: 50ch;
+    padding: var(--size-150);
+    border-radius: var(--size-25);
+    box-shadow: 0 0 var(--size-25) var(--clr-neutral-800);
+}
+
+.email-verification-section h1 {
+    font-size: var(--fs-350);
+    font-weight: var(--fw-bold);
 }
 
 /* Utility classes */
