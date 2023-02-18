@@ -13,7 +13,7 @@ const FaceDetection = () => {
                 <button type='submit'>Detect</button>
             </form>
             <div className='face-detection__image-container'>
-                <img src='https://www.mondosonoro.com/wp-content/uploads/2015/03/Arctic-Monkeys.jpg' alt='Image to detect'></img>
+                <img src='https://www.mondosonoro.com/wp-content/uploads/2015/03/Arctic-Monkeys.jpg' alt='Input to detect'></img>
             </div>
         </section>
     )
