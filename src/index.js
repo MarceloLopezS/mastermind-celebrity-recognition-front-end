@@ -24,8 +24,6 @@ const registerUser = async ({ request }) => {
     const messageContainer = document.querySelector('.register__form .server-response');
     loader.setAttribute('data-show', '');
     submitButton.disabled = true;
-    messageContainer.textContent = '';
-    messageContainer.removeAttribute('data-danger');
     try {
         const formData = JSON.stringify(Object.fromEntries(await request.formData()));
         const response = await fetch("http://localhost:3001/register", {

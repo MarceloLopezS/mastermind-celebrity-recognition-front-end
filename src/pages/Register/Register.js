@@ -13,6 +13,7 @@ const validateAndGetDataFromSubmit = (e) => {
     let validForm = true;
 
     messageContainer.removeAttribute('data-danger');
+    messageContainer.textContent = '';
 
     inputs.forEach(input => {
         if (!input.value) {
