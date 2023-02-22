@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useFetcher } from 'react-router-dom';
 import './Register.css';
 
-const getDataFromSubmit = (e) => {
+const validateAndGetDataFromSubmit = (e) => {
     e.preventDefault();
     const name = e.target.querySelector('input[name="user-name"]');
     const email = e.target.querySelector('input[name="user-email"]');
@@ -59,7 +59,7 @@ const Register = () => {
     return (
         <section className='form-section register container'>
             <form className='form-section__form register__form' onSubmit={(e) => {
-                const formData = getDataFromSubmit(e);
+                const formData = validateAndGetDataFromSubmit(e);
                 if (formData) {
                     const options = {
                         method: "post",
