@@ -215,7 +215,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     gap: var(--size-25);
 }
 
-.form-section__form > .register-action {
+.form-section__form > .register-action, .form-section__form > .login-action {
     display: flex;
     align-items: center;
     gap: var(--size-50);
@@ -225,6 +225,10 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     display: grid;
     place-items: center;
     max-width: 30ch;
+}
+
+.form-section__form button[type='submit'] {
+    min-width: max-content;
 }
 
 .form-section__form .loader {

@@ -2,18 +2,22 @@ import React from 'react';
 import { Link, useFetcher } from 'react-router-dom';
 import './Register.css';
 
-const validateAndGetDataFromSubmit = (e) => {
+const validateAndGetRegisterData = (e) => {
     e.preventDefault();
     const name = e.target.querySelector('input[name="user-name"]');
     const email = e.target.querySelector('input[name="user-email"]');
     const password = e.target.querySelector('input[name="user-password"]');
     const confirmPassword = e.target.querySelector('input[name="user-confirm-password"]');
     const inputs = [name, email, password, confirmPassword];
-    const messageContainer = e.target.querySelector('.server-response')
+    const messageContainer = e.target.querySelector('.server-response');
     let validForm = true;
 
     messageContainer.removeAttribute('data-danger');
     messageContainer.textContent = '';
+    email.setAttribute('placeholder', 'Please enter your email');
+    inputs.forEach(input => {
+        input.classList.remove('invalid');
+    });
 
     inputs.forEach(input => {
         if (!input.value) {
@@ -60,13 +64,13 @@ const Register = () => {
     return (
         <section className='form-section register container'>
             <form className='form-section__form register__form' onSubmit={(e) => {
-                const formData = validateAndGetDataFromSubmit(e);
-                if (formData) {
+                const registerData = validateAndGetRegisterData(e);
+                if (registerData) {
                     const options = {
                         method: "post",
-                        action: "http://localhost:3001/register"
+                        action: "/register"
                     }
-                    fetcher.submit(formData, options);
+                    fetcher.submit(registerData, options);
                 }
             }}>
                 <h2 className='justify-self-center'>Enter your information to register</h2>
