@@ -1,14 +1,16 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import ParticlesBg from '../components/ParticlesBg/ParticlesBg';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
 function App() {
+    const userData = useLoaderData();
+
     return (
         <React.StrictMode>
             {/* <ParticlesBg /> */}
-            <Navbar />
+            <Navbar isLoggedIn={userData ? true : false} />
             <Outlet />
             <Footer />
         </React.StrictMode>
