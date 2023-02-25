@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    --clr-gradient-left: hsl(184, 100%, 36%);
-    --clr-gradient-right: hsl(233, 84%, 25%);
+    /* --clr-gradient-left: hsl(184, 100%, 36%);
+    --clr-gradient-right: hsl(233, 84%, 25%); */
+    --clr-gradient-left: hsl(184, 100%, 20%);
+    --clr-gradient-right: hsl(229, 100%, 12%);
     
     --clr-faded-500: hsl(0, 0%, 0%, 0.2);
     --clr-faded-800: hsl(0, 0%, 0%, 0.05);
@@ -14,11 +16,9 @@
     --clr-neutral-100: hsl(0, 0%, 100%);
     --clr-neutral-300: hsl(0, 0%, 79%);
     --clr-neutral-700: hsl(0, 0%, 30%);
-    --clr-neutral-800: hsl(0, 0%, 20%);
     --clr-neutral-900: hsl(0, 0%, 0%);
     
-    --clr-success: hsl(152, 85%, 29%);
-    --clr-invalid: hsl(354, 70%, 54%);
+    --clr-invalid: hsl(41, 92%, 50%);
 
     --ff-primary: 'Space Mono', monospace;
     --ff-secondary: 'Space Mono', monospace;
@@ -202,7 +202,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     background-color: var(--clr-faded-900);
     border-radius: var(--size-25);
     padding: var(--size-100);
-    box-shadow: 0 0 var(--size-25) var(--clr-neutral-800);
+    box-shadow: 0 0 var(--size-25) var(--clr-neutral-100);
 }
 
 .form-section__form h2 {
@@ -225,10 +225,6 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     display: grid;
     place-items: center;
     max-width: 30ch;
-}
-
-.form-section__form button[type='submit'] {
-    min-width: max-content;
 }
 
 .form-section__form .loader {
@@ -282,12 +278,9 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     color: var(--clr-highlight);
 }
 
-.form-section__form > button {
-    width: max-content;
+.form-section__form button[type='submit'] {
+    min-width: max-content;
     background-color: transparent;
-}
-
-.form-section__form  [type='submit'] {
     justify-self: start;
     padding: var(--size-15) var(--size-25);
     border: 2px solid var(--clr-neutral-100);
@@ -295,7 +288,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     margin-block: var(--size-50);
 }
 
-.form-section__form > [type='submit']:is(:hover, :focus-visible) {
+.form-section__form button[type='submit']:is(:hover, :focus-visible) {
     color: var(--clr-neutral-100);
     background-color: var(--clr-faded-500);
 }
