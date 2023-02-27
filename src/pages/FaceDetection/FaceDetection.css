@@ -23,12 +23,31 @@
     gap: var(--size-35);
 }
 
-.face-detection__form > input {
+.face-detection__form input[type="file"] {
+    display: none;
+}
+
+.face-detection__form input, .face-detection__form label {
     padding: var(--elements-padding);
     border-radius: var(--border-radius);
 }
-.face-detection__form > :is(input, input::placeholder) {
+
+.face-detection__form .upload-icon {
+    width: var(--size-50);
+}
+
+.face-detection__form label.custom-file-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-25);
+    border: 2px solid var(--clr-neutral-100);
     font-size: var(--fs-input);
+    cursor: pointer;
+}
+
+.face-detection__form label.custom-file-input:hover {
+    background-color: var(--clr-faded-500);
 }
 
 .face-detection__form > button {
@@ -41,6 +60,11 @@
 .face-detection__image-container {
     border: 2px solid var(--clr-neutral-100);
     max-height: 35vh;
+    opacity: 0;
+}
+
+.face-detection__image-container[data-show] {
+    opacity: 1;
 }
 
 .face-detection__image-container > img {
@@ -58,9 +82,10 @@
         gap: 0;
     }
 
-    .face-detection__form > input {
+    .face-detection__form label.custom-file-input {
         border-start-end-radius: 0;
         border-end-end-radius: 0;
+        border-inline-end: none;
     }
 
     .face-detection__form > button {

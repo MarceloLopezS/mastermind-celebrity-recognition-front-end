@@ -17,7 +17,7 @@ import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Error from './pages/EmailVerification/Error/Error';
 import InvalidToken from './pages/EmailVerification/Error/InvalidToken/InvalidToken';
 import Success from './pages/EmailVerification/Success/Success';
-import { registerUser, loginUser, logOutUser } from './utilities/ReactRouterActions/actions';
+import { registerUser, loginUser, logOutUser, sendImage } from './utilities/ReactRouterActions/actions';
 import { getUserData } from './utilities/ReactRouterLoaders/loaders';
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -118,7 +118,8 @@ const router = createBrowserRouter(
                     } else {
                         return redirect('/')
                     }
-                }}
+                }} 
+                action={sendImage}
             />
         </Route>
     )

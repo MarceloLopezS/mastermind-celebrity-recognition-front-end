@@ -1,5 +1,7 @@
 import { redirect } from "react-router-dom";
 
+const domain = "http://localhost:3001";
+
 export const registerUser = async ({ request }) => {
     const loader = document.querySelector('.register__form .loader');
     const submitButton = document.querySelector('.register__form button[type="submit"]');
@@ -16,10 +18,10 @@ export const registerUser = async ({ request }) => {
                 'Content-Type': 'application/json'
             }
         };
-        const response = await fetch("http://localhost:3001/register", fetchOptions);
+        const response = await fetch(`${domain}/register`, fetchOptions);
         const data = await response.json();
         loader.removeAttribute('data-show');
-        if(!data) return null;
+        if (!data) return null;
         if (data.status === 'success') {
             return redirect("/email-verification");
         } else if (data.status === 'fail'){
@@ -65,10 +67,10 @@ export const loginUser = async ({ request }) => {
                 'Content-Type': 'application/json'
             }
         };
-        const response = await fetch("http://localhost:3001/login", fetchOptions);
+        const response = await fetch(`${domain}/login`, fetchOptions);
         const data = await response.json();
         loader.removeAttribute('data-show');
-        if(!data) return null;
+        if (!data) return null;
         if (data.status === 'success') {
             return redirect("/face-detection");
         } else if (data.status === 'fail'){
@@ -97,7 +99,7 @@ export const loginUser = async ({ request }) => {
 }
 
 export const logOutUser = async ({ request }) => {
-    try{
+    try {
         const formData = JSON.stringify(Object.fromEntries(await request.formData()));
         const fetchOptions = {
             method: request.method,
@@ -108,11 +110,33 @@ export const logOutUser = async ({ request }) => {
             }
         }
 
-        const response = await fetch("http://localhost:3001/logout", fetchOptions);
+        const response = await fetch(`${domain}/logout`, fetchOptions);
         const data = await response.json();
-        if(!data) return null;
+        if (!data) return null;
         if (data.status === 'success') {
             return redirect("/face-detection");
+        }
+    } catch (err) {
+        console.error(`Fetch error: ${err}`);
+    }
+
+    return null;
+}
+
+export const sendImage = async ({ request }) => {
+    try {
+        const requestData = await request.formData();
+        const fetchOptions = {
+            method: request.method,
+            credentials: 'include',
+            body: requestData
+        }
+
+        const response = await fetch(`${domain}/face-detection/increment-entry`, fetchOptions);
+        const data = await response.json();
+        if (!data) return null;
+        if (data.status === 'success') {
+            return null;
         }
     } catch (err) {
         console.error(`Fetch error: ${err}`);
