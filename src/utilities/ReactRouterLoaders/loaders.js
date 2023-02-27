@@ -1,3 +1,5 @@
+const domain = "http://localhost:3001"
+
 export const getUserData = async () => {
     try {
         const fetchOptions = {
@@ -7,7 +9,7 @@ export const getUserData = async () => {
                 'Content-Type': 'application/json',
             }
         }
-        const response = await fetch("http://localhost:3001/user-info", fetchOptions);
+        const response = await fetch(`${domain}/user-info`, fetchOptions);
         const data = await response.json();
         if (data.status === 'success') {
             return data.userInfo;
