@@ -1,4 +1,4 @@
-const domain = "http://localhost:3001"
+const domain = "http://localhost:8000"
 
 export const getUserData = async () => {
     try {

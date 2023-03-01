@@ -9,7 +9,7 @@ function App() {
 
     return (
         <React.StrictMode>
-            {/* <ParticlesBg /> */}
+            <ParticlesBg />
             <Navbar isLoggedIn={userData ? true : false} />
             <Outlet />
             <Footer />

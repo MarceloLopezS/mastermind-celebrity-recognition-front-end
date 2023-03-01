@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import './FaceDetection.css';
 
@@ -21,15 +21,15 @@ const onFormSubmit = async (e) => {
     const formData = new FormData();
     formData.append('image-input', imageInput.files[0]);
     try {
-        const domain = "http://localhost:3001";
+        const domain = "http://localhost:8000";
         const fetchOptions = {
             method: 'POST',
             credentials: 'include',
             body: formData
         }
-        const response = await fetch(`${domain}/face-detection`,fetchOptions)
+        const response = await fetch(`${domain}/face-detection`, fetchOptions)
         const data = await response.json();
-
+        
         return data;
     } catch (err) {
         console.error(`Fetch error: ${err}`);
@@ -40,22 +40,31 @@ const onFormSubmit = async (e) => {
 const FaceDetection = () => {
     const { name, entries } = useLoaderData();
     const fetcher = useFetcher();
+    const [detectionData, setDetectionData] = useState();
 
     return (
         <section className='face-detection container'>
             <p className='face-detection__user-welcome'>Welcome, {name}. Your current detection count is:</p>
             <p className='face-detection__count'>{entries}</p>
-            <p>You can upload an image to recognize celebrities and public people.</p>
-            <p className='secondary-text'><span className='text-highlight'>Tip:</span> Take a scene screenshot of that movie or show you want to know who that incredible actor/actress is. Save it and upload it here 😎</p>
+            <p>You can upload an image to recognize celebrities with an AI model.</p>
+            <p className='secondary-text'><span className='text-highlight'>Tip?</span> Take a scene screenshot of that movie or show you want to know who that incredible actor/actress is. Save it and upload it here 😎</p>
             <form className='face-detection__form' encType='multipart/form-data' onSubmit={async (e) => {
+                setDetectionData([]);
+                const loader = e.target.parentElement.querySelector(".face-detection__image-container .loader");
+                loader.setAttribute("data-show", "");
+                
                 const data = await onFormSubmit(e);
-                if (!data || data.status === 'unauthorized' || data.status === 'fail') return;
+                if (!data || data.status === 'unauthorized' || data.status === 'fail') {
+                    loader.removeAttribute("data-show");
+                    return;
+                }
                 if (data.status === 'success') {
-                    console.log(data);
-                    // Draw face bounding box
+                    // console.log(data);
+                    loader.removeAttribute("data-show");
+                    setDetectionData(data.detectionData);
 
                     const requestData = {
-                        request: 'add-entry'
+                        request: 'increment-entry'
                     }
                     const options = {
                         method: 'put',
@@ -76,6 +85,37 @@ const FaceDetection = () => {
             </form>
             <div className='face-detection__image-container'>
                 <img src='#' alt='Input to detect'></img>
+                <span className='loader'></span>
+                {
+                    detectionData
+                    ? detectionData.map((detection, i) => {
+                        const { top_row, right_col, bottom_row, left_col } = detection.boundingBox;
+                        const { name, probability } = detection.faceDetection;
+                        const capitalizeName = (name) => {
+                            const nameSegments = name.split(" ");
+                            const capitalizedName = nameSegments.map(segment => {
+                                return segment.split("").map((letter, i) => {
+                                    if (i === 0) {
+                                        return letter.toUpperCase();
+                                    } else {
+                                        return letter;
+                                    }
+                                }).join("");
+                            }).join(" ");
+
+                            return capitalizedName;
+                        }
+                        return <div key={i} className='boundingBox' style={{
+                            top:`${top_row * 100}%`, 
+                            right:`${100 - (right_col * 100)}%`, 
+                            bottom:`${100 - (bottom_row * 100)}%`, 
+                            left:`${left_col * 100}%`,
+                        }}>
+                            <span className='detection-name'>{capitalizeName(name)} | {Math.floor(probability * 100)}%</span>
+                        </div>
+                    })
+                    : []
+                }
             </div>
         </section>
     )
