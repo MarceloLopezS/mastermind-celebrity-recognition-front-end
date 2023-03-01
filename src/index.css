@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    /* --clr-gradient-left: hsl(184, 100%, 36%);
-    --clr-gradient-right: hsl(233, 84%, 25%); */
-    --clr-gradient-left: hsl(184, 100%, 20%);
+    --clr-gradient-left: hsl(184, 100%, 18%);
     --clr-gradient-right: hsl(229, 100%, 12%);
 
     --clr-faded-500: hsl(0, 0%, 0%, 0.2);
@@ -312,7 +310,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     max-width: 50ch;
     padding: var(--size-150);
     border-radius: var(--size-25);
-    box-shadow: 0 0 var(--size-25) var(--clr-neutral-800);
+    box-shadow: 0 0 var(--size-25) var(--clr-neutral-100);
 }
 
 .email-verification-section h1 {
