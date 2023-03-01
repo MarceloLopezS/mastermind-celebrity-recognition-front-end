@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 
-const domain = "http://localhost:3001";
+const domain = "http://localhost:8000";
 
 export const registerUser = async ({ request }) => {
     const loader = document.querySelector('.register__form .loader');
