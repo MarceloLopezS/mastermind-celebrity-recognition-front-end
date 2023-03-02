@@ -17,8 +17,8 @@ import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Error from './pages/EmailVerification/Error/Error';
 import InvalidToken from './pages/EmailVerification/Error/InvalidToken/InvalidToken';
 import Success from './pages/EmailVerification/Success/Success';
-import { registerUser, loginUser, logOutUser, sendImage } from './utilities/ReactRouterActions/actions';
-import { getUserData } from './utilities/ReactRouterLoaders/loaders';
+import { registerUser, loginUser, logOutUser, sendImage } from './controllers/ReactRouterActions/actions';
+import { getUserData } from './controllers/ReactRouterLoaders/loaders';
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' 
