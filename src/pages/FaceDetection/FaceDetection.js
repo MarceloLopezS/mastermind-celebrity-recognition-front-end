@@ -6,11 +6,12 @@ import './FaceDetection.css';
 const onFileChange = (e) => {
     const image = document.querySelector('.face-detection__image-container img');
     const imageContainer = image.parentElement;
-    try {
-        image.src = URL.createObjectURL(e.target.files[0]);
-    }catch (err) {
-        return
+    if (e.target.files.length === 0) {
+        imageContainer.removeAttribute('data-show');
+        return;
     }
+    
+    image.src = URL.createObjectURL(e.target.files[0]);
     imageContainer.setAttribute('data-show', '');
 }
 
