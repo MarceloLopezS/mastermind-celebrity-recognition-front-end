@@ -1,4 +1,4 @@
-import serverDomain from '../../config/serverDomain.js';
+import SERVER_DOMAIN from '../../config/backEnd.js';
 
 export const getUserData = async () => {
     try {
@@ -9,7 +9,7 @@ export const getUserData = async () => {
                 'Content-Type': 'application/json',
             }
         }
-        const response = await fetch(`${serverDomain}/user-info`, fetchOptions);
+        const response = await fetch(`${SERVER_DOMAIN}/user-info`, fetchOptions);
         const data = await response.json();
         if (data.status === 'success') {
             return data.userInfo;

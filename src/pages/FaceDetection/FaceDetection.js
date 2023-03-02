@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFetcher, useLoaderData } from 'react-router-dom';
-import serverDomain from '../../config/serverDomain.js';
+import SERVER_DOMAIN from '../../config/backEnd.js';
 import './FaceDetection.css';
 
 const onFileChange = (e) => {
@@ -27,7 +27,7 @@ const onFormSubmit = async (e) => {
             credentials: 'include',
             body: formData
         }
-        const response = await fetch(`${serverDomain}/face-detection`, fetchOptions)
+        const response = await fetch(`${SERVER_DOMAIN}/face-detection`, fetchOptions)
         const data = await response.json();
         
         return data;
