@@ -8,6 +8,7 @@ const onFileChange = (e) => {
     const imageContainer = image.parentElement;
     if (e.target.files.length === 0) {
         imageContainer.removeAttribute('data-show');
+        image.src = '#';
         return;
     }
     
