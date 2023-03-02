@@ -17,10 +17,12 @@ import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Error from './pages/EmailVerification/Error/Error';
 import InvalidToken from './pages/EmailVerification/Error/InvalidToken/InvalidToken';
 import Success from './pages/EmailVerification/Success/Success';
+import NotFound from './pages/NotFound/NotFound';
 import { registerUser, loginUser, logOutUser, sendImage } from './controllers/ReactRouterActions/actions';
 import { getUserData } from './controllers/ReactRouterLoaders/loaders';
 const router = createBrowserRouter(
     createRoutesFromElements(
+        <>
         <Route path='/' 
             id='root' 
             element={<App />} 
@@ -122,6 +124,9 @@ const router = createBrowserRouter(
                 action={sendImage}
             />
         </Route>
+
+        <Route path='/*' element={<NotFound />} />
+        </>
     )
 );
 
