@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFetcher, useLoaderData } from 'react-router-dom';
+import serverDomain from '../../config/serverDomain.js';
 import './FaceDetection.css';
 
 const onFileChange = (e) => {
@@ -21,13 +22,12 @@ const onFormSubmit = async (e) => {
     const formData = new FormData();
     formData.append('image-input', imageInput.files[0]);
     try {
-        const domain = "http://localhost:8000";
         const fetchOptions = {
             method: 'POST',
             credentials: 'include',
             body: formData
         }
-        const response = await fetch(`${domain}/face-detection`, fetchOptions)
+        const response = await fetch(`${serverDomain}/face-detection`, fetchOptions)
         const data = await response.json();
         
         return data;
@@ -46,7 +46,7 @@ const FaceDetection = () => {
         <section className='face-detection container'>
             <p className='face-detection__user-welcome'>Welcome, {name}. Your current detection count is:</p>
             <p className='face-detection__count'>{entries}</p>
-            <p>You can upload an image to recognize celebrities with an AI model.</p>
+            <p>You can upload an image to recognize celebrities using an AI model.</p>
             <p className='secondary-text'><span className='text-highlight'>Tip?</span> Take a scene screenshot of that movie or show you want to know who that incredible actor/actress is. Save it and upload it here 😎</p>
             <form className='face-detection__form' encType='multipart/form-data' onSubmit={async (e) => {
                 setDetectionData([]);

@@ -1,6 +1,5 @@
-import { redirect } from "react-router-dom";
-
-const domain = "http://localhost:8000";
+import { redirect } from 'react-router-dom';
+import serverDomain from '../../config/serverDomain.js';
 
 export const registerUser = async ({ request }) => {
     const loader = document.querySelector('.register__form .loader');
@@ -18,7 +17,7 @@ export const registerUser = async ({ request }) => {
                 'Content-Type': 'application/json'
             }
         };
-        const response = await fetch(`${domain}/register`, fetchOptions);
+        const response = await fetch(`${serverDomain}/register`, fetchOptions);
         const data = await response.json();
         loader.removeAttribute('data-show');
         if (!data) return null;
@@ -67,7 +66,7 @@ export const loginUser = async ({ request }) => {
                 'Content-Type': 'application/json'
             }
         };
-        const response = await fetch(`${domain}/login`, fetchOptions);
+        const response = await fetch(`${serverDomain}/login`, fetchOptions);
         const data = await response.json();
         loader.removeAttribute('data-show');
         if (!data) return null;
@@ -110,7 +109,7 @@ export const logOutUser = async ({ request }) => {
             }
         }
 
-        const response = await fetch(`${domain}/logout`, fetchOptions);
+        const response = await fetch(`${serverDomain}/logout`, fetchOptions);
         const data = await response.json();
         if (!data) return null;
         if (data.status === 'success') {
@@ -132,7 +131,7 @@ export const sendImage = async ({ request }) => {
             body: requestData
         }
 
-        const response = await fetch(`${domain}/face-detection/increment-entry`, fetchOptions);
+        const response = await fetch(`${serverDomain}/face-detection/increment-entry`, fetchOptions);
         const data = await response.json();
         if (!data) return null;
         if (data.status === 'success') {
