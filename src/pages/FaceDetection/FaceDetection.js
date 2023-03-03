@@ -26,6 +26,7 @@ const onFormSubmit = async (e) => {
     try {
         const fetchOptions = {
             method: 'POST',
+            mode: 'cors',
             credentials: 'include',
             body: formData
         }
