@@ -102,9 +102,7 @@ const Register = () => {
                     </div>
                 </div>
                 <span className='secondary-text justify-self-center'>Already have an account?</span>
-                <button className='form-switch | secondary-text justify-self-center text-underline'>
-                    <Link to='/'>Log In</Link>
-                </button>
+                <Link className='form-switch | secondary-text justify-self-center text-underline' to='/'>Log In</Link>
             </form>
         </section>
     )

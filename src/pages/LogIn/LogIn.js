@@ -81,9 +81,7 @@ const LogIn = () => {
                     </div>
                 </div>
                 <span className='secondary-text justify-self-center'>Don't have an account yet?</span>
-                <button className='form-switch | secondary-text justify-self-center text-underline'>
-                    <Link to='/register'>Register</Link>
-                </button>
+                <Link className='form-switch | secondary-text justify-self-center text-underline' to='/register'>Register</Link>
             </form>
         </section>
     )

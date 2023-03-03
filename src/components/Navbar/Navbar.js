@@ -29,12 +29,8 @@ const Navbar = ({ isLoggedIn }) => {
                     )
                     : (
                         <>
-                            <button className='navbar__button'>
-                                <Link to='/'>Log In</Link>
-                            </button>
-                            <button className='navbar__button'>
-                                <Link to='/register'>Sign Up</Link>
-                            </button>
+                            <Link to='/'>Log In</Link>
+                            <Link to='/register'>Sign Up</Link>
                         </>
                     )
                 }
