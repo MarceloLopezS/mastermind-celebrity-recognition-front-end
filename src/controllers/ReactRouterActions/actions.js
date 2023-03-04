@@ -122,7 +122,7 @@ export const logOutUser = async ({ request }) => {
     return null;
 }
 
-export const sendImage = async ({ request }) => {
+export const incrementEntry = async ({ request }) => {
     try {
         const requestData = await request.formData();
         const fetchOptions = {
