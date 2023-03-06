@@ -1,5 +1,6 @@
 footer {
-    padding: var(--size-50);
+    padding: var(--size-25);
+    padding: clamp(var(--size-25), 0.8vw, var(--size-50));
     font-size: var(--fs-footer);
     display: grid;
     justify-items: center;
