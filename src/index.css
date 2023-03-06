@@ -8,11 +8,11 @@
     --clr-faded-800: hsl(0, 0%, 0%, 0.05);
     --clr-faded-900: hsl(0, 0%, 0%, 0.025);
 
-    --clr-highlight: hsl(41, 100%, 63%);
-    --clr-highlight-hover: hsl(41, 92%, 58%);
+    --clr-highlight: hsl(41, 92%, 58%);
+    --clr-highlight-hover: hsl(41, 83%, 53%);
     --clr-detection: hsl(41, 92%, 58%);
 
-    --clr-detection-faded-400: hsl(41, 92%, 58%, 0.6);
+    --clr-detection-faded-400: hsl(41, 92%, 58%, 0.7);
 
     --clr-neutral-100: hsl(0, 0%, 100%);
     --clr-neutral-200: hsl(0, 0%, 90%);
