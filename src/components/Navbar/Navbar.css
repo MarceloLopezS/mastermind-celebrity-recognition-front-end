@@ -9,12 +9,12 @@
     display: flex;
     align-items: center;
     gap: var(--size-50);
-    width: clamp(var(--size-350), 6vw,var(--size-450));
+    width: clamp(var(--size-350), 5vw,var(--size-400));
     user-select: none;
 }
 
 .navbar__brand > h1 {
-    font-size: clamp(var(--fs-250), 1.35vw, var(--fs-275));
+    font-size: clamp(var(--fs-250), 1.45vw, var(--fs-275));
 }
 
 .navbar__brand img {
