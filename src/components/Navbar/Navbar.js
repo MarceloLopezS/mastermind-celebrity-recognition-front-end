@@ -16,7 +16,11 @@ const Navbar = ({ isLoggedIn }) => {
                 {
                     isLoggedIn
                     ? (
-                        <button className='navbar__button' onClick={() => {
+                        <>
+                        <span className='loader'></span>
+                        <button className='navbar__button' onClick={(e) => {
+                            const loader = e.target.parentElement.querySelector(".loader");
+                            loader.setAttribute("data-show", "");
                             const data = {
                                 requestAction: "logout"
                             }
@@ -26,6 +30,7 @@ const Navbar = ({ isLoggedIn }) => {
                             }
                             fetcher.submit(data, options);
                         }}>Log Out</button>
+                        </>
                     )
                     : (
                         <>
