@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    background-color: var(--clr-faded-900);
+    background-color: var(--clr-faded-800);
     padding: var(--size-50);
 }
 
