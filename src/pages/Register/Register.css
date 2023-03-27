@@ -1,11 +1,11 @@
 @media (min-width: 28em) {
     .register {
-        padding-block-start: min(1.75vw, var(--size-150));
+        padding-block-start: min(2vw, var(--size-150));
     }
 
     .register__form {
         width: clamp(20rem, 26vw, 26rem);
-        gap: var(--size-35);
+        gap: var(--size-25);
     }
 }
 

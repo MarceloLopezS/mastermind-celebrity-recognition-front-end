@@ -196,7 +196,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
 .form-section {
     display: grid;
     place-items: center;
-    padding-block-start: min(7vh, var(--size-350));
+    padding-block: min(7vh, var(--size-350));
 }
 
 .form-section__form {

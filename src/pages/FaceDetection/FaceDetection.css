@@ -6,7 +6,7 @@
     justify-items: center;
     text-align: center;
     gap: var(--section-gap);
-    padding-block-start: var(--section-gap);
+    padding-block: var(--section-gap) min(2.5vw, var(--size-150));
 }
 
 .face-detection__count {
