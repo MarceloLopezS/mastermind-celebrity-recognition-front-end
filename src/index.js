@@ -11,14 +11,17 @@ import './index.css';
 import App from './containers/App';
 import LogIn from './pages/LogIn/LogIn';
 import Register from './pages/Register/Register';
-import FaceDetection from './pages/FaceDetection/FaceDetection';
-import reportWebVitals from './reportWebVitals';
 import EmailVerification from './pages/EmailVerification/EmailVerification';
 import Error from './pages/EmailVerification/Error/Error';
 import InvalidToken from './pages/EmailVerification/Error/InvalidToken/InvalidToken';
-import Success from './pages/EmailVerification/Success/Success';
+import ActivationSuccess from './pages/EmailVerification/Success/ActivationSuccess';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
+import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
+import RecoverySuccess from './pages/PasswordRecovery/Success/RecoverySuccess';
+import FaceDetection from './pages/FaceDetection/FaceDetection';
+import reportWebVitals from './reportWebVitals';
 import NotFound from './pages/NotFound/NotFound';
-import { registerUser, loginUser, logOutUser, incrementEntry } from './controllers/ReactRouterActions/actions';
+import { registerUser, loginUser, logOutUser, incrementEntry, forgotPassword, passwordRecovery } from './controllers/ReactRouterActions/actions';
 import { getUserData } from './controllers/ReactRouterLoaders/loaders';
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -99,7 +102,46 @@ const router = createBrowserRouter(
                     />
                 </Route>
                 <Route path='activation-success' 
-                    element={<Success />} 
+                    element={<ActivationSuccess />} 
+                    loader={async () => {
+                        const userData = await getUserData();
+                        if (userData) {
+                            return redirect('face-detection');
+                        } else {
+                            return null;
+                        }
+                    }}
+                />
+            </Route>
+
+            <Route path='forgot-password' 
+                element={<ForgotPassword />} 
+                action={forgotPassword}
+                loader={async () => {
+                    const userData = await getUserData();
+                    if (userData) {
+                        return redirect('face-detection');
+                    } else {
+                        return null;
+                    }
+                }} 
+            />
+
+            <Route path='password-recovery'>
+                <Route path=':recoveryToken' 
+                    element={<PasswordRecovery />} 
+                    action={passwordRecovery}
+                    loader={async () => {
+                        const userData = await getUserData();
+                        if (userData) {
+                            return redirect('face-detection');
+                        } else {
+                            return null;
+                        }
+                    }}
+                />
+                <Route path='recovery-success' 
+                    element={<RecoverySuccess />} 
                     loader={async () => {
                         const userData = await getUserData();
                         if (userData) {

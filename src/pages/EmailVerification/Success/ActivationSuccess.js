@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Success = () => {
+const ActivationSuccess = () => {
     return (
         <section className='container email-verification-section'>
             <div>
@@ -12,4 +12,4 @@ const Success = () => {
     )
 }
 
-export default Success;
+export default ActivationSuccess;

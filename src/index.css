@@ -219,7 +219,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     gap: var(--size-25);
 }
 
-.form-section__form > .register-action, .form-section__form > .login-action {
+.form-section__form > :is(.register-action, .login-action, .forgot-password__action, .forgot-password__action, .password-recovery__action) {
     display: flex;
     align-items: center;
     gap: var(--size-50);
@@ -297,14 +297,14 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     background-color: var(--clr-faded-500);
 }
 
-.email-verification-section {
+.email-verification-section, .recovery-success-section {
     display: grid;
     place-items: center;
     text-align: center;
     padding-block-start: min(7vh, var(--size-350));
 }
 
-.email-verification-section div {
+.email-verification-section div, .recovery-success-section div {
     display: grid;
     gap: var(--size-150);
     max-width: 50ch;
@@ -313,7 +313,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     box-shadow: 0 0 var(--size-25) var(--clr-neutral-100);
 }
 
-.email-verification-section h1 {
+.email-verification-section h1, .recovery-success-section h1 {
     font-size: var(--fs-350);
     font-weight: var(--fw-bold);
 }
