@@ -122,7 +122,7 @@ export const forgotPassword = async ({ request }) => {
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.errors.loginMessage;
+            messageContainer.textContent = data.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
@@ -169,7 +169,7 @@ export const passwordReset = async ({ request }) => {
         if (data.status === 'success') {
             return redirect("/password-reset/reset-success");
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.errors.loginMessage;
+            messageContainer.textContent = data.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
