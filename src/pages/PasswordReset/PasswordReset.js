@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFetcher, useParams } from 'react-router-dom';
-import './PasswordRecovery.css';
+import './PasswordReset.css';
 
 const validateAndGetPassword = (e) => {
     e.preventDefault();
@@ -44,20 +44,20 @@ const validateAndGetPassword = (e) => {
     return null;
 }
 
-const PasswordRecovery = () => {
+const PasswordReset = () => {
     const fetcher = useFetcher();
-    const { recoveryToken } = useParams();
+    const { resetToken } = useParams();
 
     return (
-        <section className='form-section password-recovery container'>
-            <form className='form-section__form password-recovery__form' onSubmit={(e) => {
-                const passwordRecoveryData = validateAndGetPassword(e);
-                if (passwordRecoveryData) {
+        <section className='form-section password-reset container'>
+            <form className='form-section__form password-reset__form' onSubmit={(e) => {
+                const passwordResetData = validateAndGetPassword(e);
+                if (passwordResetData) {
                     const options = {
                         method: "post",
-                        action: "/password-recovery/:recoveryToken"
+                        action: "/password-reset/:resetToken"
                     }
-                    fetcher.submit({ ...passwordRecoveryData, recoveryToken }, options);
+                    fetcher.submit({ ...passwordResetData, resetToken }, options);
                 }
             }}>
                 <h2 className='justify-self-center'>Enter and confirm your new password</h2>
@@ -69,7 +69,7 @@ const PasswordRecovery = () => {
                     <label htmlFor='user-confirm-password'>Confirm password:</label>
                     <input type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
                 </div>
-                <div className='password-recovery__action'>
+                <div className='password-reset__action'>
                     <button className='justify-self-center' type='submit'>
                         Submit
                     </button>
@@ -85,4 +85,4 @@ const PasswordRecovery = () => {
     )
 }
 
-export default PasswordRecovery
+export default PasswordReset

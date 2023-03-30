@@ -16,12 +16,12 @@ import Error from './pages/EmailVerification/Error/Error';
 import InvalidToken from './pages/EmailVerification/Error/InvalidToken/InvalidToken';
 import ActivationSuccess from './pages/EmailVerification/Success/ActivationSuccess';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
-import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
-import RecoverySuccess from './pages/PasswordRecovery/Success/RecoverySuccess';
+import PasswordReset from './pages/PasswordReset/PasswordReset';
+import ResetSuccess from './pages/PasswordReset/Success/ResetSuccess';
 import FaceDetection from './pages/FaceDetection/FaceDetection';
 import reportWebVitals from './reportWebVitals';
 import NotFound from './pages/NotFound/NotFound';
-import { registerUser, loginUser, logOutUser, incrementEntry, forgotPassword, passwordRecovery } from './controllers/ReactRouterActions/actions';
+import { registerUser, loginUser, logOutUser, incrementEntry, forgotPassword, passwordReset } from './controllers/ReactRouterActions/actions';
 import { getUserData } from './controllers/ReactRouterLoaders/loaders';
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -127,10 +127,10 @@ const router = createBrowserRouter(
                 }} 
             />
 
-            <Route path='password-recovery'>
-                <Route path=':recoveryToken' 
-                    element={<PasswordRecovery />} 
-                    action={passwordRecovery}
+            <Route path='password-reset'>
+                <Route path=':resetToken' 
+                    element={<PasswordReset />} 
+                    action={passwordReset}
                     loader={async () => {
                         const userData = await getUserData();
                         if (userData) {
@@ -140,8 +140,8 @@ const router = createBrowserRouter(
                         }
                     }}
                 />
-                <Route path='recovery-success' 
-                    element={<RecoverySuccess />} 
+                <Route path='reset-success' 
+                    element={<ResetSuccess />} 
                     loader={async () => {
                         const userData = await getUserData();
                         if (userData) {

@@ -146,10 +146,10 @@ export const forgotPassword = async ({ request }) => {
     return null;
 }
 
-export const passwordRecovery = async ({ request }) => {
-    const loader = document.querySelector('.password-recovery__form .loader');
-    const submitButton = document.querySelector('.password-recovery__form button[type="submit"]');
-    const messageContainer = document.querySelector('.password-recovery__form .server-response');
+export const passwordReset = async ({ request }) => {
+    const loader = document.querySelector('.password-reset__form .loader');
+    const submitButton = document.querySelector('.password-reset__form button[type="submit"]');
+    const messageContainer = document.querySelector('.password-reset__form .server-response');
     loader.setAttribute('data-show', '');
     submitButton.disabled = true;
     try {
@@ -162,12 +162,12 @@ export const passwordRecovery = async ({ request }) => {
                 'Content-Type': 'application/json'
             }
         };
-        const response = await fetch(`${SERVER_DOMAIN}/password-recovery`, fetchOptions);
+        const response = await fetch(`${SERVER_DOMAIN}/password-reset`, fetchOptions);
         const data = await response.json();
         loader.removeAttribute('data-show');
         if (!data) return null;
         if (data.status === 'success') {
-            return redirect("/password-recovery/recovery-success");
+            return redirect("/password-reset/reset-success");
         } else if (data.status === 'fail'){
             messageContainer.textContent = data.errors.loginMessage;
             messageContainer.setAttribute('data-danger', '');
@@ -176,7 +176,7 @@ export const passwordRecovery = async ({ request }) => {
             Object.entries(data.errors).forEach(keyValueArray => {
                 const key = keyValueArray[0];
                 const value = keyValueArray[1];
-                const input = document.querySelector(`.password-recovery__form input[name='${key}']`);
+                const input = document.querySelector(`.password-reset__form input[name='${key}']`);
                 input.value = '';
                 input.setAttribute('placeholder', value);
                 input.classList.add('invalid');
