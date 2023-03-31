@@ -11,7 +11,7 @@ The whole app, in simple terms, allows the user to register, login, upload an im
 
 ## Technical sumary
 
-The Front-End part, in technical terms, is in charge of handling the style and responsiveness of the UI across all devices, user interactivity, user input, input validation and routing across all pages in the app; as well as the delivery of all corresponding requests to the server, containig the necessary user data to allow it's processing for the core tasks such as **user registration, user authentication, user authorization (using cookies and Json Web Token), image uploads and the processing/display of all data that is sent back from the server as a response.**
+The Front-End part, in technical terms, is in charge of handling the style and responsiveness of the UI across all devices, user interactivity, user input, input validation and routing across all pages in the app; as well as the delivery of all corresponding requests to the server, containig the necessary user data to allow it's processing for the core tasks such as **user registration, user authentication, user authorization (using cookies and Json Web Token), password reset, image uploads and the processing/display of all data that is sent back from the server as a response.**
 
 For the acomplishment of the topics mentioned before, the latest tools and technologies where utilized. To list some: *Semantic HTML, CSS custom properties, CSS functions such as clamp, CSS layout tools such as grid and flexbox, ES2022 JavaScript, React Hooks and Custom Hooks, React Router v6, React Router Actions and Loaders*, etc.
 
