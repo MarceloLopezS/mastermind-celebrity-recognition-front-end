@@ -1,15 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useFetcher } from 'react-router-dom';
 import './Register.css';
 
-const validateAndGetRegisterData = (e) => {
-    e.preventDefault();
-    const name = e.target.querySelector('input[name="user-name"]');
-    const email = e.target.querySelector('input[name="user-email"]');
-    const password = e.target.querySelector('input[name="user-password"]');
-    const confirmPassword = e.target.querySelector('input[name="user-confirm-password"]');
+const validateAndGetRegisterData = (name, email, password, confirmPassword, messageContainer) => {
     const inputs = [name, email, password, confirmPassword];
-    const messageContainer = e.target.querySelector('.server-response');
     let validForm = true;
 
     messageContainer.removeAttribute('data-danger');
@@ -60,11 +54,17 @@ const validateAndGetRegisterData = (e) => {
 
 const Register = () => {
     const fetcher = useFetcher();
+    const name = useRef(null);
+    const email = useRef(null);
+    const password = useRef(null);
+    const confirmPassword = useRef(null);
+    const messageContainer = useRef(null);
 
     return (
         <section className='form-section register container'>
             <form className='form-section__form register__form' onSubmit={(e) => {
-                const registerData = validateAndGetRegisterData(e);
+                const registerData = validateAndGetRegisterData(name.current, email.current, password.current, confirmPassword.current, messageContainer.current);
+                e.preventDefault();
                 if (registerData) {
                     const options = {
                         method: "post",
@@ -76,19 +76,19 @@ const Register = () => {
                 <h2 className='justify-self-center'>Enter your information to register</h2>
                 <div className='form-group'>
                     <label htmlFor='user-name'>Name:</label>
-                    <input type='text' id='user-name' name='user-name' maxLength='60'  placeholder='Please enter your name'></input>
+                    <input ref={name} type='text' id='user-name' name='user-name' maxLength='60'  placeholder='Please enter your name'></input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
-                    <input type='email' id='user-email' name='user-email' maxLength='100' placeholder='Please enter your email'></input>
+                    <input ref={email} type='email' id='user-email' name='user-email' maxLength='100' placeholder='Please enter your email'></input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='user-password'>Password:</label>
-                    <input type='password' id='user-password' name='user-password' placeholder='Please enter a password'></input>
+                    <input ref={password} type='password' id='user-password' name='user-password' placeholder='Please enter a password'></input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='user-confirm-password'>Confirm password:</label>
-                    <input type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
+                    <input ref={confirmPassword} type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
                 </div>
                 <div className='register-action'>
                     <button className='justify-self-center' type='submit'>
@@ -96,7 +96,7 @@ const Register = () => {
                     </button>
                     <div className='response'>
                         <span className='loader'></span>
-                        <div className='server-response secondary-text'>
+                        <div ref={messageContainer} className='server-response secondary-text'>
                             
                         </div>
                     </div>

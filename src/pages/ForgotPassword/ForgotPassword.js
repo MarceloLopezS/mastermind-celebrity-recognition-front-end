@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useFetcher } from 'react-router-dom';
 import './ForgotPassword.css';
 
-const validateAndGetEmail = (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector('input[name="user-email"]');
-    const messageContainer = e.target.querySelector('.server-response');
+const validateAndGetEmail = (email, messageContainer) => {
     let validForm = true;
 
     messageContainer.removeAttribute('data-danger');
@@ -41,11 +38,14 @@ const validateAndGetEmail = (e) => {
 
 const ForgotPassword = () => {
     const fetcher = useFetcher();
+    const email = useRef(null);
+    const messageContainer = useRef(null);
 
     return (
         <section className='form-section forgot-password container'>
             <form className='form-section__form forgot-password__form' onSubmit={(e) => {
-                const forgotPasswordData = validateAndGetEmail(e);
+                e.preventDefault();
+                const forgotPasswordData = validateAndGetEmail(email.current, messageContainer.current);
                 if (forgotPasswordData) {
                     const options = {
                         method: "post",
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                 <h2 className='justify-self-center'>Enter your email to send a password reset link</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
-                    <input type='email' id='user-email' name='user-email' placeholder='Please enter your email'></input>
+                    <input ref={email} type='email' id='user-email' name='user-email' placeholder='Please enter your email'></input>
                 </div>
                 <div className='forgot-password__action'>
                     <button className='justify-self-center' type='submit'>
@@ -65,7 +65,7 @@ const ForgotPassword = () => {
                     </button>
                     <div className='response'>
                         <span className='loader'></span>
-                        <div className='server-response secondary-text'>
+                        <div ref={messageContainer} className='server-response secondary-text'>
                             
                         </div>
                     </div>

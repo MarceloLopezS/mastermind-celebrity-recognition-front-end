@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useFetcher, useParams } from 'react-router-dom';
 import './PasswordReset.css';
 
-const validateAndGetPassword = (e) => {
-    e.preventDefault();
-    const password = e.target.querySelector('input[name="user-password"]');
-    const confirmPassword = e.target.querySelector('input[name="user-confirm-password"]');
+const validateAndGetPassword = (password, confirmPassword, messageContainer) => {
     const inputs = [password, confirmPassword];
-    const messageContainer = e.target.querySelector('.server-response');
     let validForm = true;
 
     messageContainer.removeAttribute('data-danger');
@@ -46,12 +42,16 @@ const validateAndGetPassword = (e) => {
 
 const PasswordReset = () => {
     const fetcher = useFetcher();
+    const password = useRef(null);
+    const confirmPassword = useRef(null);
+    const messageContainer = useRef(null);
     const { resetToken } = useParams();
 
     return (
         <section className='form-section password-reset container'>
             <form className='form-section__form password-reset__form' onSubmit={(e) => {
-                const passwordResetData = validateAndGetPassword(e);
+                e.preventDefault();
+                const passwordResetData = validateAndGetPassword(password.current, confirmPassword.current, messageContainer.current);
                 if (passwordResetData) {
                     const options = {
                         method: "post",
@@ -63,11 +63,11 @@ const PasswordReset = () => {
                 <h2 className='justify-self-center'>Enter and confirm your new password</h2>
                 <div className='form-group'>
                     <label htmlFor='user-password'>Password:</label>
-                    <input type='password' id='user-password' name='user-password' placeholder='Please enter a password'></input>
+                    <input ref={password} type='password' id='user-password' name='user-password' placeholder='Please enter a password'></input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='user-confirm-password'>Confirm password:</label>
-                    <input type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
+                    <input ref={confirmPassword} type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
                 </div>
                 <div className='password-reset__action'>
                     <button className='justify-self-center' type='submit'>
@@ -75,7 +75,7 @@ const PasswordReset = () => {
                     </button>
                     <div className='response'>
                         <span className='loader'></span>
-                        <div className='server-response secondary-text'>
+                        <div ref={messageContainer} className='server-response secondary-text'>
                             
                         </div>
                     </div>
