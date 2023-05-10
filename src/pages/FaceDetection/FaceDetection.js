@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import SERVER_DOMAIN from '../../config/backEnd.js';
 import './FaceDetection.css';
 
-const onFileChange = (e) => {
-    const image = document.querySelector('.face-detection__image-container img');
+const onFileChange = (event, image) => {
     const imageContainer = image.parentElement;
-    if (e.target.files.length === 0) {
+    if (event.target.files.length === 0) {
         imageContainer.removeAttribute('data-show');
         image.src = '#';
         return;
     }
     
-    image.src = URL.createObjectURL(e.target.files[0]);
+    image.src = URL.createObjectURL(event.target.files[0]);
     imageContainer.setAttribute('data-show', '');
 }
 
-const onFormSubmit = async (e) => {
-    e.preventDefault();
-    const imageInput = e.target.querySelector('input[name="image-input"]');
+const onFormSubmit = async (imageInput) => {
     if (imageInput.files.length === 0) return;
 
     const formData = new FormData();
@@ -43,6 +40,9 @@ const FaceDetection = () => {
     const { name, entries } = useLoaderData();
     const fetcher = useFetcher();
     const [detectionData, setDetectionData] = useState();
+    const image = useRef(null);
+    const imageInput = useRef(null);
+    const loader = useRef(null);
 
     return (
         <section className='face-detection container'>
@@ -51,18 +51,18 @@ const FaceDetection = () => {
             <p>You can upload an image to recognize celebrities using an AI model, trained with <span className='text-highlight'>10 553</span> concepts.</p>
             <p className='secondary-text'><span className='text-highlight'>A Hint?</span> Take a scene screenshot of that movie or show where you want to know who that incredible actor/actress is. Save it and upload it here 😎</p>
             <form className='face-detection__form' encType='multipart/form-data' onSubmit={async (e) => {
+                e.preventDefault();
                 setDetectionData([]);
-                const loader = e.target.parentElement.querySelector(".face-detection__image-container .loader");
-                loader.setAttribute("data-show", "");
+                loader.current.setAttribute("data-show", "");
                 
-                const data = await onFormSubmit(e);
+                const data = await onFormSubmit(imageInput);
                 if (!data || data.status === 'unauthorized' || data.status === 'fail') {
-                    loader.removeAttribute("data-show");
+                    loader.current.removeAttribute("data-show");
                     return;
                 }
                 if (data.status === 'success') {
                     // console.log(data);
-                    loader.removeAttribute("data-show");
+                    loader.current.removeAttribute("data-show");
                     setDetectionData(data.detectionData);
 
                     const requestData = {
@@ -76,9 +76,9 @@ const FaceDetection = () => {
                 }
             }}>
                 <label className='custom-file-input'>
-                    <input type='file' name='image-input' accept='image/jpg, image/jpeg, image/png' onChange={(e) => {
+                    <input ref={imageInput} type='file' name='image-input' accept='image/jpg, image/jpeg, image/png' onChange={(event) => {
                         setDetectionData([]);
-                        onFileChange(e);
+                        onFileChange(event, image.current);
                     }}></input>
                     <svg className='upload-icon' xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -89,8 +89,8 @@ const FaceDetection = () => {
                 <button type='submit'>Detect</button>
             </form>
             <div className='face-detection__image-container'>
-                <img src='#' alt='Input to detect'></img>
-                <span className='loader'></span>
+                <img ref={image} src='#' alt='Input to detect'></img>
+                <span ref={loader} className='loader'></span>
                 {
                     detectionData
                     ? detectionData.map((detection, i) => {
