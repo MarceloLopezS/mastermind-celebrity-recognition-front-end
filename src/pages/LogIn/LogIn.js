@@ -60,7 +60,7 @@ const LogIn = () => {
                     fetcher.submit(loginData, options);
                 }
             }}>
-                <h2 className='justify-self-center'>Enter your account credentials to access face detection</h2>
+                <h2 className='justify-self-center'>Enter your account credentials to access celebrity face detection</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
                     <input type='email' id='user-email' name='user-email' placeholder='Please enter your email'></input>
