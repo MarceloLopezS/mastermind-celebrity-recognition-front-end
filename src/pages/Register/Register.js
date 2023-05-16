@@ -90,7 +90,7 @@ const Register = () => {
                     <label htmlFor='user-confirm-password'>Confirm password:</label>
                     <input ref={confirmPassword} type='password' id='user-confirm-password' name='user-confirm-password' placeholder='Please confirm your password'></input>
                 </div>
-                <div className='register-action'>
+                <div className='register__action'>
                     <button className='justify-self-center' type='submit'>
                         Register
                     </button>

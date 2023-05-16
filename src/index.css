@@ -219,7 +219,7 @@ button:is(:hover, :focus-visible), a:is(:hover, :focus-visible) {
     gap: var(--size-25);
 }
 
-.form-section__form > :is(.register-action, .login-action, .forgot-password__action, .forgot-password__action, .password-reset__action) {
+.form-section__form > :is(.register__action, .login__action, .forgot-password__action, .forgot-password__action, .password-reset__action) {
     display: flex;
     align-items: center;
     gap: var(--size-50);

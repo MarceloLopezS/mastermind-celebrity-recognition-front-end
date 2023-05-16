@@ -69,7 +69,7 @@ const LogIn = () => {
                     <label htmlFor='user-password'>Password:</label>
                     <input ref={password} type='password' id='user-password' name='user-password' placeholder='Please enter your password'></input>
                 </div>
-                <div className='login-action'>
+                <div className='login__action'>
                     <button className='justify-self-center' type='submit'>
                         Log In
                     </button>
