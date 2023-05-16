@@ -48,7 +48,7 @@ const FaceDetection = () => {
         <section className='face-detection container'>
             <p className='face-detection__user-welcome'>Welcome, {name}. Your current detection count is:</p>
             <p className='face-detection__count'>{entries}</p>
-            <p>You can upload an image to recognize celebrities using an AI model, trained with <span className='text-highlight'>10 553</span> concepts.</p>
+            <h2>You can upload an image to recognize celebrities using an AI model, trained with <span className='text-highlight'>10 553</span> concepts.</h2>
             <p className='secondary-text'><span className='text-highlight'>A Hint?</span> Take a scene screenshot of that movie or show where you want to know who that incredible actor/actress is. Save it and upload it here 😎</p>
             <form className='face-detection__form' encType='multipart/form-data' onSubmit={async (e) => {
                 e.preventDefault();
@@ -126,4 +126,4 @@ const FaceDetection = () => {
     )
 }
 
-export default FaceDetection;
+export default FaceDetection
