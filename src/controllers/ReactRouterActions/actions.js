@@ -24,7 +24,7 @@ export const registerUser = async ({ request }) => {
         if (data.status === 'success') {
             return redirect("/email-verification");
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.errors.registerMessage;
+            messageContainer.textContent = data.fail.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
@@ -73,7 +73,7 @@ export const loginUser = async ({ request }) => {
         if (data.status === 'success') {
             return redirect("/face-detection");
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.errors.loginMessage;
+            messageContainer.textContent = data.fail.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
@@ -118,11 +118,11 @@ export const forgotPassword = async ({ request }) => {
         loader.removeAttribute('data-show');
         if (!data) return null;
         if (data.status === 'success') {
-            messageContainer.textContent = data.message;
+            messageContainer.textContent = data.success.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.message;
+            messageContainer.textContent = data.fail.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
@@ -169,7 +169,7 @@ export const passwordReset = async ({ request }) => {
         if (data.status === 'success') {
             return redirect("/password-reset/reset-success");
         } else if (data.status === 'fail'){
-            messageContainer.textContent = data.message;
+            messageContainer.textContent = data.fail.message;
             messageContainer.setAttribute('data-danger', '');
             submitButton.disabled = false;
         } else if (data.status === 'user-errors') {
@@ -230,9 +230,8 @@ export const incrementEntry = async ({ request }) => {
         const response = await fetch(`${SERVER_DOMAIN}/face-detection/increment-entry`, fetchOptions);
         const data = await response.json();
         if (!data) return null;
-        if (data.status === 'success') {
-            return null;
-        }
+        if (data.status === 'success') return null;
+        if (data.status === 'fail') return null;
     } catch (err) {
         console.error(`Fetch error: ${err}`);
     }
