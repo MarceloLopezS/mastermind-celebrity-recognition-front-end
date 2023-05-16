@@ -63,7 +63,7 @@ const LogIn = () => {
                 <h2 className='justify-self-center'>Enter your account credentials to access celebrity face detection</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
-                    <input ref={email} type='email' id='user-email' name='user-email' placeholder='Please enter your email'></input>
+                    <input ref={email} type='email' id='user-email' name='user-email' maxLength='100' placeholder='Please enter your email'></input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='user-password'>Password:</label>

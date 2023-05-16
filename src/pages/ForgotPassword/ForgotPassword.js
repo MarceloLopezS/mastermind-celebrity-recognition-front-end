@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                 <h2 className='justify-self-center'>Enter your email to send a password reset link</h2>
                 <div className='form-group'>
                     <label htmlFor='user-email'>Email:</label>
-                    <input ref={email} type='email' id='user-email' name='user-email' placeholder='Please enter your email'></input>
+                    <input ref={email} type='email' id='user-email' name='user-email' maxLength='100' placeholder='Please enter your email'></input>
                 </div>
                 <div className='forgot-password__action'>
                     <button className='justify-self-center' type='submit'>
