@@ -12,4 +12,4 @@ const ActivationSuccess = () => {
     )
 }
 
-export default ActivationSuccess;
+export default ActivationSuccess

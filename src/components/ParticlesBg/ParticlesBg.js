@@ -11,4 +11,4 @@ const ParticlesBg = () => {
     return <div id='particles-js'></div>
 }
 
-export default ParticlesBg;
+export default ParticlesBg

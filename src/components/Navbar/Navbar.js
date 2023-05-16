@@ -44,4 +44,4 @@ const Navbar = ({ isLoggedIn }) => {
     )
 }
 
-export default Navbar;
+export default Navbar

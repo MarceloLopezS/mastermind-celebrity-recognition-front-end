@@ -11,4 +11,4 @@ const InvalidToken = () => {
     )
 }
 
-export default InvalidToken;
+export default InvalidToken
