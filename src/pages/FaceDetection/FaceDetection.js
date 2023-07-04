@@ -55,7 +55,7 @@ const FaceDetection = () => {
                 setDetectionData([]);
                 loader.current.setAttribute("data-show", "");
                 
-                const data = await onFormSubmit(imageInput);
+                const data = await onFormSubmit(imageInput.current);
                 if (!data || data.status === 'unauthorized' || data.status === 'fail') {
                     loader.current.removeAttribute("data-show");
                     return;
