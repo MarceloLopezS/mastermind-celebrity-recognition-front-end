@@ -40,9 +40,9 @@ const FaceDetection = () => {
     const { name, entries } = useLoaderData();
     const fetcher = useFetcher();
     const [detectionData, setDetectionData] = useState();
-    const image = useRef(null);
-    const imageInput = useRef(null);
-    const loader = useRef(null);
+    const imageRef = useRef(null);
+    const imageInputRef = useRef(null);
+    const loaderRef = useRef(null);
 
     return (
         <section className='face-detection container'>
@@ -53,16 +53,16 @@ const FaceDetection = () => {
             <form className='face-detection__form' encType='multipart/form-data' onSubmit={async (e) => {
                 e.preventDefault();
                 setDetectionData([]);
-                loader.current.setAttribute("data-show", "");
+                loaderRef.current.setAttribute("data-show", "");
                 
-                const data = await onFormSubmit(imageInput.current);
+                const data = await onFormSubmit(imageInputRef.current);
                 if (!data || data.status === 'unauthorized' || data.status === 'fail') {
-                    loader.current.removeAttribute("data-show");
+                    loaderRef.current.removeAttribute("data-show");
                     return;
                 }
                 if (data.status === 'success') {
                     // console.log(data);
-                    loader.current.removeAttribute("data-show");
+                    loaderRef.current.removeAttribute("data-show");
                     setDetectionData(data.detectionData);
 
                     const requestData = {
@@ -76,9 +76,9 @@ const FaceDetection = () => {
                 }
             }}>
                 <label className='custom-file-input'>
-                    <input ref={imageInput} type='file' name='image-input' accept='image/jpg, image/jpeg, image/png' onChange={(event) => {
+                    <input ref={imageInputRef} type='file' name='image-input' accept='image/jpg, image/jpeg, image/png' onChange={(event) => {
                         setDetectionData([]);
-                        onFileChange(event, image.current);
+                        onFileChange(event, imageRef.current);
                     }}></input>
                     <svg className='upload-icon' xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -89,8 +89,8 @@ const FaceDetection = () => {
                 <button type='submit'>Detect</button>
             </form>
             <div className='face-detection__image-container'>
-                <img ref={image} src='#' alt='Input to detect'></img>
-                <span ref={loader} className='loader'></span>
+                <img ref={imageRef} src='#' alt='Input to detect'></img>
+                <span ref={loaderRef} className='loader'></span>
                 {
                     detectionData
                     ? detectionData.map((detection, i) => {
