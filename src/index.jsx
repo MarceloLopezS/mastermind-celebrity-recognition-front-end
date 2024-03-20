@@ -18,7 +18,6 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword"
 import PasswordReset from "./pages/PasswordReset/PasswordReset"
 import ResetSuccess from "./pages/PasswordReset/Success/ResetSuccess"
 import FaceDetection from "./pages/FaceDetection/FaceDetection"
-import reportWebVitals from "./reportWebVitals"
 import NotFound from "./pages/NotFound/NotFound"
 import {
 	registerUser,
@@ -191,5 +190,3 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(<RouterProvider router={router} />)
-
-reportWebVitals()
