@@ -6,7 +6,6 @@ import {
 	Route,
 	redirect
 } from "react-router-dom"
-import "./index.css"
 import App from "./app"
 import LogIn from "./pages/LogIn/LogIn"
 import Register from "./pages/Register/Register"
