@@ -7,7 +7,7 @@ import {
 	redirect
 } from "react-router-dom"
 import "./index.css"
-import App from "./containers/App"
+import App from "./app"
 import LogIn from "./pages/LogIn/LogIn"
 import Register from "./pages/Register/Register"
 import EmailVerification from "./pages/EmailVerification/EmailVerification"
