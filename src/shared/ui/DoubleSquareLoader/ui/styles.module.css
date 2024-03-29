@@ -1,0 +1,41 @@
+.loader {
+	opacity: 0;
+	transition: opacity 200ms ease-in;
+}
+
+.loader[data-show] {
+	--width: 1.4rem;
+
+	opacity: 1;
+	position: relative;
+	display: inline-block;
+	aspect-ratio: 1;
+	width: var(--width);
+}
+
+.loader[data-show]::after,
+.loader[data-show]::before {
+	content: "";
+	aspect-ratio: 1;
+	width: var(--width);
+	border: 2px solid #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+	animation: rotation 2s ease-in-out infinite;
+}
+
+.loader[data-show]::after {
+	border-color: var(--clr-highlight);
+	animation-delay: 1s;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
