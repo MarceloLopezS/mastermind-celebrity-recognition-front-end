@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { useFetcher, useLoaderData } from "react-router-dom"
-import SERVER_DOMAIN from "../../config/backEnd.js"
+import { SERVER_DOMAIN } from "../../shared/utils/constants"
 import "./FaceDetection.css"
 
 const onFileChange = (event, image) => {
