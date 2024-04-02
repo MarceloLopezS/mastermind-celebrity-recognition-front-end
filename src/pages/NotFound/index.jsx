@@ -15,4 +15,9 @@ const NotFound = () => {
 	)
 }
 
-export default NotFound
+const NotFoundRoute = {
+	path: "/*",
+	element: <NotFound />
+}
+
+export default NotFoundRoute

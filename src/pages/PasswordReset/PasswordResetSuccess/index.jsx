@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const ResetSuccess = () => {
+const PasswordResetSuccess = () => {
 	return (
 		<section className="container reset-success-section">
 			<div>
@@ -17,4 +17,15 @@ const ResetSuccess = () => {
 	)
 }
 
-export default ResetSuccess
+const PasswordResetSuccessRoute = {
+	path: "reset-success",
+	element: <PasswordResetSuccess />,
+	loader: async () => {
+		const userData = await getUserData()
+		if (!userData) return null
+
+		return redirect("face-detection")
+	}
+}
+
+export default PasswordResetSuccessRoute

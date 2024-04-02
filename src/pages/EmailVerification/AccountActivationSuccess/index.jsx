@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const ActivationSuccess = () => {
+const AccountActivationSuccess = () => {
 	return (
 		<section className="container email-verification-section">
 			<div>
@@ -17,4 +17,15 @@ const ActivationSuccess = () => {
 	)
 }
 
-export default ActivationSuccess
+const AccountActivationSuccessRoute = {
+	path: "activation-success",
+	element: <AccountActivationSuccess />,
+	loader: async () => {
+		const userData = await getUserData()
+		if (!userData) return null
+
+		return redirect("face-detection")
+	}
+}
+
+export default AccountActivationSuccessRoute

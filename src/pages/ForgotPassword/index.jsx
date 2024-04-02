@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { useFetcher } from "react-router-dom"
+import { forgotPassword } from "../../controllers/ReactRouterActions/actions"
 import "./ForgotPassword.css"
 
 const validateAndGetEmail = (email, messageContainer) => {
@@ -90,4 +91,16 @@ const ForgotPassword = () => {
 	)
 }
 
-export default ForgotPassword
+const ForgotPasswordRoute = {
+	path: "forgot-password",
+	element: <ForgotPassword />,
+	loader: async () => {
+		const userData = await getUserData()
+		if (!userData) return null
+
+		return redirect("face-detection")
+	},
+	action: forgotPassword
+}
+
+export default ForgotPasswordRoute

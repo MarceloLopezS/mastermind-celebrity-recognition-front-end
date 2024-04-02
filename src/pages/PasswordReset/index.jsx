@@ -1,6 +1,8 @@
 import { useRef } from "react"
 import { useFetcher, useParams } from "react-router-dom"
+import { passwordReset } from "../../controllers/ReactRouterActions/actions"
 import "./PasswordReset.css"
+import PasswordResetSuccessRoute from "./PasswordResetSuccess"
 
 const validateAndGetPassword = (
 	password,
@@ -115,4 +117,22 @@ const PasswordReset = () => {
 	)
 }
 
-export default PasswordReset
+const PasswordResetRoute = {
+	path: "password-reset",
+	children: [
+		{
+			path: ":resetToken",
+			element: <PasswordReset />,
+			loader: async () => {
+				const userData = await getUserData()
+				if (!userData) return null
+
+				return redirect("face-detection")
+			},
+			action: passwordReset
+		},
+		PasswordResetSuccessRoute
+	]
+}
+
+export default PasswordResetRoute
