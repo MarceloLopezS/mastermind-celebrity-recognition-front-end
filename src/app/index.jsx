@@ -38,7 +38,7 @@ const RootRoute = {
 	},
 	action: logOutUser,
 	children: [
-		HomeRoute,
+		{ index: true, ...HomeRoute },
 		RegisterRoute,
 		EmailVerificationRoute,
 		ForgotPasswordRoute,
