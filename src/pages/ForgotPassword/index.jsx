@@ -1,7 +1,8 @@
 import { useRef } from "react"
 import { useFetcher } from "react-router-dom"
+import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import { forgotPassword } from "../../controllers/ReactRouterActions/actions"
-import "./ForgotPassword.css"
+import "./ui/styles.css"
 
 const validateAndGetEmail = (email, messageContainer) => {
 	let validForm = true
