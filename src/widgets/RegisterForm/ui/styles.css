@@ -1,0 +1,12 @@
+@media (min-width: 28em) {
+	.register__form {
+		width: clamp(20rem, 26vw, 26rem);
+		gap: var(--size-25);
+	}
+}
+
+@media (min-width: 118em) {
+	.register__form {
+		gap: var(--size-50);
+	}
+}
