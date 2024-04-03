@@ -8,7 +8,6 @@ const Home = () => {
 }
 
 const HomeRoute = {
-	index: true,
 	element: <Home />,
 	loader: async () => {
 		const userData = await getUserData()
