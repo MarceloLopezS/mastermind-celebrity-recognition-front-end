@@ -1,4 +1,5 @@
 import React from "react"
+import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import EmailVerificationErrorRoute from "./EmailVerificationError"
 import AccountActivationSuccessRoute from "./AccountActivationSuccess"
 
