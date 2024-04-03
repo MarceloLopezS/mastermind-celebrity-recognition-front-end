@@ -1,8 +1,9 @@
 import { useRef } from "react"
 import { useFetcher, useParams } from "react-router-dom"
+import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import { passwordReset } from "../../controllers/ReactRouterActions/actions"
-import "./PasswordReset.css"
 import PasswordResetSuccessRoute from "./PasswordResetSuccess"
+import "./ui/styles.css"
 
 const validateAndGetPassword = (
 	password,
