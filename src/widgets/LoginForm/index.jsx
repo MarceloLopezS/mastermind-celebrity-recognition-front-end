@@ -1,33 +1,59 @@
-import { useRef } from "react"
-import { Link, useFetcher } from "react-router-dom"
+import { useRef, useCallback } from "react"
+import { useFetcher, Link, redirect } from "react-router-dom"
 import { validateAndGetLoginData } from "./utils/functions"
+import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import "./ui/styles.css"
 
 const LoginForm = () => {
 	const fetcher = useFetcher()
-	const email = useRef(null)
-	const password = useRef(null)
-	const messageContainer = useRef(null)
+	const emailRef = useRef(null)
+	const passwordRef = useRef(null)
+	const formInputRefs = [emailRef, passwordRef]
+	const actionResponse = fetcher.data
+
+	if (actionResponse?.status === "user-errors") {
+		const userErrors = Object.entries(actionResponse.errors)
+		userErrors.forEach(keyValueArray => {
+			const fieldname = keyValueArray[0]
+			const errorMessage = keyValueArray[1]
+			const invalidInputs = formInputRefs.filter(inputRef => {
+				const input = inputRef.current
+				return (
+					input.hasAttibute("name") && input.getAttribute("name") === fieldname
+				)
+			})
+
+			invalidInputs.forEach(input => {
+				input.value = ""
+				input.setAttribute("placeholder", errorMessage)
+				input.classList.add("invalid")
+			})
+		})
+	}
+
+	if (actionResponse?.status === "success") redirect("/face-detection")
+
+	const submitDataToFetcher = useCallback(event => {
+		event.preventDefault()
+		const loginData = validateAndGetLoginData(
+			emailRef.current,
+			passwordRef.current
+		)
+
+		if (loginData) {
+			const options = {
+				method: "post",
+				action: "/?index"
+			}
+			fetcher.submit(loginData, options)
+		}
+	}, [])
 
 	return (
 		<section className="form-section log-in container">
 			<form
 				className="form-section__form log-in__form"
-				onSubmit={e => {
-					e.preventDefault()
-					const loginData = validateAndGetLoginData(
-						email.current,
-						password.current,
-						messageContainer.current
-					)
-					if (loginData) {
-						const options = {
-							method: "post",
-							action: "/?index"
-						}
-						fetcher.submit(loginData, options)
-					}
-				}}
+				onSubmit={submitDataToFetcher}
 			>
 				<h2 className="justify-self-center">
 					Enter your account credentials to access celebrity face detection
@@ -35,7 +61,7 @@ const LoginForm = () => {
 				<div className="form-group">
 					<label htmlFor="user-email">Email:</label>
 					<input
-						ref={email}
+						ref={emailRef}
 						type="email"
 						id="user-email"
 						name="user-email"
@@ -46,7 +72,7 @@ const LoginForm = () => {
 				<div className="form-group">
 					<label htmlFor="user-password">Password:</label>
 					<input
-						ref={password}
+						ref={passwordRef}
 						type="password"
 						id="user-password"
 						name="user-password"
@@ -58,11 +84,18 @@ const LoginForm = () => {
 						Log In
 					</button>
 					<div className="response">
-						<span className="loader"></span>
+						<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
 						<div
-							ref={messageContainer}
 							className="server-response secondary-text"
-						></div>
+							data-danger={
+								actionResponse && fetcher.state !== "submitting" ? true : null
+							}
+						>
+							{fetcher.state !== "submitting"
+								? actionResponse?.fail?.message ||
+								  actionResponse?.clientError?.message
+								: null}
+						</div>
 					</div>
 				</div>
 				<Link

@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom"
-import { loginUser } from "../../controllers/ReactRouterActions/actions"
+import { submitLoginForm } from "./model/reactRouterActions"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import LoginForm from "../../widgets/LoginForm"
 
@@ -15,7 +15,7 @@ const HomeRoute = {
 
 		return redirect("face-detection")
 	},
-	action: loginUser
+	action: submitLoginForm
 }
 
 export default HomeRoute
