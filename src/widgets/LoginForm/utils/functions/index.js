@@ -1,9 +1,7 @@
-export const validateAndGetLoginData = (email, password, messageContainer) => {
+export const validateAndGetLoginData = (email, password) => {
   const inputs = [email, password]
   let validForm = true
 
-  messageContainer.removeAttribute("data-danger")
-  messageContainer.textContent = ""
   email.setAttribute("placeholder", "Please enter your email")
   inputs.forEach(input => {
     input.classList.remove("invalid")
