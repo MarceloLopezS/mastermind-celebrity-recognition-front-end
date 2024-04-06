@@ -1,7 +1,12 @@
 import { useCallback } from "react"
 import { useFetcher, Link, redirect } from "react-router-dom"
+import {
+	isValidEmail,
+	getInvalidEmailError,
+	isValidInputString
+} from "../../shared/utils/functions"
 import { useInputValidationHandler } from "./model/hooks"
-import { isValidEmail, isValidInputString } from "../../shared/utils/functions"
+import { handleFormValidation, handleInputErrors } from "./utils/functions"
 import Input from "../../shared/ui/Input"
 import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import "./ui/styles.css"
@@ -9,49 +14,25 @@ import "./ui/styles.css"
 const LoginForm = () => {
 	const fetcher = useFetcher()
 	const actionResponse = fetcher.data
-	const emailHandler = useInputValidationHandler()
-	const passwordHandler = useInputValidationHandler()
+	const emailHandler = useInputValidationHandler(
+		isValidEmail,
+		getInvalidEmailError
+	)
+	const passwordHandler = useInputValidationHandler(isValidInputString)
 	const formInputHandlers = [emailHandler, passwordHandler]
 
 	if (actionResponse?.status === "user-errors") {
 		const userErrors = Object.entries(actionResponse.errors)
-
-		userErrors.forEach(keyValueArray => {
-			const [fieldname, errorMessage] = keyValueArray
-
-			formInputHandlers.forEach(handler => {
-				const { inputRef, setIsValid, setErrorMessage } = handler
-				const input = inputRef.current
-
-				if (
-					input.hasAttribute("name" && input.getAttribute("name") === fieldname)
-				) {
-					setIsValid(false)
-					setErrorMessage(errorMessage)
-				}
-			})
-		})
+		handleInputErrors({ errors: userErrors, formInputHandlers })
 	}
 
 	if (actionResponse?.status === "success") redirect("/face-detection")
 
 	const submitDataToFetcher = useCallback(event => {
 		event.preventDefault()
-		let isValidForm = true
+		const isFormValid = handleFormValidation(...formInputHandlers)
 
-		if (!isValidEmail(emailHandler.inputRef.current?.value)) {
-			isValidForm = false
-			emailHandler.setIsValid(false)
-			emailHandler.setErrorMessage(
-				emailHandler.inputRef.current.value && "Please enter a valid email"
-			)
-		}
-		if (!isValidInputString(passwordHandler.inputRef.current?.value)) {
-			isValidForm = false
-			passwordHandler.setIsValid(false)
-		}
-
-		if (!isValidForm) return
+		if (!isFormValid) return
 
 		const loginData = {
 			email: emailHandler.inputRef.current.value,
@@ -77,9 +58,7 @@ const LoginForm = () => {
 					<label htmlFor="user-email">Email:</label>
 					<Input
 						ref={emailHandler.inputRef}
-						onChange={() =>
-							!emailHandler.isValid && emailHandler.setIsValid(true)
-						}
+						onChange={() => !emailHandler.isValid && emailHandler.validate()}
 						isValid={emailHandler.isValid}
 						type="text"
 						id="user-email"
@@ -93,7 +72,7 @@ const LoginForm = () => {
 					<Input
 						ref={passwordHandler.inputRef}
 						onChange={() =>
-							!passwordHandler.isValid && passwordHandler.setIsValid(true)
+							!passwordHandler.isValid && passwordHandler.validate()
 						}
 						isValid={passwordHandler.isValid}
 						type="password"
