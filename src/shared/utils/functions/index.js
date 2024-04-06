@@ -8,6 +8,10 @@ export const isValidEmail = (string) => {
   return string.match(regex)
 }
 
+export const getInvalidEmailError = (emailValue) => {
+  if (!isValidEmail(emailValue)) return "Please enter a valid email"
+}
+
 export const isValidInputString = (string) => {
   if (typeof string !== "string") throw new Error(
     "String expected to evaluate if empty."
