@@ -99,7 +99,7 @@ const ForgotPasswordRoute = {
 		const userData = await getUserData()
 		if (!userData) return null
 
-		return redirect("face-detection")
+		return redirect("/face-detection")
 	},
 	action: forgotPassword
 }
