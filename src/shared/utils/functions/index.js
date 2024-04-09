@@ -19,3 +19,35 @@ export const isValidInputString = (string) => {
 
   return string.length > 0
 }
+
+export const isValidPassword = (value) => {
+  return isValidInputString(value) && value?.length > 8
+}
+
+export const getInvalidPasswordError = (value) => {
+  if (value?.length === 0) return "Please enter a password"
+  if (value?.length < 8) return "Password must have at least 8 characters"
+}
+
+export const isValidPasswordConfirmation =
+  (passwordRef) => (passwordConfirmation) => {
+    const password = passwordRef?.current?.value
+
+    return (
+      isValidInputString(passwordConfirmation)
+      && password === passwordConfirmation
+    )
+  }
+
+export const getInvalidConfirmPasswordError =
+  (passwordRef) => (passwordConfirmation) => {
+    const password = passwordRef?.current?.value
+
+    if (password !== passwordConfirmation) {
+      return "Passwords don't match"
+    }
+  }
+
+export const getReactRouterFormData = async (request) => {
+  return JSON.stringify(Object.fromEntries(await request?.formData()))
+}
