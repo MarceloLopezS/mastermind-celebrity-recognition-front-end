@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useFetcher, Link, redirect } from "react-router-dom"
+import { useFetcher, Link } from "react-router-dom"
 import {
 	isValidEmail,
 	getInvalidEmailError,
