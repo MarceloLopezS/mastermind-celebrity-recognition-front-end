@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import styles from "./ui/styles.module.css"
 
-const Input = forwardRef(({ isValid, ...attributes }, ref) => {
+const Input = forwardRef(({ isValid = true, ...attributes }, ref) => {
 	return (
 		<input
 			ref={ref}
