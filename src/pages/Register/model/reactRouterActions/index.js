@@ -16,11 +16,9 @@ export const submitRegisterForm = async ({ request }) => {
 
     const serverResponse = await registerUser(fetchOptions)
 
-    if (serverResponse.status === "success") {
-      return redirect("/email-verification")
-    }
+    if (serverResponse.status !== "success") return serverResponse
 
-    return serverResponse
+    return redirect("/email-verification")
   } catch (err) {
     console.error(`Fetch error: ${err}`)
     return {
