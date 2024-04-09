@@ -1,10 +1,9 @@
+import { getReactRouterFormData } from "../../../../shared/utils/functions"
 import loginUser from "../../../../features/LoginUser"
 
 export const submitLoginForm = async ({ request }) => {
   try {
-    const reactRouterFetcherData = await request.formData()
-    const formData =
-      JSON.stringify(Object.fromEntries(reactRouterFetcherData))
+    const formData = await getReactRouterFormData(request)
     const fetchOptions = {
       method: request.method,
       credentials: 'include',
@@ -13,9 +12,9 @@ export const submitLoginForm = async ({ request }) => {
         'Content-Type': 'application/json'
       }
     }
-    const data = await loginUser(fetchOptions)
+    const serverResponse = await loginUser(fetchOptions)
 
-    return data
+    return serverResponse
 
   } catch (err) {
     console.error(`Fetch error: ${err}`)
