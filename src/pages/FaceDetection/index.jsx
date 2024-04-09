@@ -3,7 +3,7 @@ import { useFetcher, useLoaderData, redirect } from "react-router-dom"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import { incrementEntry } from "../../controllers/ReactRouterActions/actions"
 import { SERVER_DOMAIN } from "../../shared/utils/constants"
-import "./FaceDetection.css"
+import "./ui/styles.css"
 
 const onFileChange = (event, image) => {
 	const imageContainer = image.parentElement
