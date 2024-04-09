@@ -5,8 +5,11 @@ import {
 	getInvalidEmailError,
 	isValidInputString
 } from "../../shared/utils/functions"
-import { useInputValidationHandler } from "./model/hooks"
-import { handleFormValidation, handleInputErrors } from "./utils/functions"
+import Form, {
+	useInputValidationHandler,
+	handleFormValidation,
+	handleInputServerErrors
+} from "../../shared/ui/Form"
 import Input from "../../shared/ui/Input"
 import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import "./ui/styles.css"
@@ -23,7 +26,7 @@ const LoginForm = () => {
 
 	if (actionResponse?.status === "user-errors") {
 		const userErrors = Object.entries(actionResponse.errors)
-		handleInputErrors({ errors: userErrors, formInputHandlers })
+		handleInputServerErrors({ errors: userErrors, formInputHandlers })
 	}
 
 	if (actionResponse?.status === "success") redirect("/face-detection")
@@ -46,79 +49,77 @@ const LoginForm = () => {
 	}, [])
 
 	return (
-		<section className="form-section log-in container">
-			<form
-				className="form-section__form log-in__form"
-				onSubmit={submitDataToFetcher}
-			>
-				<h2 className="justify-self-center">
-					Enter your account credentials to access celebrity face detection
-				</h2>
-				<div className="form-group">
-					<label htmlFor="user-email">Email:</label>
-					<Input
-						ref={emailHandler.inputRef}
-						onChange={() => !emailHandler.isValid && emailHandler.validate()}
-						isValid={emailHandler.isValid}
-						type="text"
-						id="user-email"
-						name="user-email"
-						maxLength="100"
-						placeholder={emailHandler.errorMessage || "Please enter your email"}
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="user-password">Password:</label>
-					<Input
-						ref={passwordHandler.inputRef}
-						onChange={() =>
-							!passwordHandler.isValid && passwordHandler.validate()
+		<Form
+			className="form-section__form log-in__form"
+			onSubmit={submitDataToFetcher}
+		>
+			<h2 className="justify-self-center">
+				Enter your account credentials to access celebrity face detection
+			</h2>
+			<div className="form-group">
+				<label htmlFor="user-email">Email:</label>
+				<Input
+					ref={emailHandler.inputRef}
+					onChange={() => !emailHandler.isValid && emailHandler.validate()}
+					isValid={emailHandler.isValid}
+					type="text"
+					id="user-email"
+					name="user-email"
+					maxLength="100"
+					placeholder={emailHandler.errorMessage || "Please enter your email"}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="user-password">Password:</label>
+				<Input
+					ref={passwordHandler.inputRef}
+					onChange={() =>
+						!passwordHandler.isValid && passwordHandler.validate()
+					}
+					isValid={passwordHandler.isValid}
+					type="password"
+					id="user-password"
+					name="user-password"
+					placeholder={
+						passwordHandler.errorMessage || "Please enter your password"
+					}
+				/>
+			</div>
+			<div className="login__action">
+				<button className="justify-self-center" type="submit">
+					Log In
+				</button>
+				<div className="response">
+					<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
+					<div
+						className="server-response secondary-text"
+						data-danger={
+							actionResponse && fetcher.state !== "submitting" ? true : null
 						}
-						isValid={passwordHandler.isValid}
-						type="password"
-						id="user-password"
-						name="user-password"
-						placeholder={
-							passwordHandler.errorMessage || "Please enter your password"
-						}
-					/>
-				</div>
-				<div className="login__action">
-					<button className="justify-self-center" type="submit">
-						Log In
-					</button>
-					<div className="response">
-						<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
-						<div
-							className="server-response secondary-text"
-							data-danger={
-								actionResponse && fetcher.state !== "submitting" ? true : null
-							}
-						>
-							{fetcher.state !== "submitting"
-								? actionResponse?.fail?.message ||
-								  actionResponse?.clientError?.message
-								: null}
-						</div>
+					>
+						{fetcher.state !== "submitting"
+							? actionResponse?.fail?.message ||
+							  actionResponse?.clientError?.message
+							: null}
 					</div>
 				</div>
-				<Link
-					className="form-switch | secondary-text justify-self-center text-underline"
-					to="/forgot-password"
-				>
-					Forgot your password?
-				</Link>
-				<span className="secondary-text justify-self-center">
-					Don't have an account yet?
-				</span>
-				<Link
-					className="form-switch | secondary-text justify-self-center text-underline"
-					to="/register"
-				>
-					Register
-				</Link>
-			</form>
-		</section>
+			</div>
+			<Link
+				className="form-switch | secondary-text justify-self-center text-underline"
+				to="/forgot-password"
+			>
+				Forgot your password?
+			</Link>
+			<span className="secondary-text justify-self-center">
+				Don't have an account yet?
+			</span>
+			<Link
+				className="form-switch | secondary-text justify-self-center text-underline"
+				to="/register"
+			>
+				Register
+			</Link>
+		</Form>
 	)
 }
 
