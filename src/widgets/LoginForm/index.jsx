@@ -29,8 +29,6 @@ const LoginForm = () => {
 		handleInputServerErrors({ errors: userErrors, formInputHandlers })
 	}
 
-	if (actionResponse?.status === "success") redirect("/face-detection")
-
 	const submitDataToFetcher = useCallback(event => {
 		event.preventDefault()
 		const isFormValid = handleFormValidation(...formInputHandlers)
