@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
 import loginUser from "../../../../features/LoginUser"
 
@@ -14,8 +15,9 @@ export const submitLoginForm = async ({ request }) => {
     }
     const serverResponse = await loginUser(fetchOptions)
 
-    return serverResponse
+    if (serverResponse.status !== "success") return serverResponse
 
+    return redirect("/face-detection")
   } catch (err) {
     console.error(`Fetch error: ${err}`)
     return {
