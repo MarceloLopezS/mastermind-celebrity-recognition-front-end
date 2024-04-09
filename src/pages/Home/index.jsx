@@ -4,7 +4,11 @@ import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import LoginForm from "../../widgets/LoginForm"
 
 const Home = () => {
-	return <LoginForm />
+	return (
+		<section className="form-section log-in container">
+			<LoginForm />
+		</section>
+	)
 }
 
 const HomeRoute = {
