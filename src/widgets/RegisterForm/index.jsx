@@ -1,92 +1,154 @@
-import { useRef } from "react"
-import { Link, useFetcher } from "react-router-dom"
-import { validateAndGetRegisterData } from "./utils/functions"
+import { useCallback } from "react"
+import { useFetcher, Link, redirect } from "react-router-dom"
+import {
+	isValidEmail,
+	getInvalidEmailError,
+	isValidInputString,
+	isValidPassword,
+	getInvalidPasswordError,
+	isValidPasswordConfirmation,
+	getInvalidConfirmPasswordError
+} from "../../shared/utils/functions"
+import Form, {
+	useInputValidationHandler,
+	handleFormValidation,
+	handleInputServerErrors
+} from "../../shared/ui/Form"
+import Input from "../../shared/ui/Input"
+import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import "./ui/styles.css"
 
 const RegisterForm = () => {
 	const fetcher = useFetcher()
-	const name = useRef(null)
-	const email = useRef(null)
-	const password = useRef(null)
-	const confirmPassword = useRef(null)
-	const messageContainer = useRef(null)
+	const actionResponse = fetcher.data
+	const nameHandler = useInputValidationHandler(isValidInputString)
+	const emailHandler = useInputValidationHandler(
+		isValidEmail,
+		getInvalidEmailError
+	)
+	const passwordHandler = useInputValidationHandler(
+		isValidPassword,
+		getInvalidPasswordError
+	)
+	const confirmPasswordHandler = useInputValidationHandler(
+		isValidPasswordConfirmation(passwordHandler.inputRef),
+		getInvalidConfirmPasswordError(passwordHandler.inputRef)
+	)
+	const formInputHandlers = [
+		nameHandler,
+		emailHandler,
+		passwordHandler,
+		confirmPasswordHandler
+	]
+
+	if (actionResponse?.status === "user-errors") {
+		const userErrors = Object.entries(actionResponse.errors)
+		handleInputServerErrors({ errors: userErrors, formInputHandlers })
+	}
+
+	const submitDataToFetcher = useCallback(event => {
+		event.preventDefault()
+		const isFormValid = handleFormValidation(...formInputHandlers)
+
+		if (!isFormValid) return
+
+		const registerData = {
+			name: nameHandler.inputRef.current?.value,
+			email: emailHandler.inputRef.current?.value,
+			password: passwordHandler.inputRef.current?.value,
+			confirmPassword: confirmPasswordHandler.inputRef.current?.value
+		}
+		const options = {
+			method: "post",
+			action: "/register"
+		}
+		fetcher.submit(registerData, options)
+	}, [])
 
 	return (
-		<form
+		<Form
 			className="register__form | form-section__form"
-			onSubmit={e => {
-				const registerData = validateAndGetRegisterData(
-					name.current,
-					email.current,
-					password.current,
-					confirmPassword.current,
-					messageContainer.current
-				)
-				e.preventDefault()
-				if (registerData) {
-					const options = {
-						method: "post",
-						action: "/register"
-					}
-					fetcher.submit(registerData, options)
-				}
-			}}
+			onSubmit={submitDataToFetcher}
 		>
 			<h2 className="justify-self-center">
 				Enter your information to register
 			</h2>
 			<div className="form-group">
 				<label htmlFor="user-name">Name:</label>
-				<input
-					ref={name}
+				<Input
+					ref={nameHandler.inputRef}
+					onChange={() => !nameHandler.isValid && nameHandler.validate()}
+					isValid={nameHandler.isValid}
 					type="text"
 					id="user-name"
 					name="user-name"
 					maxLength="60"
-					placeholder="Please enter your name"
-				></input>
+					placeholder={nameHandler.errorMessage || "Please enter your name"}
+				/>
 			</div>
 			<div className="form-group">
 				<label htmlFor="user-email">Email:</label>
-				<input
-					ref={email}
-					type="email"
+				<Input
+					ref={emailHandler.inputRef}
+					onChange={() => !emailHandler.isValid && emailHandler.validate()}
+					isValid={emailHandler.isValid}
+					type="text"
 					id="user-email"
 					name="user-email"
 					maxLength="100"
-					placeholder="Please enter your email"
-				></input>
+					placeholder={emailHandler.errorMessage || "Please enter your email"}
+				/>
 			</div>
 			<div className="form-group">
 				<label htmlFor="user-password">Password:</label>
-				<input
-					ref={password}
+				<Input
+					ref={passwordHandler.inputRef}
+					onChange={() =>
+						!passwordHandler.isValid && passwordHandler.validate()
+					}
+					isValid={passwordHandler.isValid}
 					type="password"
 					id="user-password"
 					name="user-password"
-					placeholder="Please enter a password"
-				></input>
+					placeholder={
+						passwordHandler.errorMessage || "Please enter a password"
+					}
+				/>
 			</div>
 			<div className="form-group">
 				<label htmlFor="user-confirm-password">Confirm password:</label>
-				<input
-					ref={confirmPassword}
+				<Input
+					ref={confirmPasswordHandler.inputRef}
+					onChange={() =>
+						!confirmPasswordHandler.isValid && confirmPasswordHandler.validate()
+					}
+					isValid={confirmPasswordHandler.isValid}
 					type="password"
 					id="user-confirm-password"
 					name="user-confirm-password"
-					placeholder="Please confirm your password"
-				></input>
+					placeholder={
+						confirmPasswordHandler.errorMessage ||
+						"Please confirm your password"
+					}
+				/>
 			</div>
 			<div className="register__action">
 				<button className="justify-self-center" type="submit">
 					Register
 				</button>
 				<div className="response">
-					<span className="loader"></span>
+					<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
 					<div
-						ref={messageContainer}
 						className="server-response secondary-text"
-					></div>
+						data-danger={
+							actionResponse && fetcher.state !== "submitting" ? true : null
+						}
+					>
+						{fetcher.state !== "submitting"
+							? actionResponse?.fail?.message ||
+							  actionResponse?.clientError?.message
+							: null}
+					</div>
 				</div>
 			</div>
 			<span className="secondary-text justify-self-center">
@@ -98,7 +160,7 @@ const RegisterForm = () => {
 			>
 				Log In
 			</Link>
-		</form>
+		</Form>
 	)
 }
 

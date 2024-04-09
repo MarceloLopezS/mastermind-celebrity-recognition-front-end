@@ -1,5 +1,5 @@
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
-import { registerUser } from "../../controllers/ReactRouterActions/actions"
+import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
 import "./ui/styles.css"
 
@@ -20,7 +20,7 @@ const RegisterRoute = {
 
 		return redirect("face-detection")
 	},
-	action: registerUser
+	action: submitRegisterForm
 }
 
 export default RegisterRoute
