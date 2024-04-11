@@ -1,53 +1,83 @@
-import { useRef, useState } from "react"
+import { useState, useRef, useCallback } from "react"
 import { useFetcher, useLoaderData, redirect } from "react-router-dom"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import { incrementEntry } from "../../controllers/ReactRouterActions/actions"
-import { SERVER_DOMAIN } from "../../shared/utils/constants"
+import { isFileInputValid } from "../../shared/utils/functions"
+import getDetectionData from "../../features/GetDetectionData"
+import Form, { useInputValidationHandler } from "../../shared/ui/Form"
+import ImageDetectionContainer from "./ui/ImageContainer"
 import "./ui/styles.css"
 
-const onFileChange = (event, image) => {
-	const imageContainer = image.parentElement
-	if (event.target.files.length === 0) {
-		imageContainer.removeAttribute("data-show")
-		image.src = "#"
-		return
-	}
-
-	image.src = URL.createObjectURL(event.target.files[0])
-	imageContainer.setAttribute("data-show", "")
-}
-
-const onFormSubmit = async imageInput => {
-	if (imageInput.files.length === 0) return
-
-	const formData = new FormData()
-	formData.append("image-input", imageInput.files[0])
-	try {
-		const fetchOptions = {
-			method: "POST",
-			credentials: "include",
-			body: formData
-		}
-		const response = await fetch(
-			`${SERVER_DOMAIN}/face-detection`,
-			fetchOptions
-		)
-		const data = await response.json()
-
-		return data
-	} catch (err) {
-		console.error(`Fetch error: ${err}`)
-		return null
-	}
-}
+const INITIAL_SRC = "#"
 
 const FaceDetection = () => {
 	const { name, entries } = useLoaderData()
 	const fetcher = useFetcher()
+	const fileHandler = useInputValidationHandler(isFileInputValid)
+	const [isImageVisible, setIsImageVisible] = useState(false)
+	const [imageSrc, setImageSrc] = useState(INITIAL_SRC)
+	const [isRequestLoading, setIsRequestLoading] = useState(false)
 	const [detectionData, setDetectionData] = useState()
-	const imageRef = useRef(null)
-	const imageInputRef = useRef(null)
-	const loaderRef = useRef(null)
+	const lastValidImageSrc = useRef(INITIAL_SRC)
+
+	const updateImageDisplay = useCallback(
+		event => {
+			setDetectionData(null)
+
+			if (event.target.files.length === 0) {
+				isImageVisible && setIsImageVisible(false)
+				imageSrc !== INITIAL_SRC && setImageSrc(INITIAL_SRC)
+				return
+			}
+
+			const src = URL.createObjectURL(event.target.files[0])
+			imageSrc !== src && setImageSrc(src)
+			!isImageVisible && setIsImageVisible(true)
+		},
+		[isImageVisible, imageSrc]
+	)
+
+	const handleDetectionRequest = useCallback(
+		async event => {
+			event.preventDefault()
+
+			const isFormValid =
+				imageSrc !== lastValidImageSrc.current && fileHandler.validate()
+
+			if (!isFormValid) return
+
+			lastValidImageSrc.current = imageSrc
+			setDetectionData(null)
+			setIsRequestLoading(true)
+
+			const formData = new FormData()
+			formData.append("image-input", fileHandler.inputRef.current.files[0])
+			try {
+				const data = await getDetectionData(formData)
+
+				setIsRequestLoading(false)
+				if (!data || data.status === "unauthorized" || data.status === "fail")
+					return
+
+				if (data.status === "success") {
+					setDetectionData(data.detectionData)
+
+					const requestData = {
+						request: "increment-entry"
+					}
+					const options = {
+						method: "put",
+						action: "/face-detection"
+					}
+					return fetcher.submit(requestData, options)
+				}
+			} catch (err) {
+				console.error(`Fetch error: ${err}`)
+				return setIsRequestLoading(false)
+			}
+		},
+		[imageSrc]
+	)
 
 	return (
 		<section className="face-detection container">
@@ -64,49 +94,18 @@ const FaceDetection = () => {
 				of that movie or show where you want to know who that incredible
 				actor/actress is. Save it and upload it here 😎
 			</p>
-			<form
+			<Form
 				className="face-detection__form"
 				encType="multipart/form-data"
-				onSubmit={async e => {
-					e.preventDefault()
-					setDetectionData([])
-					loaderRef.current.setAttribute("data-show", "")
-
-					const data = await onFormSubmit(imageInputRef.current)
-					if (
-						!data ||
-						data.status === "unauthorized" ||
-						data.status === "fail"
-					) {
-						loaderRef.current.removeAttribute("data-show")
-						return
-					}
-					if (data.status === "success") {
-						// console.log(data);
-						loaderRef.current.removeAttribute("data-show")
-						setDetectionData(data.detectionData)
-
-						const requestData = {
-							request: "increment-entry"
-						}
-						const options = {
-							method: "put",
-							action: "/face-detection"
-						}
-						fetcher.submit(requestData, options)
-					}
-				}}
+				onSubmit={handleDetectionRequest}
 			>
 				<label className="custom-file-input">
 					<input
-						ref={imageInputRef}
+						ref={fileHandler.inputRef}
 						type="file"
 						name="image-input"
 						accept="image/jpg, image/jpeg, image/png"
-						onChange={event => {
-							setDetectionData([])
-							onFileChange(event, imageRef.current)
-						}}
+						onChange={updateImageDisplay}
 					></input>
 					<svg
 						className="upload-icon"
@@ -120,53 +119,14 @@ const FaceDetection = () => {
 					First upload an image
 				</label>
 				<button type="submit">Detect</button>
-			</form>
-			<div className="face-detection__image-container">
-				<img ref={imageRef} src="#" alt="Input to detect"></img>
-				<span ref={loaderRef} className="loader"></span>
-				{detectionData
-					? detectionData.map((detection, i) => {
-							const { top_row, right_col, bottom_row, left_col } =
-								detection.boundingBox
-							const { name, probability } = detection.faceDetection
-							const capitalizeName = name => {
-								const nameSegments = name.split(" ")
-								const capitalizedName = nameSegments
-									.map(segment => {
-										return segment
-											.split("")
-											.map((letter, i) => {
-												if (i === 0) {
-													return letter.toUpperCase()
-												} else {
-													return letter
-												}
-											})
-											.join("")
-									})
-									.join(" ")
-
-								return capitalizedName
-							}
-							return (
-								<div
-									key={i}
-									className="boundingBox"
-									style={{
-										top: `${top_row * 100}%`,
-										right: `${100 - right_col * 100}%`,
-										bottom: `${100 - bottom_row * 100}%`,
-										left: `${left_col * 100}%`
-									}}
-								>
-									<span className="detection-name">
-										{capitalizeName(name)} | {Math.floor(probability * 100)}%
-									</span>
-								</div>
-							)
-					  })
-					: []}
-			</div>
+			</Form>
+			<ImageDetectionContainer
+				isVisible={isImageVisible}
+				isLoading={isRequestLoading}
+				detectionData={detectionData}
+			>
+				<img src={imageSrc} alt="Input to detect"></img>
+			</ImageDetectionContainer>
 		</section>
 	)
 }
