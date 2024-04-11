@@ -1,3 +1,13 @@
+export const capitalizeString = (string, separator = " ") => {
+  if (typeof string !== "string") {
+    throw new TypeError("String is expected to be capitalized.")
+  }
+
+  const strings = string.split(separator)
+  return strings.map(string => string[0].toUpperCase() + string.substring(1))
+    .join(separator)
+}
+
 export const isValidEmail = (string) => {
   if (typeof string !== "string") throw new Error(
     "Email to evaluate must be a string."
