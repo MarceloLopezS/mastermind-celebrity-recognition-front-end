@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, forwardRef } from "react"
 
 export const useInputValidationHandler = (
-	valueValidationFn = () => true,
-	errorMessageHandler = inputValue => ""
+	validationFn = inputValueOrFiles => !!inputValueOrFiles,
+	errorMessageHandler = inputValueOrFiles => ""
 ) => {
 	const [isValid, setIsValid] = useState(true)
 	const [errorMessage, setErrorMessage] = useState(null)
@@ -10,15 +10,20 @@ export const useInputValidationHandler = (
 
 	const validate = () => {
 		let isValidValue = true
+		const validationArg =
+			inputRef.current?.type === "file"
+				? inputRef.current?.files
+				: inputRef.current?.value
 
-		if (valueValidationFn(inputRef.current?.value)) {
+		if (validationFn(validationArg)) {
 			isValidValue = true
 			!isValid && setIsValid(true)
-			setErrorMessage(null)
+			errorMessage && setErrorMessage(null)
 		} else {
 			isValidValue = false
 			isValid && setIsValid(false)
-			setErrorMessage(errorMessageHandler(inputRef.current?.value) || null)
+			errorMessageHandler() &&
+				setErrorMessage(errorMessageHandler(validationArg))
 		}
 
 		return isValidValue
