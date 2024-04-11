@@ -1,8 +1,8 @@
 import styles from "./ui/styles.module.css"
 
-const DoubleSquareLoader = ({ isShown, ...attributes }) => (
+const DoubleSquareLoader = ({ isShown, className, ...attributes }) => (
 	<span
-		className={styles["loader"]}
+		className={`${styles["loader"]}${className ? " " + className : ""}`}
 		data-show={isShown || null}
 		{...attributes}
 	></span>
