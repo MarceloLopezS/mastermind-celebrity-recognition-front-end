@@ -61,3 +61,11 @@ export const getInvalidConfirmPasswordError =
 export const getReactRouterFormData = async (request) => {
   return JSON.stringify(Object.fromEntries(await request?.formData()))
 }
+
+export const greaterThan = (comparisonNumber) =>
+  (value) => value > comparisonNumber
+
+export const isFileInputValid = (files) => {
+  const greaterThan5Mb = greaterThan(5 * 1024 * 1024)
+  return files?.length !== 0 && !greaterThan5Mb(files[0]?.size)
+}
