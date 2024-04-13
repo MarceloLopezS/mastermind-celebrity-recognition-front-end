@@ -14,90 +14,15 @@
 	font-size: var(--fs-count);
 }
 
-.face-detection__form {
-	--border-radius: 0.25em;
-	--elements-padding: var(--size-25);
-
-	justify-self: stretch;
-	display: grid;
-	gap: var(--size-35);
-}
-
-.face-detection__form input[type="file"] {
-	display: none;
-}
-
-.face-detection__form input,
-.face-detection__form label {
-	padding: var(--elements-padding);
-	border-radius: var(--border-radius);
-}
-
-.face-detection__form .upload-icon {
-	width: var(--size-50);
-}
-
-.face-detection__form label.custom-file-input {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: var(--size-25);
-	border: 2px solid var(--clr-neutral-100);
-	font-size: var(--fs-input);
-	cursor: pointer;
-}
-
-.face-detection__form label.custom-file-input:hover {
-	background-color: var(--clr-faded-500);
-}
-
-.face-detection__form > button {
-	justify-self: center;
-	padding: var(--elements-padding);
-	border-radius: var(--border-radius);
-	background-color: var(--clr-highlight);
-}
-
 @media (min-width: 69em) {
 	.face-detection > p,
 	.face-detection > h2 {
 		max-width: 70ch;
-	}
-
-	.face-detection__form {
-		grid-template-columns: 80% 20%;
-		gap: 0;
-	}
-
-	.face-detection__form label.custom-file-input {
-		border-start-end-radius: 0;
-		border-end-end-radius: 0;
-		border-inline-end: none;
-	}
-
-	.face-detection__form > button {
-		width: 100%;
-		border-start-start-radius: 0;
-		border-end-start-radius: 0;
-	}
-
-	.face-detection__form > button:is(:hover, :focus-visible) {
-		color: var(--clr-neutral-100);
-		background-color: var(--clr-highlight-hover);
-	}
-
-	.face-detection__image-container {
-		max-width: 80%;
-		max-height: 38vh;
 	}
 }
 
 @media (min-width: 118em) {
 	.face-detection {
 		--section-gap: var(--size-75);
-	}
-
-	.face-detection__image-container {
-		max-height: 42.5vh;
 	}
 }
