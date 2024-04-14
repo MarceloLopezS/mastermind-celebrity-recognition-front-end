@@ -1,3 +1,5 @@
+import { getUserData } from "../../../../controllers/ReactRouterLoaders/loaders"
+
 const InvalidEmailToken = () => {
 	return (
 		<section className="container email-verification-section">
