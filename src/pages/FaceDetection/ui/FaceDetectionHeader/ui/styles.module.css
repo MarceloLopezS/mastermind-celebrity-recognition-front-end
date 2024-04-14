@@ -1,0 +1,11 @@
+.entries {
+	line-height: 1;
+	font-size: var(--fs-count);
+}
+
+@media (min-width: 69em) {
+	.user-welcome,
+	.entries {
+		max-width: 70ch;
+	}
+}
