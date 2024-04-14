@@ -4,11 +4,11 @@ import { incrementEntry } from "../../controllers/ReactRouterActions/actions"
 import ImageDetectionControl from "../../widgets/ImageDetectionControl"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
 import FaceDetectionInstructions from "./ui/FaceDetectionInstructions"
-import "./ui/styles.css"
+import styles from "./ui/styles.module.css"
 
 const FaceDetection = () => {
 	return (
-		<section className="face-detection container">
+		<section className={`${styles["face-detection"]} | container`}>
 			<FaceDetectionHeader />
 			<FaceDetectionInstructions />
 			<ImageDetectionControl />
