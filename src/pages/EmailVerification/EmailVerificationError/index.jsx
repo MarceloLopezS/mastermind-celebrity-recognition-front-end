@@ -1,3 +1,4 @@
+import { getUserData } from "../../../controllers/ReactRouterLoaders/loaders"
 import InvalidEmailTokenRoute from "./InvalidEmailToken"
 
 const EmailVerificationError = () => {
