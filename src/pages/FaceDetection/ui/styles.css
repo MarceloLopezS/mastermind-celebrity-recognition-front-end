@@ -9,18 +9,6 @@
 	padding-block: var(--section-gap) min(2.5vw, var(--size-150));
 }
 
-.face-detection__count {
-	line-height: 1;
-	font-size: var(--fs-count);
-}
-
-@media (min-width: 69em) {
-	.face-detection > p,
-	.face-detection > h2 {
-		max-width: 70ch;
-	}
-}
-
 @media (min-width: 118em) {
 	.face-detection {
 		--section-gap: var(--size-75);
