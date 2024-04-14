@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
-import { incrementEntry } from "../../controllers/ReactRouterActions/actions"
 import ImageDetectionControl from "../../widgets/ImageDetectionControl"
+import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
 import FaceDetectionInstructions from "./ui/FaceDetectionInstructions"
 import styles from "./ui/styles.module.css"
@@ -25,7 +25,7 @@ const FaceDetectionRoute = {
 
 		return userData
 	},
-	action: incrementEntry
+	action: submitEntryIncrementRequest
 }
 
 export default FaceDetectionRoute
