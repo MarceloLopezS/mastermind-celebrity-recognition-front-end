@@ -1,93 +1,92 @@
-import { useRef } from "react"
+import { useCallback } from "react"
 import { useFetcher } from "react-router-dom"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
-import { forgotPassword } from "../../controllers/ReactRouterActions/actions"
+import {
+	getInvalidEmailError,
+	isValidEmail
+} from "../../shared/utils/functions"
+import Form, { useInputValidationHandler } from "../../shared/ui/Form"
+import Input from "../../shared/ui/Input"
 import "./ui/styles.css"
-
-const validateAndGetEmail = (email, messageContainer) => {
-	let validForm = true
-
-	messageContainer.removeAttribute("data-danger")
-	messageContainer.textContent = ""
-	email.setAttribute("placeholder", "Please enter your email")
-	email.classList.remove("invalid")
-
-	if (!email.value) {
-		validForm = false
-		email.classList.add("invalid")
-	}
-	if (email.value) {
-		const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-		if (!email.value.match(regex)) {
-			validForm = false
-			email.classList.add("invalid")
-			email.setAttribute("placeholder", "Please enter a valid email")
-			email.value = ""
-		}
-	}
-
-	if (validForm) {
-		const formData = {
-			email: email.value
-		}
-
-		return formData
-	}
-
-	return null
-}
+import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+import { submitForgotPasswordForm } from "./model/ReactRouterActions"
 
 const ForgotPassword = () => {
 	const fetcher = useFetcher()
-	const email = useRef(null)
-	const messageContainer = useRef(null)
+	const emailHandler = useInputValidationHandler(
+		isValidEmail,
+		getInvalidEmailError
+	)
+
+	if (actionResponse?.status === "user-errors") {
+		const userErrors = Object.entries(actionResponse.errors)
+		handleInputServerErrors({ errors: userErrors, formInputHandlers })
+	}
+
+	const submitDataToFetcher = useCallback(
+		event => {
+			event.preventDefault()
+			const isFormValid = emailHandler.validate()
+
+			if (!isFormValid) return
+
+			const formData = {
+				email: emailHandler.inputRef.current.value
+			}
+			const options = {
+				method: "post",
+				action: "/forgot-password"
+			}
+			fetcher.submit(formData, options)
+		},
+		[emailHandler.isValid]
+	)
 
 	return (
 		<section className="form-section forgot-password container">
-			<form
+			<Form
 				className="form-section__form forgot-password__form"
-				onSubmit={e => {
-					e.preventDefault()
-					const forgotPasswordData = validateAndGetEmail(
-						email.current,
-						messageContainer.current
-					)
-					if (forgotPasswordData) {
-						const options = {
-							method: "post",
-							action: "/forgot-password"
-						}
-						fetcher.submit(forgotPasswordData, options)
-					}
-				}}
+				onSubmit={submitDataToFetcher}
 			>
 				<h2 className="justify-self-center">
 					Enter your email to send a password reset link
 				</h2>
 				<div className="form-group">
 					<label htmlFor="user-email">Email:</label>
-					<input
-						ref={email}
+					<Input
+						ref={emailHandler.inputRef}
+						onChange={() => {
+							!emailHandler.isValid && emailHandler.validate()
+						}}
+						isValid={emailHandler.isValid}
 						type="email"
 						id="user-email"
 						name="user-email"
 						maxLength="100"
-						placeholder="Please enter your email"
-					></input>
+						placeholder={emailHandler.errorMessage || "Please enter your email"}
+					/>
 				</div>
 				<div className="forgot-password__action">
 					<button className="justify-self-center" type="submit">
 						Submit
 					</button>
 					<div className="response">
-						<span className="loader"></span>
+						<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
 						<div
-							ref={messageContainer}
 							className="server-response secondary-text"
-						></div>
+							data-danger={
+								actionResponse && fetcher.state !== "submitting" ? true : null
+							}
+						>
+							{fetcher.state !== "submitting"
+								? actionResponse?.success?.message ||
+								  actionResponse?.fail?.message ||
+								  actionResponse?.clientError?.message
+								: null}
+						</div>
 					</div>
 				</div>
-			</form>
+			</Form>
 		</section>
 	)
 }
@@ -101,7 +100,7 @@ const ForgotPasswordRoute = {
 
 		return redirect("/face-detection")
 	},
-	action: forgotPassword
+	action: submitForgotPasswordForm
 }
 
 export default ForgotPasswordRoute
