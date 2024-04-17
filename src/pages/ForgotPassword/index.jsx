@@ -13,6 +13,7 @@ import { submitForgotPasswordForm } from "./model/ReactRouterActions"
 
 const ForgotPassword = () => {
 	const fetcher = useFetcher()
+	const actionResponse = fetcher.data
 	const emailHandler = useInputValidationHandler(
 		isValidEmail,
 		getInvalidEmailError
