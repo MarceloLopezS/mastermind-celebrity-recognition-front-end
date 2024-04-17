@@ -1,0 +1,9 @@
+@media (min-width: 28em) {
+	.forgot-password__form {
+		width: clamp(20rem, 26vw, 26rem);
+	}
+
+	.forgot-password__form h2 {
+		padding-block-end: var(--size-50);
+	}
+}
