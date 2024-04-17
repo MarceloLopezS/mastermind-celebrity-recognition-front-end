@@ -1,13 +1,5 @@
 @media (min-width: 28em) {
-    .forgot-password {
-        padding-block: min(5vw, var(--size-450));
-    }
-
-    .forgot-password__form {
-        width: clamp(20rem, 26vw, 26rem);
-    }
-
-    .forgot-password__form h2 {
-        padding-block-end: var(--size-50);
-    }
+	.forgot-password {
+		padding-block: min(5vw, var(--size-450));
+	}
 }
