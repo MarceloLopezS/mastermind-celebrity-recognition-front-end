@@ -1,119 +1,127 @@
-import { useRef } from "react"
+import { useCallback } from "react"
 import { useFetcher, useParams } from "react-router-dom"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
-import { passwordReset } from "../../controllers/ReactRouterActions/actions"
+import {
+	isValidPassword,
+	getInvalidPasswordError,
+	isValidPasswordConfirmation,
+	getInvalidConfirmPasswordError
+} from "../../shared/utils/functions"
+import Form, {
+	useInputValidationHandler,
+	handleInputServerErrors,
+	handleFormValidation
+} from "../../shared/ui/Form"
+import Input from "../../shared/ui/Input"
+import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+import { submitPasswordResetForm } from "./model/ReactRouterActions"
 import PasswordResetSuccessRoute from "./PasswordResetSuccess"
 import "./ui/styles.css"
 
-const validateAndGetPassword = (
-	password,
-	confirmPassword,
-	messageContainer
-) => {
-	const inputs = [password, confirmPassword]
-	let validForm = true
-
-	messageContainer.removeAttribute("data-danger")
-	messageContainer.textContent = ""
-	inputs.forEach(input => {
-		input.classList.remove("invalid")
-	})
-
-	inputs.forEach(input => {
-		if (!input.value) {
-			validForm = false
-			input.classList.add("invalid")
-		}
-	})
-	if (
-		password.value &&
-		confirmPassword.value &&
-		password.value !== confirmPassword.value
-	) {
-		validForm = false
-		password.classList.add("invalid")
-		confirmPassword.classList.add("invalid")
-		password.setAttribute("placeholder", "Passwords don't match")
-		confirmPassword.setAttribute("placeholder", "Passwords don't match")
-		password.value = ""
-		confirmPassword.value = ""
-	}
-
-	if (validForm) {
-		const formData = {
-			password: password.value,
-			confirmPassword: confirmPassword.value
-		}
-
-		return formData
-	}
-
-	return null
-}
-
 const PasswordReset = () => {
-	const fetcher = useFetcher()
-	const password = useRef(null)
-	const confirmPassword = useRef(null)
-	const messageContainer = useRef(null)
 	const { resetToken } = useParams()
+	const fetcher = useFetcher()
+	const actionResponse = fetcher.data
+	const passwordHandler = useInputValidationHandler(
+		isValidPassword,
+		getInvalidPasswordError
+	)
+	const confirmPasswordHandler = useInputValidationHandler(
+		isValidPasswordConfirmation(passwordHandler.inputRef),
+		getInvalidConfirmPasswordError(passwordHandler.inputRef)
+	)
+
+	if (actionResponse?.status === "user-errors") {
+		const userErrors = Object.entries(actionResponse.errors)
+		handleInputServerErrors({
+			errors: userErrors,
+			formInputHandlers: [passwordHandler, confirmPasswordHandler]
+		})
+	}
+
+	const submitDataToFetcher = useCallback(event => {
+		event.preventDefault()
+		const isFormValid = handleFormValidation(
+			passwordHandler,
+			confirmPasswordHandler
+		)
+
+		if (!isFormValid) return
+
+		const passwordResetData = {
+			password: passwordHandler.inputRef.current?.value,
+			confirmPassword: confirmPasswordHandler.inputRef.current?.value
+		}
+		const options = {
+			method: "post",
+			action: "/password-reset/:resetToken"
+		}
+		fetcher.submit({ ...passwordResetData, resetToken }, options)
+	}, [])
 
 	return (
 		<section className="form-section password-reset container">
-			<form
+			<Form
 				className="form-section__form password-reset__form"
-				onSubmit={e => {
-					e.preventDefault()
-					const passwordResetData = validateAndGetPassword(
-						password.current,
-						confirmPassword.current,
-						messageContainer.current
-					)
-					if (passwordResetData) {
-						const options = {
-							method: "post",
-							action: "/password-reset/:resetToken"
-						}
-						fetcher.submit({ ...passwordResetData, resetToken }, options)
-					}
-				}}
+				onSubmit={submitDataToFetcher}
 			>
 				<h2 className="justify-self-center">
 					Enter and confirm your new password
 				</h2>
 				<div className="form-group">
 					<label htmlFor="user-password">Password:</label>
-					<input
-						ref={password}
+					<Input
+						ref={passwordHandler.inputRef}
+						onChange={() => {
+							!passwordHandler.isValid && passwordHandler.validate()
+						}}
+						isValid={passwordHandler.isValid}
 						type="password"
 						id="user-password"
 						name="user-password"
-						placeholder="Please enter a password"
-					></input>
+						placeholder={
+							passwordHandler.errorMessage || "Please enter a password"
+						}
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="user-confirm-password">Confirm password:</label>
-					<input
-						ref={confirmPassword}
+					<Input
+						ref={confirmPasswordHandler.inputRef}
+						onChange={() => {
+							!confirmPasswordHandler.isValid &&
+								confirmPasswordHandler.validate()
+						}}
+						isValid={confirmPasswordHandler.isValid}
 						type="password"
 						id="user-confirm-password"
 						name="user-confirm-password"
-						placeholder="Please confirm your password"
-					></input>
+						placeholder={
+							confirmPasswordHandler.errorMessage ||
+							"Please confirm your password"
+						}
+					/>
 				</div>
 				<div className="password-reset__action">
 					<button className="justify-self-center" type="submit">
 						Submit
 					</button>
 					<div className="response">
-						<span className="loader"></span>
+						<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
 						<div
-							ref={messageContainer}
 							className="server-response secondary-text"
-						></div>
+							data-danger={
+								actionResponse && fetcher.state !== "submitting" ? true : null
+							}
+						>
+							{fetcher.state !== "submitting"
+								? actionResponse?.fail?.message ||
+								  actionResponse?.clientError?.message
+								: null}
+						</div>
 					</div>
 				</div>
-			</form>
+			</Form>
 		</section>
 	)
 }
@@ -130,7 +138,7 @@ const PasswordResetRoute = {
 
 				return redirect("/face-detection")
 			},
-			action: passwordReset
+			action: submitPasswordResetForm
 		},
 		PasswordResetSuccessRoute
 	]
