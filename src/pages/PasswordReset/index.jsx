@@ -2,11 +2,11 @@ import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import ResetPasswordForm from "../../widgets/ResetPasswordForm"
 import { submitPasswordResetForm } from "./model/ReactRouterActions"
 import PasswordResetSuccessRoute from "./PasswordResetSuccess"
-import "./ui/styles.css"
+import styles from "./ui/styles.module.css"
 
 const PasswordReset = () => {
 	return (
-		<section className="form-section password-reset container">
+		<section className={`${styles["password-reset"]} | form-section container`}>
 			<ResetPasswordForm />
 		</section>
 	)
