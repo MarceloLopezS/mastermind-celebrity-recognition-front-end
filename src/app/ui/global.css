@@ -182,6 +182,11 @@ a:is(:hover, :focus-visible) {
 	color: var(--clr-neutral-300);
 }
 
+button:disabled {
+	opacity: 0.9;
+	cursor: default;
+}
+
 canvas {
 	display: block;
 }
@@ -275,10 +280,11 @@ canvas {
 	border: 2px solid var(--clr-neutral-100);
 	border-radius: 0.25em;
 	margin-block: var(--size-50);
+	color: var(--clr-neutral-100);
 }
 
-.form-section__form button[type="submit"]:is(:hover, :focus-visible) {
-	color: var(--clr-neutral-100);
+.form-section__form
+	button[type="submit"]:not(:disabled):is(:hover, :focus-visible) {
 	background-color: var(--clr-faded-500);
 }
 
