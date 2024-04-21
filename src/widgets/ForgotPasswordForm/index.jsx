@@ -68,7 +68,11 @@ const ForgotPasswordForm = () => {
 				/>
 			</div>
 			<div className="forgot-password__action">
-				<button className="justify-self-center" type="submit">
+				<button
+					className="justify-self-center"
+					type="submit"
+					disabled={fetcher.state === "submitting"}
+				>
 					Submit
 				</button>
 				<div className="response">
