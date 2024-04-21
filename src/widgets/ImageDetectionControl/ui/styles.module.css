@@ -55,10 +55,10 @@
 		width: 100%;
 		border-start-start-radius: 0;
 		border-end-start-radius: 0;
+		color: var(--clr-neutral-100);
 	}
 
-	.detection-form > button:is(:hover, :focus-visible) {
-		color: var(--clr-neutral-100);
+	.detection-form > button:not(:disabled):is(:hover, :focus-visible) {
 		background-color: var(--clr-highlight-hover);
 	}
 
