@@ -94,7 +94,7 @@ const ImageDetectionControl = () => {
 					inputDescription="First upload an image"
 					acceptedFileTypes={["image/jpg", "image/jpeg", "image/png"]}
 				/>
-				<button type="submit" disabled={fetcher.state === "submitting"}>
+				<button type="submit" disabled={isRequestLoading}>
 					Detect
 				</button>
 			</Form>
