@@ -84,7 +84,11 @@ const LoginForm = () => {
 				/>
 			</div>
 			<div className="login__action">
-				<button className="justify-self-center" type="submit">
+				<button
+					className="justify-self-center"
+					type="submit"
+					disabled={fetcher.state === "submitting"}
+				>
 					Log In
 				</button>
 				<div className="response">
