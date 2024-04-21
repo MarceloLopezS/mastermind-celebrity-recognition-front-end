@@ -97,7 +97,11 @@ const ResetPasswordForm = () => {
 				/>
 			</div>
 			<div className="password-reset__action">
-				<button className="justify-self-center" type="submit">
+				<button
+					className="justify-self-center"
+					type="submit"
+					disabled={fetcher.state === "submitting"}
+				>
 					Submit
 				</button>
 				<div className="response">
