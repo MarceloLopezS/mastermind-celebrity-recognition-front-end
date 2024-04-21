@@ -133,7 +133,11 @@ const RegisterForm = () => {
 				/>
 			</div>
 			<div className="register__action">
-				<button className="justify-self-center" type="submit">
+				<button
+					className="justify-self-center"
+					type="submit"
+					disabled={fetcher.state === "submitting"}
+				>
 					Register
 				</button>
 				<div className="response">
