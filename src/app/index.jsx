@@ -6,7 +6,8 @@ import ParticlesBg from "../shared/ui/Particles"
 import Navbar from "../widgets/Navbar"
 import Footer from "../shared/ui/Footer"
 import "./ui/global.css"
-import HomeRoute from "../pages/Home"
+import LoginRoute from "../pages/Login"
+import LogoutRoute from "../pages/Logout"
 import RegisterRoute from "../pages/Register"
 import EmailVerificationRoute from "../pages/EmailVerification"
 import ForgotPasswordRoute from "../pages/ForgotPassword"
@@ -36,14 +37,14 @@ const RootRoute = {
 
 		return userData
 	},
-	action: logOutUser,
 	children: [
-		{ index: true, ...HomeRoute },
+		{ index: true, ...LoginRoute },
 		RegisterRoute,
 		EmailVerificationRoute,
 		ForgotPasswordRoute,
 		PasswordResetRoute,
-		FaceDetectionRoute
+		FaceDetectionRoute,
+		LogoutRoute
 	]
 }
 
