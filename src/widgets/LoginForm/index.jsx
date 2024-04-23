@@ -12,7 +12,7 @@ import Form, {
 } from "../../shared/ui/Form"
 import Input from "../../shared/ui/Input"
 import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
-import "./ui/styles.css"
+import styles from "./ui/styles.module.css"
 
 const LoginForm = () => {
 	const fetcher = useFetcher()
@@ -48,7 +48,7 @@ const LoginForm = () => {
 
 	return (
 		<Form
-			className="form-section__form log-in__form"
+			className={`${styles["log-in__form"]} | form-section__form`}
 			onSubmit={submitDataToFetcher}
 		>
 			<h2 className="justify-self-center">
