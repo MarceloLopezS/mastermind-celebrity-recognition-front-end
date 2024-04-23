@@ -2,10 +2,11 @@ import { redirect } from "react-router-dom"
 import { submitLoginForm } from "./model/reactRouterActions"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import LoginForm from "../../widgets/LoginForm"
+import styles from "./ui/styles.module.css"
 
 const Login = () => {
 	return (
-		<section className="form-section log-in container">
+		<section className={`${styles["log-in"]} | form-section container`}>
 			<LoginForm />
 		</section>
 	)
