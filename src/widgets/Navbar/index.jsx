@@ -1,23 +1,9 @@
-import { useCallback } from "react"
-import { Link, useFetcher } from "react-router-dom"
+import { Link } from "react-router-dom"
 import logo from "../../shared/assets/images/mastermind-logo.png"
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
+import LogoutButton from "./ui/LogoutButton"
 
 const Navbar = ({ isLoggedIn }) => {
-	const fetcher = useFetcher()
-
-	const submitDataToFetcher = useCallback(() => {
-		const data = {
-			requestAction: "logout"
-		}
-		const options = {
-			method: "post",
-			action: "/"
-		}
-		fetcher.submit(data, options)
-	}, [])
-
 	return (
 		<div className={styles["navbar"]}>
 			<div className={styles["navbar__brand"]}>
@@ -26,16 +12,7 @@ const Navbar = ({ isLoggedIn }) => {
 			</div>
 			<nav className={styles["navbar__nav"]}>
 				{isLoggedIn ? (
-					<>
-						<DoubleSquareLoader isShown={fetcher.state === "submitting"} />
-						<button
-							className={styles["navbar__button"]}
-							onClick={submitDataToFetcher}
-							type="button"
-						>
-							Log Out
-						</button>
-					</>
+					<LogoutButton />
 				) : (
 					<>
 						<Link to="/">Log In</Link>
