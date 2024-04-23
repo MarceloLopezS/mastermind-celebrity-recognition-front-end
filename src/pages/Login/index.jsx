@@ -3,7 +3,7 @@ import { submitLoginForm } from "./model/reactRouterActions"
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import LoginForm from "../../widgets/LoginForm"
 
-const Home = () => {
+const Login = () => {
 	return (
 		<section className="form-section log-in container">
 			<LoginForm />
@@ -11,8 +11,8 @@ const Home = () => {
 	)
 }
 
-const HomeRoute = {
-	element: <Home />,
+const LoginRoute = {
+	element: <Login />,
 	loader: async () => {
 		const userData = await getUserData()
 		if (!userData) return null
@@ -22,4 +22,4 @@ const HomeRoute = {
 	action: submitLoginForm
 }
 
-export default HomeRoute
+export default LoginRoute
