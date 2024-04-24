@@ -1,11 +1,11 @@
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
-import "./ui/styles.css"
+import styles from "./ui/styles.module.css"
 
 const Register = () => {
 	return (
-		<section className="form-section register container">
+		<section className={`${styles["register"]} form-section container`}>
 			<RegisterForm />
 		</section>
 	)
