@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom"
-import getUserData from "../../features/getUserData"
+import getUserData from "../../features/GetUserData"
 import ImageDetectionControl from "../../widgets/ImageDetectionControl"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
