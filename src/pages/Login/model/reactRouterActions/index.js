@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
-import loginUser from "../../../../features/LoginUser"
+import loginUser from "../../../../features/loginUser"
 
 export const submitLoginForm = async ({ request }) => {
   try {

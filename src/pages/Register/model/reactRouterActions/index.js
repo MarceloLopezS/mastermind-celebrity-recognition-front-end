@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
-import registerUser from "../../../../features/RegisterUser"
+import registerUser from "../../../../features/registerUser"
 
 export const submitRegisterForm = async ({ request }) => {
   try {

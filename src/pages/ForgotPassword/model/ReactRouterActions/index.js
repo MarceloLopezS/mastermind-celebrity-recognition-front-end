@@ -1,4 +1,4 @@
-import passwordRecovery from "../../../../features/PasswordRecovery"
+import passwordRecovery from "../../../../features/passwordRecovery"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
 
 export const submitForgotPasswordForm = async ({ request }) => {
