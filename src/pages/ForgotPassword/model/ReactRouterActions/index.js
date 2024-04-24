@@ -4,16 +4,7 @@ import { getReactRouterFormData } from "../../../../shared/utils/functions"
 export const submitForgotPasswordForm = async ({ request }) => {
   try {
     const formData = await getReactRouterFormData(request)
-    const fetchOptions = {
-      method: request.method,
-      credentials: 'include',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    const data = passwordRecovery(fetchOptions)
+    const data = await passwordRecovery(formData)
 
     return data
   } catch (err) {
