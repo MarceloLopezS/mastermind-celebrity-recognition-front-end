@@ -1,10 +1,13 @@
 import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import ForgotPasswordForm from "../../widgets/ForgotPasswordForm"
 import { submitForgotPasswordForm } from "./model/ReactRouterActions"
+import styles from "./ui/styles.module.css"
 
 const ForgotPassword = () => {
 	return (
-		<section className="form-section forgot-password container">
+		<section
+			className={`${styles["forgot-password"]} | form-section container`}
+		>
 			<ForgotPasswordForm />
 		</section>
 	)
