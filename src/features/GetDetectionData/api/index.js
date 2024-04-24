@@ -5,9 +5,8 @@ const requestDetectionData = async (fetchOptions) => {
     `${SERVER_DOMAIN}/face-detection`,
     fetchOptions
   )
-  const data = await response.json()
 
-  return data
+  return response
 }
 
 export default requestDetectionData

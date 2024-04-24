@@ -8,7 +8,8 @@ const getDetectionData = async (formData) => {
     //type: --> automatically defined when file appended to FormData instance
   }
 
-  const data = await requestDetectionData(fetchOptions)
+  const response = await requestDetectionData(fetchOptions)
+  const data = await response.json()
 
   return data
 }
