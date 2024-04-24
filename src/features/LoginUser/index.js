@@ -10,7 +10,8 @@ const loginUser = async (formData) => {
     }
   }
 
-  const data = await requestLogin(fetchOptions)
+  const response = await requestLogin(fetchOptions)
+  const data = await response.json()
 
   return data
 }
