@@ -5,18 +5,9 @@ import passwordReset from "../../../../features/PasswordReset"
 export const submitPasswordResetForm = async ({ request }) => {
   try {
     const formData = await getReactRouterFormData(request)
-    const fetchOptions = {
-      method: request.method,
-      credentials: 'include',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
+    const data = await passwordReset(formData)
 
-    const serverResponse = await passwordReset(fetchOptions)
-
-    if (serverResponse.status !== "success") return serverResponse
+    if (data.status !== "success") return data
 
     return redirect("/password-reset/reset-success")
   } catch (err) {
