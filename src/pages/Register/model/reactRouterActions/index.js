@@ -5,18 +5,9 @@ import registerUser from "../../../../features/RegisterUser"
 export const submitRegisterForm = async ({ request }) => {
   try {
     const formData = await getReactRouterFormData(request)
-    const fetchOptions = {
-      method: request.method,
-      credentials: 'include',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
+    const data = await registerUser(formData)
 
-    const serverResponse = await registerUser(fetchOptions)
-
-    if (serverResponse.status !== "success") return serverResponse
+    if (data.status !== "success") return data
 
     return redirect("/email-verification")
   } catch (err) {
