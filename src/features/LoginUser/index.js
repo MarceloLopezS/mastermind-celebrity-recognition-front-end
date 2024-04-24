@@ -1,9 +1,18 @@
 import requestLogin from "./api"
 
-const loginUser = async (fetchOptions) => {
-  const serverResponse = await requestLogin(fetchOptions)
+const loginUser = async (formData) => {
+  const fetchOptions = {
+    method: "post",
+    credentials: 'include',
+    body: formData,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
 
-  return serverResponse
+  const data = await requestLogin(fetchOptions)
+
+  return data
 }
 
 export default loginUser
