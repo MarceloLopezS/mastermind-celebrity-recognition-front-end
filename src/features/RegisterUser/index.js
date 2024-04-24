@@ -1,9 +1,10 @@
 import requestRegistration from "./api"
 
 const registerUser = async (fetchOptions) => {
-  const serverResponse = await requestRegistration(fetchOptions)
+  const response = await requestRegistration(fetchOptions)
+  const data = await response.json()
 
-  return serverResponse
+  return data
 }
 
 export default registerUser
