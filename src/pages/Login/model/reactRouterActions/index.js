@@ -5,15 +5,7 @@ import loginUser from "../../../../features/LoginUser"
 export const submitLoginForm = async ({ request }) => {
   try {
     const formData = await getReactRouterFormData(request)
-    const fetchOptions = {
-      method: request.method,
-      credentials: 'include',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    const serverResponse = await loginUser(fetchOptions)
+    const serverResponse = await loginUser(formData)
 
     if (serverResponse.status !== "success") return serverResponse
 
