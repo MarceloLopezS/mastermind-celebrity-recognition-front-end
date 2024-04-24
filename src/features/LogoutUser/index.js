@@ -10,7 +10,8 @@ const logoutUser = async (requestData) => {
     }
   }
 
-  const data = await requestLogout(fetchOptions)
+  const response = await requestLogout(fetchOptions)
+  const data = await response.json()
 
   return data
 }
