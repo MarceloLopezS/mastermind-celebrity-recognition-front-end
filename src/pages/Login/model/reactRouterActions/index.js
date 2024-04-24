@@ -5,9 +5,9 @@ import loginUser from "../../../../features/LoginUser"
 export const submitLoginForm = async ({ request }) => {
   try {
     const formData = await getReactRouterFormData(request)
-    const serverResponse = await loginUser(formData)
+    const data = await loginUser(formData)
 
-    if (serverResponse.status !== "success") return serverResponse
+    if (data.status !== "success") return data
 
     return redirect("/face-detection")
   } catch (err) {
