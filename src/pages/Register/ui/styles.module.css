@@ -1,3 +1,7 @@
+.register {
+	padding-block: min(7vh, var(--size-350));
+}
+
 @media (min-width: 28em) {
 	.register {
 		padding-block-start: min(2vw, var(--size-150));
