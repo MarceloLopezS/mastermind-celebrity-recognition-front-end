@@ -1,6 +1,7 @@
 import React from "react"
 import { Outlet, useLoaderData } from "react-router-dom"
 import { getUserData } from "../controllers/ReactRouterLoaders/loaders"
+import "./ui/global.css"
 import ParticlesBg from "../shared/ui/Particles"
 import Navbar from "../widgets/Navbar"
 import Footer from "../shared/ui/Footer"
@@ -11,7 +12,6 @@ import EmailVerificationRoute from "../pages/EmailVerification"
 import ForgotPasswordRoute from "../pages/ForgotPassword"
 import PasswordResetRoute from "../pages/PasswordReset"
 import FaceDetectionRoute from "../pages/FaceDetection"
-import "./ui/global.css"
 
 const App = () => {
 	const userData = useLoaderData()
