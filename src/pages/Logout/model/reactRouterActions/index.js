@@ -5,16 +5,7 @@ import logoutUser from "../../../../features/LogoutUser"
 export const submitLogoutRequest = async ({ request }) => {
   try {
     const requestData = await getReactRouterFormData(request)
-    const fetchOptions = {
-      method: request.method,
-      credentials: 'include',
-      body: requestData,
-      headers: {
-        'Content-type': 'application/json'
-      }
-    }
-
-    const data = await logoutUser(fetchOptions)
+    const data = await logoutUser(requestData)
 
     if (data.status === "success") return redirect("/")
 
