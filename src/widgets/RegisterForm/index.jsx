@@ -16,7 +16,7 @@ import Form, {
 } from "../../shared/ui/Form"
 import Input from "../../shared/ui/Input"
 import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
-import "./ui/styles.css"
+import styles from "./ui/styles.module.css"
 
 const RegisterForm = () => {
 	const fetcher = useFetcher()
@@ -67,7 +67,7 @@ const RegisterForm = () => {
 
 	return (
 		<Form
-			className="register__form | form-section__form"
+			className={`${styles["register__form"]} | form-section__form`}
 			onSubmit={submitDataToFetcher}
 		>
 			<h2 className="justify-self-center">

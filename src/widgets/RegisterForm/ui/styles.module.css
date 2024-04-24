@@ -1,3 +1,9 @@
+.register__form {
+	width: 100%;
+	gap: var(--size-50);
+	padding: var(--size-100);
+}
+
 @media (min-width: 28em) {
 	.register__form {
 		width: clamp(20rem, 26vw, 26rem);
