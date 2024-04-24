@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
-import logoutUser from "../../../../features/LogoutUser"
+import logoutUser from "../../../../features/logoutUser"
 
 export const submitLogoutRequest = async ({ request }) => {
   try {

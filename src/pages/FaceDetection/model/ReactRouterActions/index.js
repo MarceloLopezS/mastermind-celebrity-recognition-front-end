@@ -1,5 +1,5 @@
-import incrementUserDetectionEntry from "../../../../features/IncrementUserDetectionEntry";
-import { getReactRouterFormData } from "../../../../shared/utils/functions";
+import incrementUserDetectionEntry from "../../../../features/incrementUserDetectionEntry"
+import { getReactRouterFormData } from "../../../../shared/utils/functions"
 
 export const submitEntryIncrementRequest = async ({ request }) => {
   try {
