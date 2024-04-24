@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom"
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import getUserData from "../../features/getUserData"
 import ImageDetectionControl from "../../widgets/ImageDetectionControl"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
@@ -20,10 +20,16 @@ const FaceDetectionRoute = {
 	path: "face-detection",
 	element: <FaceDetection />,
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return redirect("/")
+		try {
+			const userData = await getUserData()
 
-		return userData
+			if (!userData) return redirect("/")
+
+			return userData
+		} catch (err) {
+			console.error(err)
+			return null
+		}
 	},
 	action: submitEntryIncrementRequest
 }
