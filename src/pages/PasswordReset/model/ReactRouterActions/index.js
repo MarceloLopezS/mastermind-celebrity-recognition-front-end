@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom"
 import { getReactRouterFormData } from "../../../../shared/utils/functions"
-import passwordReset from "../../../../features/passwordReset"
+import passwordReset from "../../../../features/PasswordReset"
 
 export const submitPasswordResetForm = async ({ request }) => {
   try {
