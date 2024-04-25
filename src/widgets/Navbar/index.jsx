@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logo from "../../shared/assets/images/mastermind-logo.png"
+import logo from "../../shared/assets/images/mastermind-logo.webp"
 import styles from "./ui/styles.module.css"
 import LogoutButton from "./ui/LogoutButton"
 
