@@ -1,4 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@font-face {
+	font-family: "Space Mono";
+	font-weight: 400;
+	src: url("../../shared/assets/fonts/spacemono-regular-webfont.woff2")
+			format("woff2"),
+		url("../../shared/assets/fonts/spacemono-regular-webfont.woff")
+			format("woff");
+}
+
+@font-face {
+	font-family: "Space Mono";
+	font-weight: 700;
+	src: url("../../shared/assets/fonts/spacemono-bold-webfont.woff2")
+			format("woff2"),
+		url("../../shared/assets/fonts/spacemono-bold-webfont.woff") format("woff");
+}
 
 :root {
 	--clr-gradient-left: hsl(184, 100%, 18%);
