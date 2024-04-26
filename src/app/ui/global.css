@@ -58,7 +58,7 @@
 	--fs-body: clamp(var(--fs-150), 1.1vw, var(--fs-250));
 	--fs-secondary-text: clamp(var(--fs-125), 1.15vw, var(--fs-175));
 	--fs-count: clamp(var(--fs-500), 1.5vw, var(--fs-600));
-	--fs-input: clamp(var(--fs-150), 1.2vw, var(--fs-200));
+	--fs-input: clamp(var(--fs-150), 1vw, var(--fs-200));
 	--fs-footer: clamp(var(--fs-125), 1vw, var(--fs-175));
 	--fs-detection: clamp(var(--fs-120), 0.8vw, var(--fs-150));
 
