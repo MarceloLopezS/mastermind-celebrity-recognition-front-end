@@ -9,6 +9,7 @@ import ImageDetectionContainer from "./ui/ImageContainer"
 import styles from "./ui/styles.module.css"
 
 const INITIAL_SRC = "#"
+const DETECTION_ERROR = "There was a problem retrieving the detection data."
 
 const ImageDetectionControl = () => {
 	const fetcher = useFetcher()
@@ -58,9 +59,7 @@ const ImageDetectionControl = () => {
 
 				setIsRequestLoading(false)
 				if (!data || data.status === "unauthorized" || data.status === "fail")
-					return setErrorMessage(
-						"There was a problem retrieving the detection data."
-					)
+					return setErrorMessage(DETECTION_ERROR)
 
 				if (data.status === "success") {
 					setDetectionData(data.detectionData)
