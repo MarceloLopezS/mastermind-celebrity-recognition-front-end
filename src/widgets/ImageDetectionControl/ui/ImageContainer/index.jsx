@@ -7,6 +7,7 @@ const ImageDetectionContainer = ({
 	isVisible = true,
 	isLoading = false,
 	detectionData,
+	errorMessage = "",
 	...attributes
 }) => {
 	return (
@@ -16,6 +17,12 @@ const ImageDetectionContainer = ({
 				isShown={isLoading}
 				className={styles["detection-loader"]}
 			/>
+			<div
+				className={`${styles["error-message"]} | text-highlight`}
+				data-show={errorMessage ? true : null}
+			>
+				{errorMessage || null}
+			</div>
 			<DetectionBoundingBox detectionData={detectionData} />
 		</div>
 	)
