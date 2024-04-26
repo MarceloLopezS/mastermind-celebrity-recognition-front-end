@@ -19,6 +19,7 @@
 	--clr-gradient-left: hsl(184, 100%, 18%);
 	--clr-gradient-right: hsl(229, 100%, 12%);
 
+	--clr-faded-300: hsl(0, 0%, 0%, 0.45);
 	--clr-faded-500: hsl(0, 0%, 0%, 0.2);
 	--clr-faded-800: hsl(0, 0%, 0%, 0.12);
 
