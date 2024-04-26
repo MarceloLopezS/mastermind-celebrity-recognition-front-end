@@ -16,6 +16,7 @@ const ImageDetectionControl = () => {
 	const [isImageVisible, setIsImageVisible] = useState(false)
 	const [imageSrc, setImageSrc] = useState(INITIAL_SRC)
 	const [isRequestLoading, setIsRequestLoading] = useState(false)
+	const [errorMessage, setErrorMessage] = useState(null)
 	const [detectionData, setDetectionData] = useState()
 	const lastValidImageSrc = useRef(INITIAL_SRC)
 
@@ -48,6 +49,7 @@ const ImageDetectionControl = () => {
 			lastValidImageSrc.current = imageSrc
 			setDetectionData(null)
 			setIsRequestLoading(true)
+			setErrorMessage(null)
 
 			const formData = new FormData()
 			formData.append("image-input", fileHandler.inputRef.current.files[0])
@@ -56,7 +58,9 @@ const ImageDetectionControl = () => {
 
 				setIsRequestLoading(false)
 				if (!data || data.status === "unauthorized" || data.status === "fail")
-					return
+					return setErrorMessage(
+						"There was a problem retrieving the detection data."
+					)
 
 				if (data.status === "success") {
 					setDetectionData(data.detectionData)
@@ -103,6 +107,7 @@ const ImageDetectionControl = () => {
 				isLoading={isRequestLoading}
 				detectionData={detectionData}
 				className={styles["image-container"]}
+				errorMessage={isRequestLoading ? null : errorMessage}
 			>
 				<img src={imageSrc} alt="Input to detect"></img>
 			</ImageDetectionContainer>
