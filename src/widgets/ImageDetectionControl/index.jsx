@@ -43,6 +43,17 @@ const ImageDetectionControl = () => {
 		[isImageVisible, imageSrc]
 	)
 
+	const submitIncrementEntryRequest = () => {
+		const requestData = {
+			request: "increment-entry"
+		}
+		const options = {
+			method: "put",
+			action: "/face-detection"
+		}
+		return fetcher.submit(requestData, options)
+	}
+
 	const handleDetectionRequest = useCallback(
 		async event => {
 			event.preventDefault()
@@ -67,15 +78,7 @@ const ImageDetectionControl = () => {
 
 				if (data.status === "success") {
 					setDetectionData(data.detectionData)
-
-					const requestData = {
-						request: "increment-entry"
-					}
-					const options = {
-						method: "put",
-						action: "/face-detection"
-					}
-					return fetcher.submit(requestData, options)
+					submitIncrementEntryRequest()
 				}
 			} catch (err) {
 				console.error(`Fetch error: ${err}`)
