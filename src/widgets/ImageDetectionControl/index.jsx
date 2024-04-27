@@ -21,9 +21,14 @@ const ImageDetectionControl = () => {
 	const [detectionData, setDetectionData] = useState()
 	const lastValidImageSrc = useRef(INITIAL_SRC)
 
+	const clearResponseData = useCallback(() => {
+		setDetectionData(null)
+		setErrorMessage(null)
+	}, [])
+
 	const updateImageDisplay = useCallback(
 		event => {
-			setDetectionData(null)
+			clearResponseData()
 
 			if (event.target.files.length === 0) {
 				isImageVisible && setIsImageVisible(false)
@@ -48,9 +53,8 @@ const ImageDetectionControl = () => {
 			if (!isFormValid) return
 
 			lastValidImageSrc.current = imageSrc
-			setDetectionData(null)
 			setIsRequestLoading(true)
-			setErrorMessage(null)
+			clearResponseData()
 
 			const formData = new FormData()
 			formData.append("image-input", fileHandler.inputRef.current.files[0])
