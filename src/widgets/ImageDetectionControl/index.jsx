@@ -82,6 +82,7 @@ const ImageDetectionControl = () => {
 				}
 			} catch (err) {
 				console.error(`Fetch error: ${err}`)
+				setDetectionData(DETECTION_ERROR)
 				return setIsRequestLoading(false)
 			}
 		},
