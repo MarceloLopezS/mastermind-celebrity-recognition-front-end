@@ -1,7 +1,7 @@
 import React from "react"
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
 import EmailVerificationErrorRoute from "./EmailVerificationError"
 import AccountActivationSuccessRoute from "./AccountActivationSuccess"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 
 const EmailVerification = () => {
 	return (
@@ -29,10 +29,15 @@ const EmailVerificationRoute = {
 			index: true,
 			element: <EmailVerification />,
 			loader: async () => {
-				const userData = await getUserData()
-				if (!userData) return null
+				try {
+					const data = await checkUserAuthentication()
+					if (!data?.authenticated) return null
 
-				return redirect("/face-detection")
+					return redirect("/face-detection")
+				} catch (err) {
+					console.error(err)
+					return null
+				}
 			}
 		},
 		EmailVerificationErrorRoute,
