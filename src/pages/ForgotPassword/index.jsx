@@ -1,4 +1,4 @@
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import ForgotPasswordForm from "../../widgets/ForgotPasswordForm"
 import { submitForgotPasswordForm } from "./model/ReactRouterActions"
 import styles from "./ui/styles.module.css"
@@ -17,10 +17,15 @@ const ForgotPasswordRoute = {
 	path: "forgot-password",
 	element: <ForgotPassword />,
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return null
+		try {
+			const data = await checkUserAuthentication()
+			if (!data?.authenticated) return null
 
-		return redirect("/face-detection")
+			return redirect("/face-detection")
+		} catch (err) {
+			console.error(err)
+			return null
+		}
 	},
 	action: submitForgotPasswordForm
 }
