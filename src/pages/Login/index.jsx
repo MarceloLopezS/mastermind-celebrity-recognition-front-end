@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom"
 import { submitLoginForm } from "./model/reactRouterActions"
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import LoginForm from "../../widgets/LoginForm"
 import styles from "./ui/styles.module.css"
 
@@ -15,10 +15,15 @@ const Login = () => {
 const LoginRoute = {
 	element: <Login />,
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return null
+		try {
+			const data = await checkUserAuthentication()
+			if (!data?.authenticated) return null
 
-		return redirect("/face-detection")
+			return redirect("/face-detection")
+		} catch (err) {
+			console.error(err)
+			return null
+		}
 	},
 	action: submitLoginForm
 }
