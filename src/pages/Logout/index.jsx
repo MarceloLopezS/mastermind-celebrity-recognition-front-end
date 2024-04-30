@@ -1,14 +1,19 @@
 import { redirect } from "react-router-dom"
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import { submitLogoutRequest } from "./model/reactRouterActions"
 
 const LogoutRoute = {
 	path: "logout",
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return redirect("/")
+		try {
+			const data = await checkUserAuthentication()
+			if (data?.authenticated) return redirect("/face-detection")
 
-		return redirect("/face-detection")
+			return redirect("/")
+		} catch (err) {
+			console.error(err)
+			return redirect("/")
+		}
 	},
 	action: submitLogoutRequest
 }
