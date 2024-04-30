@@ -1,4 +1,4 @@
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
 import styles from "./ui/styles.module.css"
@@ -15,10 +15,15 @@ const RegisterRoute = {
 	path: "register",
 	element: <Register />,
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return null
+		try {
+			const data = await checkUserAuthentication()
+			if (!data?.authenticated) return null
 
-		return redirect("/face-detection")
+			return redirect("/face-detection")
+		} catch (err) {
+			console.error(err)
+			return null
+		}
 	},
 	action: submitRegisterForm
 }
