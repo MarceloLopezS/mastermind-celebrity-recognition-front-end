@@ -1,6 +1,6 @@
 import React from "react"
 import { Outlet, useLoaderData } from "react-router-dom"
-import { getUserData } from "../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../features/CheckUserAuthentication"
 import "./ui/global.css"
 import ParticlesBg from "../shared/ui/Particles"
 import Navbar from "../widgets/Navbar"
@@ -14,12 +14,12 @@ import PasswordResetRoute from "../pages/PasswordReset"
 import FaceDetectionRoute from "../pages/FaceDetection"
 
 const App = () => {
-	const userData = useLoaderData()
+	const isAuthenticated = useLoaderData()
 
 	return (
 		<React.StrictMode>
 			<ParticlesBg />
-			<Navbar isLoggedIn={userData ? true : false} />
+			<Navbar isLoggedIn={isAuthenticated} />
 			<Outlet />
 			<Footer />
 		</React.StrictMode>
@@ -31,10 +31,15 @@ const RootRoute = {
 	id: "root",
 	element: <App />,
 	loader: async () => {
-		const userData = await getUserData()
-		if (!userData) return null
+		try {
+			const data = await checkUserAuthentication()
+			if (!data?.authenticated) return null
 
-		return userData
+			return data?.authenticated
+		} catch (err) {
+			console.error(err)
+			return null
+		}
 	},
 	children: [
 		{ index: true, ...LoginRoute },
