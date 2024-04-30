@@ -1,4 +1,4 @@
-import { getUserData } from "../../controllers/ReactRouterLoaders/loaders"
+import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import ResetPasswordForm from "../../widgets/ResetPasswordForm"
 import { submitPasswordResetForm } from "./model/ReactRouterActions"
 import PasswordResetSuccessRoute from "./PasswordResetSuccess"
@@ -19,10 +19,15 @@ const PasswordResetRoute = {
 			path: ":resetToken",
 			element: <PasswordReset />,
 			loader: async () => {
-				const userData = await getUserData()
-				if (!userData) return null
+				try {
+					const data = await checkUserAuthentication()
+					if (!data?.authenticated) return null
 
-				return redirect("/face-detection")
+					return redirect("/face-detection")
+				} catch (err) {
+					console.error(err)
+					return null
+				}
 			},
 			action: submitPasswordResetForm
 		},
