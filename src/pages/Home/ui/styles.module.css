@@ -1,0 +1,9 @@
+.hero {
+	display: grid;
+}
+
+@media (min-width: 69rem) {
+	.hero {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
