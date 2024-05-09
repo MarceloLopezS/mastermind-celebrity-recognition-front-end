@@ -1,9 +1,9 @@
 import { redirect } from "react-router-dom"
 import getUserData from "../../features/GetUserData"
-import ImageDetectionControl from "../../widgets/ImageDetectionControl"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
 import FaceDetectionInstructions from "./ui/FaceDetectionInstructions"
+import FaceDetectionControl from "./ui/FaceDetectionControl"
 import styles from "./ui/styles.module.css"
 
 const FaceDetection = () => {
@@ -11,7 +11,7 @@ const FaceDetection = () => {
 		<section className={`${styles["face-detection"]} | container`}>
 			<FaceDetectionHeader />
 			<FaceDetectionInstructions />
-			<ImageDetectionControl />
+			<FaceDetectionControl />
 		</section>
 	)
 }
