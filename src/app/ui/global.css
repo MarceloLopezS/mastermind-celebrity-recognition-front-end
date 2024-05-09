@@ -239,6 +239,16 @@ canvas {
 	margin-inline: auto;
 }
 
+.btn-highlight {
+	color: var(--clr-neutral-800);
+	background-color: var(--clr-highlight);
+}
+
+.btn-highlight:not(:disabled):is(:hover, :focus-visible) {
+	color: var(--clr-neutral-800);
+	background-color: var(--clr-highlight-hover);
+}
+
 .form-section {
 	display: grid;
 	place-items: center;
