@@ -199,7 +199,7 @@ button {
 	outline: 0;
 }
 
-button:is(:hover, :focus-visible),
+button:not(:disabled):is(:hover, :focus-visible),
 a:is(:hover, :focus-visible) {
 	color: var(--clr-neutral-300);
 }
