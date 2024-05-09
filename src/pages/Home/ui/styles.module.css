@@ -31,15 +31,8 @@
 	align-self: start;
 	font-weight: bold;
 	text-decoration: none;
-	background-color: var(--clr-highlight);
 	padding: 0.5em 1em;
 	border-radius: 1em;
-}
-
-.hero__cta--btn:hover,
-.hero__cta--btn:focus-visible {
-	color: var(--clr-neutral-100);
-	background-color: var(--clr-highlight-hover);
 }
 
 .hero__cta--secondary {

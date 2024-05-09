@@ -13,7 +13,10 @@ const Home = () => {
 					For detection on your images
 				</p>
 				<div className={styles["hero__cta"]}>
-					<Link className={styles["hero__cta--btn"]} to="/login">
+					<Link
+						className={`${styles["hero__cta--btn"]} | btn-highlight`}
+						to="/login"
+					>
 						Login to enjoy all features
 					</Link>
 					<p>
