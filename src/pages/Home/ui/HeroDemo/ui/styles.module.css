@@ -1,0 +1,14 @@
+.hero__demo {
+	display: grid;
+	grid-template-rows: 15% 85%;
+	width: 100%;
+	aspect-ratio: 1;
+	border-radius: var(--size-25);
+	overflow: hidden;
+}
+
+@media (min-width: 69rem) {
+	.hero__demo {
+		width: clamp(var(--size-800), 30vw, var(--size-850));
+	}
+}
