@@ -346,7 +346,7 @@ canvas {
 	font-weight: var(--fw-bold);
 }
 
-.shadow-app-theme {
+.box-shadow--app-theme {
 	box-shadow: 0 0 var(--size-25) var(--clr-neutral-100);
 }
 

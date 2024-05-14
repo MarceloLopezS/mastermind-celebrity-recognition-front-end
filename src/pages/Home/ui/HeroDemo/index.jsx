@@ -8,7 +8,7 @@ const HeroDemo = () => {
 	const [currentImageSrc, setCurrentImageSrc] = useState(DEMO_IMG_SOURCES[0])
 
 	return (
-		<section className={`${styles["hero__demo"]} | shadow-app-theme`}>
+		<section className={`${styles["hero__demo"]} | box-shadow--app-theme`}>
 			<div className={styles["hero__demo--container"]}>
 				<section className={styles["hero__demo-options"]}></section>
 				<ImageDetectionContainer
