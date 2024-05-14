@@ -6,7 +6,7 @@ import checkUserAuthentication from "../../features/CheckUserAuthentication"
 const EmailVerification = () => {
 	return (
 		<section className="container email-verification-section">
-			<div>
+			<div className="box-shadow--app-theme">
 				<h1>Verify your account</h1>
 				<p>
 					In order to log in and be able to use face detection on images through
