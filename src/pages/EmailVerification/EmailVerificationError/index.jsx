@@ -4,7 +4,7 @@ import InvalidEmailTokenRoute from "./InvalidEmailToken"
 const EmailVerificationError = () => {
 	return (
 		<section className="container email-verification-section">
-			<div>
+			<div className="box-shadow--app-theme">
 				<h1>An error occured</h1>
 				<p>
 					<span className="text-highlight">Something went wrong</span> during
