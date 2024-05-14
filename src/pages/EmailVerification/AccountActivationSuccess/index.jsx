@@ -4,7 +4,7 @@ import checkUserAuthentication from "../../../features/CheckUserAuthentication"
 const AccountActivationSuccess = () => {
 	return (
 		<section className="container email-verification-section">
-			<div>
+			<div className="box-shadow--app-theme">
 				<h1>Account verification successful</h1>
 				<p>
 					You can now{" "}
