@@ -1,11 +1,13 @@
 .hero {
 	display: grid;
 	place-items: center;
-	padding-block: var(--size-400);
+	gap: 1.5em;
+	padding-block: 5.25em;
 }
 
 @media (min-width: 69rem) {
 	.hero {
 		grid-template-columns: repeat(2, 1fr);
+		gap: unset;
 	}
 }
