@@ -25,6 +25,7 @@ const HeroDemo = () => {
 			<section className={styles["demo-thumbnails--container"]}>
 				{DEMO_IMG_SOURCES.map((demoImgSrc, index) => (
 					<button
+						onClick={() => setCurrentImageSrc(demoImgSrc)}
 						type="button"
 						className={styles["demo-thumbnail"]}
 						tabIndex={demoImgSrc === currentImageSrc ? -1 : null}
