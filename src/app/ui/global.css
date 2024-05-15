@@ -54,15 +54,17 @@
 	--fs-275: 1.4rem;
 	--fs-300: 1.5rem;
 	--fs-350: 2rem;
+	--fs-375: 2.25rem;
 	--fs-400: 2.5rem;
 	--fs-500: 3rem;
+	--fs-515: 3.15rem;
 	--fs-600: 4rem;
 	--fs-625: 4.5rem;
 	--fs-650: 4.7rem;
 
 	--fs-body: clamp(var(--fs-150), 1.1vw, var(--fs-250));
-	--fs-hero-title: clamp(var(--fs-625), 4vw, var(--fs-650));
-	--fs-hero-subtitle: clamp(var(--fs-400), 3vw, var(--fs-500));
+	--fs-hero-title: clamp(var(--fs-515), 9vw, var(--fs-600));
+	--fs-hero-subtitle: clamp(var(--fs-375), 9vw, var(--fs-400));
 	--fs-secondary-text: clamp(var(--fs-125), 1.15vw, var(--fs-175));
 	--fs-count: clamp(var(--fs-500), 1.5vw, var(--fs-600));
 	--fs-input: clamp(var(--fs-150), 1vw, var(--fs-200));
@@ -82,9 +84,17 @@
 	--size-400: 5.25rem;
 	--size-450: 5.75rem;
 	--size-800: 23rem;
+	--size-805: 25rem;
 	--size-850: 44rem;
 
 	--box-shadow-themed: 0 0 var(--size-25) var(--clr-neutral-100);
+}
+
+@media (min-width: 69rem) {
+	:root {
+		--fs-hero-title: clamp(var(--fs-600), 4vw, var(--fs-650));
+		--fs-hero-subtitle: clamp(var(--fs-400), 3vw, var(--fs-500));
+	}
 }
 
 /* CSS Reset */
