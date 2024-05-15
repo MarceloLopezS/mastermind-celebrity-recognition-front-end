@@ -1,5 +1,5 @@
 .hero__description {
-	max-width: 42ch;
+	max-width: min-content;
 	line-height: 1.25;
 }
 
