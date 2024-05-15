@@ -23,18 +23,21 @@ const HeroDemo = () => {
 	return (
 		<section className={`${styles["hero__demo"]} | box-shadow--app-theme`}>
 			<section className={styles["demo-thumbnails--container"]}>
-				{DEMO_IMG_SOURCES.map(demoImgSrc => (
-					<div
+				{DEMO_IMG_SOURCES.map((demoImgSrc, index) => (
+					<button
+						type="button"
 						className={styles["demo-thumbnail"]}
+						tabIndex={demoImgSrc === currentImageSrc ? -1 : null}
 						data-selected={demoImgSrc === currentImageSrc ? true : null}
 					>
+						<span className="sr-only">{`Thumbnail number ${index + 1}`}</span>
 						<img
 							key={demoImgSrc}
 							src={demoImgSrc}
 							alt="Demo thumbnail"
 							draggable={false}
 						/>
-					</div>
+					</button>
 				))}
 			</section>
 			<ImageDetectionContainer className={styles["demo-detection--container"]}>
