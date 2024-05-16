@@ -103,7 +103,12 @@ const FaceDetectionControl = () => {
 						<PictureLandscapeSVG className={styles["input-icon"]} />
 					}
 					inputDescription="First upload an image"
-					acceptedFileTypes={["image/jpg", "image/jpeg", "image/png"]}
+					acceptedFileTypes={[
+						"image/jpg",
+						"image/jpeg",
+						"image/png",
+						"image/webp"
+					]}
 				/>
 				<button
 					className="btn-highlight"
