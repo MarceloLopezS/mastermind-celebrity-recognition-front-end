@@ -2,7 +2,7 @@
 	display: grid;
 	place-items: center;
 	gap: 1.5em;
-	padding-block: 5.25em;
+	padding-block: 5.5em;
 }
 
 @media (min-width: 69rem) {
