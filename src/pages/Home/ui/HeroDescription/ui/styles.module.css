@@ -34,3 +34,14 @@
 	align-items: center;
 	gap: 0.4em;
 }
+
+.arrow {
+	transform: rotate(90deg);
+	transition: transform 500ms ease;
+}
+
+@media (min-width: 69rem) {
+	.arrow {
+		transform: unset;
+	}
+}
