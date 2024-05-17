@@ -24,7 +24,7 @@ const HeroDescription = () => {
 						className={`${styles["hero__cta--secondary"]} | text-highlight`}
 					>
 						Try our demo
-						<ArrowBadgeFilledSVG />
+						<ArrowBadgeFilledSVG className={styles["arrow"]} />
 					</span>
 				</p>
 			</div>
