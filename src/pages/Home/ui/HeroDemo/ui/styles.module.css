@@ -1,6 +1,12 @@
+.hero__demo--container {
+	display: grid;
+	grid-template-areas: "demo";
+}
+
 .hero__demo {
 	--detection-container-space: 85%;
 
+	grid-area: demo;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -65,6 +71,19 @@
 }
 
 @media (min-width: 69rem) {
+	.hero__demo--container {
+		--demo-offset-top: 13%;
+		--demo-offset-right: 8%;
+
+		grid-template-rows:
+			var(--demo-offset-top)
+			calc(100% - var(--demo-offset-top));
+		grid-template-areas:
+			"offset"
+			"demo";
+		padding-inline-end: var(--demo-offset-right);
+	}
+
 	.hero__demo {
 		flex-direction: row;
 		width: clamp(var(--size-800), 37vw, var(--size-850));
@@ -89,5 +108,11 @@
 
 	.demo-detection--container > img {
 		height: 90%;
+	}
+}
+
+@media (min-width: 118rem) {
+	.hero__demo--container {
+		--demo-offset-top: 20%;
 	}
 }
