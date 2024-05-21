@@ -8,10 +8,17 @@ const ImageDetectionContainer = ({
 	isLoading = false,
 	detectionData,
 	errorMessage = "",
+	className,
 	...attributes
 }) => {
 	return (
-		<div data-show={isVisible ? true : null} {...attributes}>
+		<div
+			className={`${styles["detection-container"]}${
+				className ? " " + className : ""
+			}`}
+			data-show={isVisible ? true : null}
+			{...attributes}
+		>
 			{children}
 			<DoubleSquareLoader
 				isShown={isLoading}

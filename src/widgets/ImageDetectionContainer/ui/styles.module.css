@@ -1,3 +1,7 @@
+.detection-container {
+	position: relative;
+}
+
 .detection-loader[data-show] {
 	--width: var(--size-100);
 
