@@ -2,7 +2,7 @@ import { capitalizeString } from "../../shared/utils/functions"
 import styles from "./ui/styles.module.css"
 
 const DetectionBoundingBox = ({ detectionData }) => {
-	detectionData
+	return detectionData
 		? detectionData.map(detection => {
 				const { top_row, right_col, bottom_row, left_col } =
 					detection.boundingBox
