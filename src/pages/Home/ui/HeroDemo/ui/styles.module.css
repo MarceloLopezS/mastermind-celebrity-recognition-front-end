@@ -65,9 +65,11 @@
 	height: var(--detection-container-space);
 }
 
-.demo-detection--container > img {
+.demo-detection--container > .demo-detection {
 	height: 85%;
 	aspect-ratio: 1;
+	font-size: 0.85em;
+	text-align: center;
 }
 
 @media (min-width: 69rem) {
