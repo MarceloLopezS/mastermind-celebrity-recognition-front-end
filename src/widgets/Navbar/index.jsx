@@ -15,7 +15,7 @@ const Navbar = ({ isLoggedIn }) => {
 					<LogoutButton />
 				) : (
 					<>
-						<Link to="/">Log In</Link>
+						<Link to="/login">Log In</Link>
 						<Link to="/register">Sign Up</Link>
 					</>
 				)}
