@@ -41,7 +41,7 @@ const LoginForm = () => {
 		}
 		const options = {
 			method: "post",
-			action: "/?index"
+			action: "/login"
 		}
 		fetcher.submit(loginData, options)
 	}, [])
