@@ -25,6 +25,7 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
     const handleThumbnailDetection = async demoId => {
       try {
         setIsRequestLoading(true)
+        setDetectionError(false)
 
         const data = await getDemoDetectionData(demoId)
 
