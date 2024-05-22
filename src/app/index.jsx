@@ -5,6 +5,7 @@ import "./ui/global.css"
 import ParticlesBg from "../shared/ui/Particles"
 import Navbar from "../widgets/Navbar"
 import Footer from "../shared/ui/Footer"
+import HomeRoute from "../pages/Home"
 import LoginRoute from "../pages/Login"
 import LogoutRoute from "../pages/Logout"
 import RegisterRoute from "../pages/Register"
@@ -42,7 +43,8 @@ const RootRoute = {
 		}
 	},
 	children: [
-		{ index: true, ...LoginRoute },
+		{ index: true, ...HomeRoute },
+		LoginRoute,
 		RegisterRoute,
 		EmailVerificationRoute,
 		ForgotPasswordRoute,
