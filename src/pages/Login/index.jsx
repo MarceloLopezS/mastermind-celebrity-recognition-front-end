@@ -13,6 +13,7 @@ const Login = () => {
 }
 
 const LoginRoute = {
+	path: "login",
 	element: <Login />,
 	loader: async () => {
 		try {
