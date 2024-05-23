@@ -1,7 +1,11 @@
-import React, { Suspense } from "react"
+import React, { useContext, Suspense, useEffect } from "react"
 import { useLoaderData, Await, Outlet, defer } from "react-router-dom"
 import checkUserAuthentication from "../features/CheckUserAuthentication"
 import "./ui/global.css"
+import StoreContextProvider, {
+	StoreDispatchContext
+} from "../shared/state/store"
+import { SET_USER_AUTH } from "../shared/state/config/actions"
 import ParticlesBg from "../shared/ui/Particles"
 import Navbar from "../widgets/Navbar"
 import Footer from "../shared/ui/Footer"
@@ -13,9 +17,9 @@ import EmailVerificationRoute from "../pages/EmailVerification"
 import ForgotPasswordRoute from "../pages/ForgotPassword"
 import PasswordResetRoute from "../pages/PasswordReset"
 import FaceDetectionRoute from "../pages/FaceDetection"
-
 const App = () => {
 	const { data } = useLoaderData()
+	const dispatch = useContext(StoreDispatchContext)
 
 	return (
 		<React.StrictMode>
@@ -25,9 +29,19 @@ const App = () => {
 					resolve={data}
 					errorElement={<Navbar isAuthLoading={false} isLoggedIn={false} />}
 				>
-					{data => (
-						<Navbar isAuthLoading={false} isLoggedIn={data?.authenticated} />
-					)}
+					{data => {
+						useEffect(() => {
+							const action = {
+								type: SET_USER_AUTH,
+								payload: { isUserAuthenticated: data?.authenticated }
+							}
+							dispatch(action)
+						}, [data])
+
+						return (
+							<Navbar isAuthLoading={false} isLoggedIn={data?.authenticated} />
+						)
+					}}
 				</Await>
 			</Suspense>
 			<Outlet />
@@ -36,10 +50,18 @@ const App = () => {
 	)
 }
 
+const AppWithStore = () => {
+	return (
+		<StoreContextProvider>
+			<App />
+		</StoreContextProvider>
+	)
+}
+
 const RootRoute = {
 	path: "/",
 	id: "root",
-	element: <App />,
+	element: <AppWithStore />,
 	loader: async () => {
 		const data = checkUserAuthentication()
 
