@@ -33,7 +33,7 @@ const App = () => {
 						useEffect(() => {
 							const action = {
 								type: SET_USER_AUTH,
-								payload: { isUserAuthenticated: data?.authenticated }
+								payload: { isUserAuthenticated: data?.authenticated ?? false }
 							}
 							dispatch(action)
 						}, [data])
