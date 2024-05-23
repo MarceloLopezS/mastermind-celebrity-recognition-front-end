@@ -4,7 +4,7 @@ import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
 import LogoutButton from "./ui/LogoutButton"
 
-const Navbar = ({ isAuthLoading, isLoggedIn }) => {
+const Navbar = ({ isAuthLoading = false, isLoggedIn = false }) => {
 	return (
 		<div className={styles["navbar"]}>
 			<div className={styles["navbar__brand"]}>
