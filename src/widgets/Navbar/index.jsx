@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import logo from "../../shared/assets/images/mastermind-logo.webp"
 import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
-import styles from "./ui/styles.module.css"
 import LogoutButton from "./ui/LogoutButton"
+import styles from "./ui/styles.module.css"
 
 const Navbar = ({ isAuthLoading = false, isLoggedIn = false }) => {
 	return (
