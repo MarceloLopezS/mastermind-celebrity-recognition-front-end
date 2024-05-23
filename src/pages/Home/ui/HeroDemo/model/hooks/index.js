@@ -22,12 +22,14 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
   }, [])
 
   useEffect(() => {
+    const controller = new AbortController()
+
     const handleThumbnailDetection = async demoId => {
       try {
         setIsRequestLoading(true)
         setDetectionError(false)
 
-        const data = await getDemoDetectionData(demoId)
+        const data = await getDemoDetectionData(demoId, controller)
 
         if (data.status === "success") {
           handleDetectionDataRecieval(data.detectionData)
@@ -47,6 +49,10 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
       thumbnail?.src === currentImageSrc ? thumbnail : acc
     )
     handleThumbnailDetection(currentDemo?.demoId)
+
+    return () => {
+      controller.abort()
+    }
   }, [currentImageSrc])
 
   return {
