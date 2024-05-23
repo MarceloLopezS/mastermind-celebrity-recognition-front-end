@@ -160,7 +160,7 @@ const RegisterForm = () => {
 			</span>
 			<Link
 				className="form-switch | secondary-text justify-self-center text-underline"
-				to="/"
+				to="/login"
 			>
 				Log In
 			</Link>
