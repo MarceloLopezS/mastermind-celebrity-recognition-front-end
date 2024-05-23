@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import logo from "../../shared/assets/images/mastermind-logo.webp"
+import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
 import LogoutButton from "./ui/LogoutButton"
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({ isAuthLoading, isLoggedIn }) => {
 	return (
 		<div className={styles["navbar"]}>
 			<div className={styles["navbar__brand"]}>
@@ -11,7 +12,9 @@ const Navbar = ({ isLoggedIn }) => {
 				<h1>Mastermind</h1>
 			</div>
 			<nav className={styles["navbar__nav"]}>
-				{isLoggedIn ? (
+				{isAuthLoading ? (
+					<DoubleSquareLoader isShown={true} style={{ marginLeft: "2rem" }} />
+				) : isLoggedIn ? (
 					<LogoutButton />
 				) : (
 					<>
