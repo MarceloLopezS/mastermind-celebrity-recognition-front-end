@@ -1,6 +1,6 @@
 import requestDemoDetectionData from "./api";
 
-const getDemoDetectionData = async (demoId) => {
+const getDemoDetectionData = async (demoId, abortController) => {
   const fetchOptions = {
     method: "post",
     credentials: 'include',
@@ -10,7 +10,8 @@ const getDemoDetectionData = async (demoId) => {
     body: JSON.stringify({ demoId })
   }
 
-  const response = await requestDemoDetectionData(fetchOptions)
+  const response =
+    await requestDemoDetectionData(fetchOptions, abortController)
   const data = await response.json()
 
   return data
