@@ -1,5 +1,5 @@
-import React from "react"
-import { Outlet, useLoaderData } from "react-router-dom"
+import React, { Suspense } from "react"
+import { useLoaderData, Await, Outlet, defer } from "react-router-dom"
 import checkUserAuthentication from "../features/CheckUserAuthentication"
 import "./ui/global.css"
 import ParticlesBg from "../shared/ui/Particles"
@@ -15,12 +15,21 @@ import PasswordResetRoute from "../pages/PasswordReset"
 import FaceDetectionRoute from "../pages/FaceDetection"
 
 const App = () => {
-	const isAuthenticated = useLoaderData()
+	const { data } = useLoaderData()
 
 	return (
 		<React.StrictMode>
 			<ParticlesBg />
-			<Navbar isLoggedIn={isAuthenticated} />
+			<Suspense fallback={<Navbar isAuthLoading={true} />}>
+				<Await
+					resolve={data}
+					errorElement={<Navbar isAuthLoading={false} isLoggedIn={false} />}
+				>
+					{data => (
+						<Navbar isAuthLoading={false} isLoggedIn={data?.authenticated} />
+					)}
+				</Await>
+			</Suspense>
 			<Outlet />
 			<Footer />
 		</React.StrictMode>
@@ -32,15 +41,9 @@ const RootRoute = {
 	id: "root",
 	element: <App />,
 	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
+		const data = checkUserAuthentication()
 
-			return data?.authenticated
-		} catch (err) {
-			console.error(err)
-			return null
-		}
+		return defer({ data })
 	},
 	children: [
 		{ index: true, ...HomeRoute },
