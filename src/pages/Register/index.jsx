@@ -1,4 +1,4 @@
-import checkUserAuthentication from "../../features/CheckUserAuthentication"
+import WithAuthRedirection from "../../widgets/WithAuthRedirection"
 import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
 import styles from "./ui/styles.module.css"
@@ -11,20 +11,21 @@ const Register = () => {
 	)
 }
 
+const WithAuthRedirectionRegister = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<Register />
+		</WithAuthRedirection>
+	)
+}
+
 const RegisterRoute = {
 	path: "register",
-	element: <Register />,
-	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
-
-			return redirect("/face-detection")
-		} catch (err) {
-			console.error(err)
-			return null
-		}
-	},
+	element: <WithAuthRedirectionRegister />,
 	action: submitRegisterForm
 }
 
