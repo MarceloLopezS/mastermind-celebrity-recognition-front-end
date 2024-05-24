@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import checkUserAuthentication from "../../../features/CheckUserAuthentication"
-
+import WithAuthRedirection from "../../../widgets/WithAuthRedirection"
 const PasswordResetSuccess = () => {
 	return (
 		<section className="container reset-success-section">
@@ -18,20 +17,21 @@ const PasswordResetSuccess = () => {
 	)
 }
 
+const WithAuthRedirectionPasswordResetSuccess = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<PasswordResetSuccess />
+		</WithAuthRedirection>
+	)
+}
+
 const PasswordResetSuccessRoute = {
 	path: "reset-success",
-	element: <PasswordResetSuccess />,
-	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
-
-			return redirect("/face-detection")
-		} catch (err) {
-			console.error(err)
-			return null
-		}
-	}
+	element: <WithAuthRedirectionPasswordResetSuccess />
 }
 
 export default PasswordResetSuccessRoute
