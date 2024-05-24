@@ -36,7 +36,7 @@ const App = () => {
 								payload: { isUserAuthenticated: data?.authenticated ?? false }
 							}
 							dispatch(action)
-						}, [data])
+						}, [data?.authenticated])
 
 						return (
 							<Navbar isAuthLoading={false} isLoggedIn={data?.authenticated} />
