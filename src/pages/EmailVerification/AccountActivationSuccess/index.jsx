@@ -9,7 +9,7 @@ const AccountActivationSuccess = () => {
 				<p>
 					You can now{" "}
 					<span className="text-highlight">
-						<Link to="/">log in to your account</Link>
+						<Link to="/login">log in to your account</Link>
 					</span>{" "}
 					and use face detection. Have fun!
 				</p>
