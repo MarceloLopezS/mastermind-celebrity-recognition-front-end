@@ -1,4 +1,4 @@
-import WithAuthRedirection from "../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import ForgotPasswordForm from "../../widgets/ForgotPasswordForm"
 import { submitForgotPasswordForm } from "./model/ReactRouterActions"
 import styles from "./ui/styles.module.css"
@@ -13,21 +13,21 @@ const ForgotPassword = () => {
 	)
 }
 
-const WithAuthRedirectionForgotPassword = () => {
+const WithLocalAuthRedirectionForgotPassword = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<ForgotPassword />
-		</WithAuthRedirection>
+		</WithLocalAuthRedirection>
 	)
 }
 
 const ForgotPasswordRoute = {
 	path: "forgot-password",
-	element: <WithAuthRedirectionForgotPassword />,
+	element: <WithLocalAuthRedirectionForgotPassword />,
 	action: submitForgotPasswordForm
 }
 

@@ -1,5 +1,5 @@
 import ResetPasswordForm from "../../widgets/ResetPasswordForm"
-import WithAuthRedirection from "../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import { submitPasswordResetForm } from "./model/ReactRouterActions"
 import PasswordResetSuccessRoute from "./PasswordResetSuccess"
 import styles from "./ui/styles.module.css"
@@ -12,15 +12,15 @@ const PasswordReset = () => {
 	)
 }
 
-const WithAuthRedirectionPasswordReset = () => {
+const WithLocalAuthRedirectionPasswordReset = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<PasswordReset />
-		</WithAuthRedirection>
+		</WithLocalAuthRedirection>
 	)
 }
 
@@ -29,7 +29,7 @@ const PasswordResetRoute = {
 	children: [
 		{
 			path: ":resetToken",
-			element: <WithAuthRedirectionPasswordReset />,
+			element: <WithLocalAuthRedirectionPasswordReset />,
 			action: submitPasswordResetForm
 		},
 		PasswordResetSuccessRoute
