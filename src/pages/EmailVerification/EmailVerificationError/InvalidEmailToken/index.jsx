@@ -1,4 +1,4 @@
-import checkUserAuthentication from "../../../../features/CheckUserAuthentication"
+import WithAuthRedirection from "../../../../widgets/WithAuthRedirection"
 
 const InvalidEmailToken = () => {
 	return (
@@ -14,20 +14,21 @@ const InvalidEmailToken = () => {
 	)
 }
 
+const WithAuthRedirectionInvalidEmailToken = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<InvalidEmailToken />
+		</WithAuthRedirection>
+	)
+}
+
 const InvalidEmailTokenRoute = {
 	path: "invalid-token",
-	element: <InvalidEmailToken />,
-	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
-
-			return redirect("/face-detection")
-		} catch (err) {
-			console.error(err)
-			return null
-		}
-	}
+	element: <WithAuthRedirectionInvalidEmailToken />
 }
 
 export default InvalidEmailTokenRoute
