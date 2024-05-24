@@ -58,18 +58,18 @@
 
 	.image-container {
 		max-width: 38vw;
-		max-height: 33vh;
+		max-height: 31vh;
 	}
 }
 
 @media (min-width: 85em) {
 	.image-container {
-		max-height: 36vh;
+		max-height: 33vh;
 	}
 }
 
 @media (min-width: 118em) {
 	.image-container {
-		max-height: 42vh;
+		max-height: 38vh;
 	}
 }

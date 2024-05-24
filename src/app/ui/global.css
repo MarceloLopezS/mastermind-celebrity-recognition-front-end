@@ -62,7 +62,7 @@
 	--fs-625: 4.5rem;
 	--fs-650: 4.7rem;
 
-	--fs-body: clamp(var(--fs-150), 1.1vw, var(--fs-250));
+	--fs-body: clamp(var(--fs-150), 1vw, var(--fs-250));
 	--fs-hero-title: clamp(var(--fs-515), 9vw, var(--fs-600));
 	--fs-hero-subtitle: clamp(var(--fs-375), 9vw, var(--fs-400));
 	--fs-secondary-text: clamp(var(--fs-125), 1.15vw, var(--fs-175));
@@ -76,6 +76,7 @@
 	--size-25: 0.5rem;
 	--size-35: 0.75rem;
 	--size-50: 1rem;
+	--size-65: 1.15rem;
 	--size-75: 1.25rem;
 	--size-100: 1.5rem;
 	--size-150: 2rem;
