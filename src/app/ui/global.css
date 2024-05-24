@@ -66,7 +66,7 @@
 	--fs-hero-title: clamp(var(--fs-515), 9vw, var(--fs-600));
 	--fs-hero-subtitle: clamp(var(--fs-375), 9vw, var(--fs-400));
 	--fs-secondary-text: clamp(var(--fs-125), 1.15vw, var(--fs-175));
-	--fs-count: clamp(var(--fs-500), 1.5vw, var(--fs-600));
+	--fs-count: clamp(var(--fs-400), 1.5vw, var(--fs-600));
 	--fs-input: clamp(var(--fs-150), 1vw, var(--fs-200));
 	--fs-footer: clamp(var(--fs-125), 1vw, var(--fs-175));
 	--fs-detection: clamp(var(--fs-120), 0.8vw, var(--fs-150));
