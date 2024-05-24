@@ -1,5 +1,4 @@
 import { redirect } from "react-router-dom"
-import WithAuthRedirection from "../../widgets/WithAuthRedirection"
 import getUserData from "../../features/GetUserData"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
@@ -17,21 +16,9 @@ const FaceDetection = () => {
 	)
 }
 
-const WithAuthRedirectionFaceDetection = () => {
-	return (
-		<WithAuthRedirection
-			resolveRedirectPath={isUserAuthenticated =>
-				!isUserAuthenticated ? "/" : null
-			}
-		>
-			<FaceDetection />
-		</WithAuthRedirection>
-	)
-}
-
 const FaceDetectionRoute = {
 	path: "face-detection",
-	element: <WithAuthRedirectionFaceDetection />,
+	element: <FaceDetection />,
 	loader: async () => {
 		try {
 			const userData = await getUserData()
