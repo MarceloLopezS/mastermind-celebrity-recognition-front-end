@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import WithAuthRedirection from "../../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
 const PasswordResetSuccess = () => {
 	return (
 		<section className="container reset-success-section">
@@ -17,21 +17,21 @@ const PasswordResetSuccess = () => {
 	)
 }
 
-const WithAuthRedirectionPasswordResetSuccess = () => {
+const WithLocalAuthRedirectionPasswordResetSuccess = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<PasswordResetSuccess />
-		</WithAuthRedirection>
+		</WithLocalAuthRedirection>
 	)
 }
 
 const PasswordResetSuccessRoute = {
 	path: "reset-success",
-	element: <WithAuthRedirectionPasswordResetSuccess />
+	element: <WithLocalAuthRedirectionPasswordResetSuccess />
 }
 
 export default PasswordResetSuccessRoute

@@ -1,9 +1,9 @@
-import WithAuthRedirection from "../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import { submitLogoutRequest } from "./model/reactRouterActions"
 
-const WithAuthRedirectionLogout = () => {
+const WithLocalAuthRedirectionLogout = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : "/"
 			}
@@ -13,7 +13,7 @@ const WithAuthRedirectionLogout = () => {
 
 const LogoutRoute = {
 	path: "logout",
-	element: <WithAuthRedirectionLogout />,
+	element: <WithLocalAuthRedirectionLogout />,
 	action: submitLogoutRequest
 }
 

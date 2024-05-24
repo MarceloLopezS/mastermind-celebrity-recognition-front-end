@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { StoreContext } from "../../shared/state/store"
 
-const WithAuthRedirection = ({
+const WithLocalAuthRedirection = ({
 	resolveRedirectPath = (isUserAuthenticated = false) =>
 		isUserAuthenticated ? new String() : null,
 	children
@@ -19,4 +19,4 @@ const WithAuthRedirection = ({
 	return redirectTo == null ? children : null
 }
 
-export default WithAuthRedirection
+export default WithLocalAuthRedirection

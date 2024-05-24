@@ -1,5 +1,5 @@
 import React from "react"
-import WithAuthRedirection from "../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import EmailVerificationErrorRoute from "./EmailVerificationError"
 import AccountActivationSuccessRoute from "./AccountActivationSuccess"
 
@@ -22,15 +22,15 @@ const EmailVerification = () => {
 	)
 }
 
-const WithAuthRedirectionEmailVerification = () => {
+const WithLocalAuthRedirectionEmailVerification = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<EmailVerification />
-		</WithAuthRedirection>
+		</WithLocalAuthRedirection>
 	)
 }
 
@@ -39,7 +39,7 @@ const EmailVerificationRoute = {
 	children: [
 		{
 			index: true,
-			element: <WithAuthRedirectionEmailVerification />
+			element: <WithLocalAuthRedirectionEmailVerification />
 		},
 		EmailVerificationErrorRoute,
 		AccountActivationSuccessRoute
