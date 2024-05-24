@@ -16,6 +16,11 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
   const [detectionData, setDetectionData] = useState(null)
   const [detectionError, setDetectionError] = useState(null)
 
+  const clearDetectionState = useCallback(() => {
+    setDetectionData(null)
+    setDetectionError(null)
+  }, [])
+
   const handleDetectionDataRecieval = useCallback(detectionData => {
     setDetectionData(detectionData)
     setDetectionError(null)
@@ -27,7 +32,7 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
     const handleThumbnailDetection = async demoId => {
       try {
         setIsRequestLoading(true)
-        setDetectionError(false)
+        clearDetectionState()
 
         const data = await getDemoDetectionData(demoId, controller)
 
@@ -36,12 +41,11 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
         }
 
         if (data.status === "fail") setDetectionError(DEFAULT_DETECTION_ERROR)
-
-        setIsRequestLoading(false)
       } catch (err) {
         console.error(`Fetch error: ${err}`)
-        setIsRequestLoading(false)
         setDetectionError(DEFAULT_DETECTION_ERROR)
+      } finally {
+        setIsRequestLoading(false)
       }
     }
 
