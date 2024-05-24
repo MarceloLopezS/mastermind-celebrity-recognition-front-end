@@ -1,7 +1,7 @@
 import React from "react"
+import WithAuthRedirection from "../../widgets/WithAuthRedirection"
 import EmailVerificationErrorRoute from "./EmailVerificationError"
 import AccountActivationSuccessRoute from "./AccountActivationSuccess"
-import checkUserAuthentication from "../../features/CheckUserAuthentication"
 
 const EmailVerification = () => {
 	return (
@@ -22,23 +22,24 @@ const EmailVerification = () => {
 	)
 }
 
+const WithAuthRedirectionEmailVerification = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<EmailVerification />
+		</WithAuthRedirection>
+	)
+}
+
 const EmailVerificationRoute = {
 	path: "email-verification",
 	children: [
 		{
 			index: true,
-			element: <EmailVerification />,
-			loader: async () => {
-				try {
-					const data = await checkUserAuthentication()
-					if (!data?.authenticated) return null
-
-					return redirect("/face-detection")
-				} catch (err) {
-					console.error(err)
-					return null
-				}
-			}
+			element: <WithAuthRedirectionEmailVerification />
 		},
 		EmailVerificationErrorRoute,
 		AccountActivationSuccessRoute
