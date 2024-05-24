@@ -1,4 +1,4 @@
-import WithLocalAuthRedirection from "../../../../widgets/WithLocalAuthRedirection"
+import WithAuthRedirection from "../../../../widgets/WithAuthRedirection"
 
 const InvalidEmailToken = () => {
 	return (
@@ -16,13 +16,13 @@ const InvalidEmailToken = () => {
 
 const WithAuthRedirectionInvalidEmailToken = () => {
 	return (
-		<WithLocalAuthRedirection
+		<WithAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<InvalidEmailToken />
-		</WithLocalAuthRedirection>
+		</WithAuthRedirection>
 	)
 }
 

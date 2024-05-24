@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
+import WithAuthRedirection from "../../../widgets/WithAuthRedirection"
 
 const AccountActivationSuccess = () => {
 	return (
@@ -18,21 +18,21 @@ const AccountActivationSuccess = () => {
 	)
 }
 
-const WithLocalAuthRedirectionAccountActivationSuccess = () => {
+const WithAuthRedirectionAccountActivationSuccess = () => {
 	return (
-		<WithLocalAuthRedirection
+		<WithAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<AccountActivationSuccess />
-		</WithLocalAuthRedirection>
+		</WithAuthRedirection>
 	)
 }
 
 const AccountActivationSuccessRoute = {
 	path: "activation-success",
-	element: <WithLocalAuthRedirectionAccountActivationSuccess />
+	element: <WithAuthRedirectionAccountActivationSuccess />
 }
 
 export default AccountActivationSuccessRoute

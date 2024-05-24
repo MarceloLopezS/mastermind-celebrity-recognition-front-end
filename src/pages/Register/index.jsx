@@ -1,4 +1,4 @@
-import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
+import WithAuthRedirection from "../../widgets/WithAuthRedirection"
 import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
 import styles from "./ui/styles.module.css"
@@ -11,21 +11,21 @@ const Register = () => {
 	)
 }
 
-const WithLocalAuthRedirectionRegister = () => {
+const WithAuthRedirectionRegister = () => {
 	return (
-		<WithLocalAuthRedirection
+		<WithAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<Register />
-		</WithLocalAuthRedirection>
+		</WithAuthRedirection>
 	)
 }
 
 const RegisterRoute = {
 	path: "register",
-	element: <WithLocalAuthRedirectionRegister />,
+	element: <WithAuthRedirectionRegister />,
 	action: submitRegisterForm
 }
 
