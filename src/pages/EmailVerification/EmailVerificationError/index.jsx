@@ -1,4 +1,4 @@
-import WithAuthRedirection from "../../../widgets/WithAuthRedirection"
+import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
 import InvalidEmailTokenRoute from "./InvalidEmailToken"
 
 const EmailVerificationError = () => {
@@ -16,15 +16,15 @@ const EmailVerificationError = () => {
 	)
 }
 
-const WithAuthRedirectionEmailVerificationError = () => {
+const WithLocalAuthRedirectionEmailVerificationError = () => {
 	return (
-		<WithAuthRedirection
+		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
 				isUserAuthenticated ? "/face-detection" : null
 			}
 		>
 			<EmailVerificationError />
-		</WithAuthRedirection>
+		</WithLocalAuthRedirection>
 	)
 }
 
@@ -33,7 +33,7 @@ const EmailVerificationErrorRoute = {
 	children: [
 		{
 			index: true,
-			element: <WithAuthRedirectionEmailVerificationError />
+			element: <WithLocalAuthRedirectionEmailVerificationError />
 		},
 		InvalidEmailTokenRoute
 	]
