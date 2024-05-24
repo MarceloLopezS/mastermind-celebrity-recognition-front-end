@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import checkUserAuthentication from "../../../features/CheckUserAuthentication"
+import WithAuthRedirection from "../../../widgets/WithAuthRedirection"
 
 const AccountActivationSuccess = () => {
 	return (
@@ -18,20 +18,21 @@ const AccountActivationSuccess = () => {
 	)
 }
 
+const WithAuthRedirectionAccountActivationSuccess = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<AccountActivationSuccess />
+		</WithAuthRedirection>
+	)
+}
+
 const AccountActivationSuccessRoute = {
 	path: "activation-success",
-	element: <AccountActivationSuccess />,
-	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
-
-			return redirect("/face-detection")
-		} catch (err) {
-			console.error(err)
-			return null
-		}
-	}
+	element: <WithAuthRedirectionAccountActivationSuccess />
 }
 
 export default AccountActivationSuccessRoute
