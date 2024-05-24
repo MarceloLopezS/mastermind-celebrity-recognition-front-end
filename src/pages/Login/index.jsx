@@ -1,6 +1,5 @@
-import { redirect } from "react-router-dom"
+import WithAuthRedirection from "../../widgets/WithAuthRedirection"
 import { submitLoginForm } from "./model/reactRouterActions"
-import checkUserAuthentication from "../../features/CheckUserAuthentication"
 import LoginForm from "../../widgets/LoginForm"
 import styles from "./ui/styles.module.css"
 
@@ -12,20 +11,21 @@ const Login = () => {
 	)
 }
 
+const WithAuthRedirectionLogin = () => {
+	return (
+		<WithAuthRedirection
+			resolveRedirectPath={isUserAuthenticated =>
+				isUserAuthenticated ? "/face-detection" : null
+			}
+		>
+			<Login />
+		</WithAuthRedirection>
+	)
+}
+
 const LoginRoute = {
 	path: "login",
-	element: <Login />,
-	loader: async () => {
-		try {
-			const data = await checkUserAuthentication()
-			if (!data?.authenticated) return null
-
-			return redirect("/face-detection")
-		} catch (err) {
-			console.error(err)
-			return null
-		}
-	},
+	element: <WithAuthRedirectionLogin />,
 	action: submitLoginForm
 }
 
