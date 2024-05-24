@@ -1,5 +1,5 @@
 .face-detection {
-	--section-gap: var(--size-35);
+	--section-gap: var(--size-50);
 
 	display: grid;
 	justify-content: center;
