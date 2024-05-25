@@ -1,4 +1,4 @@
-export const SERVER_DOMAIN = "https://face-detection-app-back-end.fly.dev"
+export const SERVER_DOMAIN = "https://mastermind-celebrity-recognition-api.fly.dev"
 export const PATHNAMES = {
   REGISTER: "register",
   EMAIL_VERIFICATION: "email-verification",
