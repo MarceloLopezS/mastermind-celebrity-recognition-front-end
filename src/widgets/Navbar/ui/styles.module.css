@@ -10,7 +10,12 @@
 	align-items: center;
 	gap: var(--size-50);
 	width: clamp(var(--size-300), 4.5vw, var(--size-400));
+	text-decoration: none;
 	user-select: none;
+}
+
+.navbar__brand:hover {
+	color: var(--clr-neutral-100);
 }
 
 .navbar__brand > h1 {
