@@ -47,6 +47,8 @@ const HeroDemo = () => {
 							<img
 								src={demoThumbnail.src}
 								alt="Demo thumbnail"
+								loading="lazy"
+								decoding="async"
 								draggable={false}
 							/>
 						</button>
