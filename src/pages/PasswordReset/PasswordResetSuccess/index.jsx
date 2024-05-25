@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
+import { PATHNAMES } from "../../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
+
 const PasswordResetSuccess = () => {
 	return (
 		<section className="container reset-success-section">
@@ -21,7 +23,7 @@ const WithLocalAuthRedirectionPasswordResetSuccess = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<PasswordResetSuccess />
@@ -30,7 +32,7 @@ const WithLocalAuthRedirectionPasswordResetSuccess = () => {
 }
 
 const PasswordResetSuccessRoute = {
-	path: "reset-success",
+	path: PATHNAMES.RESET_SUCCESS,
 	element: <WithLocalAuthRedirectionPasswordResetSuccess />
 }
 

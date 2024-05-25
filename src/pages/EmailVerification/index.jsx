@@ -1,4 +1,4 @@
-import React from "react"
+import { PATHNAMES } from "../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import EmailVerificationErrorRoute from "./EmailVerificationError"
 import AccountActivationSuccessRoute from "./AccountActivationSuccess"
@@ -26,7 +26,7 @@ const WithLocalAuthRedirectionEmailVerification = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<EmailVerification />
@@ -35,7 +35,7 @@ const WithLocalAuthRedirectionEmailVerification = () => {
 }
 
 const EmailVerificationRoute = {
-	path: "email-verification",
+	path: PATHNAMES.EMAIL_VERIFICATION,
 	children: [
 		{
 			index: true,

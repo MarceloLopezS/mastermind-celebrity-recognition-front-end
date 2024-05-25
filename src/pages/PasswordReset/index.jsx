@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../shared/utils/constants"
 import ResetPasswordForm from "../../widgets/ResetPasswordForm"
 import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import { submitPasswordResetForm } from "./model/ReactRouterActions"
@@ -16,7 +17,7 @@ const WithLocalAuthRedirectionPasswordReset = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<PasswordReset />
@@ -25,7 +26,7 @@ const WithLocalAuthRedirectionPasswordReset = () => {
 }
 
 const PasswordResetRoute = {
-	path: "password-reset",
+	path: PATHNAMES.PASSWORD_RESET,
 	children: [
 		{
 			path: ":resetToken",

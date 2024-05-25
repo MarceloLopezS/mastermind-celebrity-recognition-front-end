@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../../../widgets/WithLocalAuthRedirection"
 
 const InvalidEmailToken = () => {
@@ -18,7 +19,7 @@ const WithAuthRedirectionInvalidEmailToken = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<InvalidEmailToken />
@@ -27,7 +28,7 @@ const WithAuthRedirectionInvalidEmailToken = () => {
 }
 
 const InvalidEmailTokenRoute = {
-	path: "invalid-token",
+	path: PATHNAMES.INVALID_TOKEN,
 	element: <WithAuthRedirectionInvalidEmailToken />
 }
 

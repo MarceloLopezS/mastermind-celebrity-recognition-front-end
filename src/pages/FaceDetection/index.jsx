@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom"
+import { PATHNAMES } from "../../shared/utils/constants"
 import getUserData from "../../features/GetUserData"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
 import FaceDetectionHeader from "./ui/FaceDetectionHeader"
@@ -17,7 +18,7 @@ const FaceDetection = () => {
 }
 
 const FaceDetectionRoute = {
-	path: "face-detection",
+	path: PATHNAMES.FACE_DETECTION,
 	element: <FaceDetection />,
 	loader: async () => {
 		try {

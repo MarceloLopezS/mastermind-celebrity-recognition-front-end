@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import { submitLoginForm } from "./model/reactRouterActions"
 import LoginForm from "../../widgets/LoginForm"
@@ -15,7 +16,7 @@ const WithLocalAuthRedirectionLogin = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<Login />
@@ -24,7 +25,7 @@ const WithLocalAuthRedirectionLogin = () => {
 }
 
 const LoginRoute = {
-	path: "login",
+	path: PATHNAMES.LOGIN,
 	element: <WithLocalAuthRedirectionLogin />,
 	action: submitLoginForm
 }
