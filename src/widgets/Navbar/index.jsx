@@ -7,7 +7,7 @@ import styles from "./ui/styles.module.css"
 const Navbar = ({ isAuthLoading = false, isLoggedIn = false }) => {
 	return (
 		<div className={styles["navbar"]}>
-			<Link className={styles["navbar__brand"]} href="/">
+			<Link className={styles["navbar__brand"]} to="/">
 				<img src={logo} alt="Mastermind logo"></img>
 				<h1>Mastermind</h1>
 			</Link>
