@@ -7,10 +7,6 @@
 	gap: var(--size-35);
 }
 
-.detection-form input[type="file"] {
-	display: none;
-}
-
 .detection-form input,
 .detection-form label {
 	padding: var(--elements-padding);
