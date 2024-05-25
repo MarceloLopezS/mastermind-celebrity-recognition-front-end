@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../../shared/utils/constants"
 import { Link } from "react-router-dom"
 import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
 
@@ -22,7 +23,7 @@ const WithLocalAuthRedirectionAccountActivationSuccess = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<AccountActivationSuccess />
@@ -31,7 +32,7 @@ const WithLocalAuthRedirectionAccountActivationSuccess = () => {
 }
 
 const AccountActivationSuccessRoute = {
-	path: "activation-success",
+	path: PATHNAMES.ACTIVATION_SUCCESS,
 	element: <WithLocalAuthRedirectionAccountActivationSuccess />
 }
 

@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
 import InvalidEmailTokenRoute from "./InvalidEmailToken"
 
@@ -20,7 +21,7 @@ const WithLocalAuthRedirectionEmailVerificationError = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<EmailVerificationError />
@@ -29,7 +30,7 @@ const WithLocalAuthRedirectionEmailVerificationError = () => {
 }
 
 const EmailVerificationErrorRoute = {
-	path: "error",
+	path: PATHNAMES.ERROR,
 	children: [
 		{
 			index: true,

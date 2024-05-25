@@ -1,3 +1,4 @@
+import { PATHNAMES } from "../../shared/utils/constants"
 import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
 import { submitRegisterForm } from "./model/reactRouterActions"
 import RegisterForm from "../../widgets/RegisterForm"
@@ -15,7 +16,7 @@ const WithLocalAuthRedirectionRegister = () => {
 	return (
 		<WithLocalAuthRedirection
 			resolveRedirectPath={isUserAuthenticated =>
-				isUserAuthenticated ? "/face-detection" : null
+				isUserAuthenticated ? `/${PATHNAMES.FACE_DETECTION}` : null
 			}
 		>
 			<Register />
@@ -24,7 +25,7 @@ const WithLocalAuthRedirectionRegister = () => {
 }
 
 const RegisterRoute = {
-	path: "register",
+	path: PATHNAMES.REGISTER,
 	element: <WithLocalAuthRedirectionRegister />,
 	action: submitRegisterForm
 }
