@@ -8,7 +8,7 @@ const Navbar = ({ isAuthLoading = false, isLoggedIn = false }) => {
 	return (
 		<div className={styles["navbar"]}>
 			<Link className={styles["navbar__brand"]} to="/">
-				<img src={logo} alt="Mastermind logo"></img>
+				<img src={logo} alt="Mastermind logo" decoding="async"></img>
 				<h1>Mastermind</h1>
 			</Link>
 			<nav className={styles["navbar__nav"]}>
