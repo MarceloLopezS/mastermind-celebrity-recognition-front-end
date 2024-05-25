@@ -17,6 +17,7 @@ import EmailVerificationRoute from "../pages/EmailVerification"
 import ForgotPasswordRoute from "../pages/ForgotPassword"
 import PasswordResetRoute from "../pages/PasswordReset"
 import FaceDetectionRoute from "../pages/FaceDetection"
+
 const App = () => {
 	const { data } = useLoaderData()
 	const dispatch = useContext(StoreDispatchContext)
