@@ -4,11 +4,19 @@ import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
 import LogoutButton from "./ui/LogoutButton"
 import styles from "./ui/styles.module.css"
 
+const LOGO_BASE_WIDTH = "64px"
+
 const Navbar = ({ isAuthLoading = false, isLoggedIn = false }) => {
 	return (
 		<div className={styles["navbar"]}>
 			<Link className={styles["navbar__brand"]} to="/">
-				<img src={logo} alt="Mastermind logo" decoding="async"></img>
+				<img
+					src={logo}
+					width={LOGO_BASE_WIDTH}
+					height={LOGO_BASE_WIDTH}
+					alt="Mastermind logo"
+					decoding="async"
+				></img>
 				<h1>Mastermind</h1>
 			</Link>
 			<nav className={styles["navbar__nav"]}>
