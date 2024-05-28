@@ -91,3 +91,9 @@ export const DEMO_THUMBNAILS = [
     ]
   }
 ]
+
+export const SCREEN_BREAKPOINTS = {
+  sm: "69rem"
+}
+export const THUMBNAIL_BASE_WIDTH = "50px"
+export const SELECTED_THUMBNAIL_BASE_WIDTH = "300px"
