@@ -1,11 +1,12 @@
-import { DEMO_THUMBNAILS } from "./config"
+import {
+	DEMO_THUMBNAILS,
+	SCREEN_BREAKPOINTS,
+	THUMBNAIL_BASE_WIDTH,
+	SELECTED_THUMBNAIL_BASE_WIDTH
+} from "./config"
 import { useFaceDetectionDemo } from "./model/hooks"
 import ImageDetectionContainer from "../../../../widgets/ImageDetectionContainer"
 import styles from "./ui/styles.module.css"
-
-const SCREEN_BREAKPOINTS = {
-	sm: "69rem"
-}
 
 const HeroDemo = () => {
 	const {
@@ -53,6 +54,8 @@ const HeroDemo = () => {
 									{}
 								)}
 								sizes={`(max-width: ${SCREEN_BREAKPOINTS.sm}) 85px, 100px`}
+								width={THUMBNAIL_BASE_WIDTH}
+								height={THUMBNAIL_BASE_WIDTH}
 								alt="Demo thumbnail"
 								loading="lazy"
 								decoding="async"
@@ -86,6 +89,8 @@ const HeroDemo = () => {
 								return `${acc}, ${item?.src} ${item?.width}w`
 							}, {})}
 							sizes={`(max-width: ${SCREEN_BREAKPOINTS.sm}) 500px, 600px`}
+							width={SELECTED_THUMBNAIL_BASE_WIDTH}
+							height={SELECTED_THUMBNAIL_BASE_WIDTH}
 							alt="Current demo image"
 							draggable={false}
 						/>

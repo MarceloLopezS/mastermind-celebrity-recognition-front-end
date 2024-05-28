@@ -52,11 +52,6 @@
 	outline: 1px solid var(--clr-highlight);
 }
 
-.demo-thumbnail > img {
-	width: 100%;
-	height: 100%;
-}
-
 .demo-detection--container {
 	display: flex;
 	justify-content: center;
@@ -69,6 +64,12 @@
 	height: 85%;
 	aspect-ratio: 1;
 	text-align: center;
+}
+
+.demo-thumbnail > img,
+.demo-detection > img {
+	width: 100%;
+	height: 100%;
 }
 
 @media (min-width: 69rem) {
