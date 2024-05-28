@@ -9,8 +9,8 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
     thumbnail?.demoId === 0 ? thumbnail : acc
   ), [demoThumbnailsArr])
 
-  const [currentImageSrc, setCurrentImageSrc] = useState(
-    FIRST_DEMO_THUMBNAIL?.src
+  const [selectedThumbnailId, setSelectedThumbnailId] = useState(
+    FIRST_DEMO_THUMBNAIL?.demoId
   )
   const [isRequestLoading, setIsRequestLoading] = useState(false)
   const [detectionData, setDetectionData] = useState(null)
@@ -50,18 +50,18 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
     }
 
     const currentDemo = demoThumbnailsArr.reduce((acc, thumbnail) =>
-      thumbnail?.src === currentImageSrc ? thumbnail : acc
+      thumbnail?.demoId === selectedThumbnailId ? thumbnail : acc
     )
     handleThumbnailDetection(currentDemo?.demoId)
 
     return () => {
       controller.abort()
     }
-  }, [currentImageSrc])
+  }, [selectedThumbnailId])
 
   return {
-    currentImageSrc,
-    setCurrentImageSrc,
+    selectedThumbnailId,
+    setSelectedThumbnailId,
     isRequestLoading,
     detectionData,
     detectionError

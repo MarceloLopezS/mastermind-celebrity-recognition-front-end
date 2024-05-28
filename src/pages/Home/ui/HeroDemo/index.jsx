@@ -1,26 +1,16 @@
-import demoImg0 from "../../../../shared/assets/images/demo-thumbnail-0.webp"
-import demoImg1 from "../../../../shared/assets/images/demo-thumbnail-1.webp"
-import demoImg2 from "../../../../shared/assets/images/demo-thumbnail-2.webp"
-import demoImg3 from "../../../../shared/assets/images/demo-thumbnail-3.webp"
-import demoImg4 from "../../../../shared/assets/images/demo-thumbnail-4.webp"
-import demoImg5 from "../../../../shared/assets/images/demo-thumbnail-5.webp"
+import { DEMO_THUMBNAILS } from "./config"
 import { useFaceDetectionDemo } from "./model/hooks"
 import ImageDetectionContainer from "../../../../widgets/ImageDetectionContainer"
 import styles from "./ui/styles.module.css"
 
-const DEMO_THUMBNAILS = [
-	{ demoId: 0, src: demoImg0 },
-	{ demoId: 1, src: demoImg1 },
-	{ demoId: 2, src: demoImg2 },
-	{ demoId: 3, src: demoImg3 },
-	{ demoId: 4, src: demoImg4 },
-	{ demoId: 5, src: demoImg5 }
-]
+const SCREEN_BREAKPOINTS = {
+	sm: "69rem"
+}
 
 const HeroDemo = () => {
 	const {
-		currentImageSrc,
-		setCurrentImageSrc,
+		selectedThumbnailId,
+		setSelectedThumbnailId,
 		isRequestLoading,
 		detectionData,
 		detectionError
@@ -33,19 +23,36 @@ const HeroDemo = () => {
 					{DEMO_THUMBNAILS.map(demoThumbnail => (
 						<button
 							key={demoThumbnail.demoId}
-							onClick={() => setCurrentImageSrc(demoThumbnail.src)}
+							onClick={() => setSelectedThumbnailId(demoThumbnail.demoId)}
 							type="button"
 							className={styles["demo-thumbnail"]}
-							tabIndex={demoThumbnail.src === currentImageSrc ? -1 : null}
+							tabIndex={
+								demoThumbnail.demoId === selectedThumbnailId ? -1 : null
+							}
 							data-selected={
-								demoThumbnail.src === currentImageSrc ? true : null
+								demoThumbnail.demoId === selectedThumbnailId ? true : null
 							}
 						>
 							<span className="sr-only">{`Thumbnail number ${
 								demoThumbnail.demoId + 1
 							}`}</span>
 							<img
-								src={demoThumbnail.src}
+								src={
+									demoThumbnail?.selectedThumbnailSrcSet?.reduce(
+										(acc, srcSetData) => {
+											if (srcSetData?.width > acc?.width) return srcSetData
+											return acc
+										}
+									)?.src
+								}
+								srcSet={demoThumbnail?.thumbnailSrcSet?.reduce(
+									(acc, item, i) => {
+										if (i === 0) return `${item.src} ${item.width}w`
+										return `${acc}, ${item.src} ${item.width}w`
+									},
+									{}
+								)}
+								sizes={`(max-width: ${SCREEN_BREAKPOINTS.sm}) 85px, 100px`}
 								alt="Demo thumbnail"
 								loading="lazy"
 								decoding="async"
@@ -62,7 +69,23 @@ const HeroDemo = () => {
 						isLoading={isRequestLoading}
 					>
 						<img
-							src={currentImageSrc}
+							src={
+								DEMO_THUMBNAILS?.reduce((acc, demoThumbnail) => {
+									return demoThumbnail?.demoId === selectedThumbnailId
+										? demoThumbnail
+										: acc
+								})?.selectedThumbnailSrcSet?.reduce((acc, srcSetData) => {
+									if (srcSetData?.width > acc?.width) return srcSetData
+									return acc
+								})?.src
+							}
+							srcSet={DEMO_THUMBNAILS?.reduce((acc, item) => {
+								return item?.demoId === selectedThumbnailId ? item : acc
+							})?.selectedThumbnailSrcSet?.reduce((acc, item, i) => {
+								if (i === 0) return `${item?.src} ${item?.width}w`
+								return `${acc}, ${item?.src} ${item?.width}w`
+							}, {})}
+							sizes={`(max-width: ${SCREEN_BREAKPOINTS.sm}) 500px, 600px`}
 							alt="Current demo image"
 							draggable={false}
 						/>
