@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import { useFetcher } from "react-router-dom"
+import { PATHNAMES } from "../../shared/utils/constants"
 import {
 	getInvalidEmailError,
 	isValidEmail
@@ -39,7 +40,7 @@ const ForgotPasswordForm = () => {
 		}
 		const options = {
 			method: "post",
-			action: "/forgot-password"
+			action: `/${PATHNAMES.FORGOT_PASSWORD}`
 		}
 		fetcher.submit(formData, options)
 	}, [])
