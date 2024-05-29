@@ -1,7 +1,7 @@
-import { SERVER_DOMAIN } from "../../../shared/utils/constants"
+import { API_ROOT_URL } from "../../../shared/utils/constants"
 
 const requestPasswordRecovery = async (fetchOptions) => {
-  const response = await fetch(`${SERVER_DOMAIN}/forgot-password`, fetchOptions)
+  const response = await fetch(`${API_ROOT_URL}/forgot-password`, fetchOptions)
 
   return response
 }
