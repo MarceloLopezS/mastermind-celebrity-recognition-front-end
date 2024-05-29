@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import { useFetcher, Link } from "react-router-dom"
+import { PATHNAMES } from "../../shared/utils/constants"
 import {
 	isValidEmail,
 	getInvalidEmailError,
@@ -60,7 +61,7 @@ const RegisterForm = () => {
 		}
 		const options = {
 			method: "post",
-			action: "/register"
+			action: `/${PATHNAMES.REGISTER}`
 		}
 		fetcher.submit(registerData, options)
 	}, [])

@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import { useParams, useFetcher } from "react-router-dom"
+import { PATHNAMES } from "../../shared/utils/constants"
 import {
 	getInvalidConfirmPasswordError,
 	isValidPassword,
@@ -50,7 +51,7 @@ const ResetPasswordForm = () => {
 		}
 		const options = {
 			method: "post",
-			action: "/password-reset/:resetToken"
+			action: `/${PATHNAMES.PASSWORD_RESET}/:resetToken`
 		}
 		fetcher.submit({ ...passwordResetData, resetToken }, options)
 	}, [])
