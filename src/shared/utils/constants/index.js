@@ -1,4 +1,4 @@
-export const SERVER_DOMAIN = "https://mastermind-celebrity-recognition-api.fly.dev"
+export const API_ROOT_URL = "https://mastermind-celebrity-recognition-api.fly.dev"
 export const PATHNAMES = {
   REGISTER: "register",
   EMAIL_VERIFICATION: "email-verification",

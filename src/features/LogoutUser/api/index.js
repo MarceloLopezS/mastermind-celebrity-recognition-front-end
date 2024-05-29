@@ -1,7 +1,7 @@
-import { SERVER_DOMAIN } from "../../../shared/utils/constants"
+import { API_ROOT_URL } from "../../../shared/utils/constants"
 
 const requestLogout = async (fetchOptions) => {
-  const response = await fetch(`${SERVER_DOMAIN}/logout`, fetchOptions)
+  const response = await fetch(`${API_ROOT_URL}/logout`, fetchOptions)
 
   return response
 }

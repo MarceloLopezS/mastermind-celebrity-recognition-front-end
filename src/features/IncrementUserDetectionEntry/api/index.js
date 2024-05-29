@@ -1,8 +1,8 @@
-import { SERVER_DOMAIN } from "../../../shared/utils/constants"
+import { API_ROOT_URL } from "../../../shared/utils/constants"
 
 const requestEntryIncrement = async (fetchOptions) => {
   const response = await fetch(
-    `${SERVER_DOMAIN}/face-detection/increment-entry`,
+    `${API_ROOT_URL}/face-detection/increment-entry`,
     fetchOptions
   )
 
