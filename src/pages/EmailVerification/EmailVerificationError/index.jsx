@@ -1,5 +1,5 @@
-import { PATHNAMES } from "../../../shared/utils/constants"
-import WithLocalAuthRedirection from "../../../widgets/WithLocalAuthRedirection"
+import { PATHNAMES } from "@/shared/utils/constants"
+import WithLocalAuthRedirection from "@/widgets/WithLocalAuthRedirection"
 import InvalidEmailTokenRoute from "./InvalidEmailToken"
 
 const EmailVerificationError = () => {
