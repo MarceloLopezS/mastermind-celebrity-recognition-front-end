@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { StoreContext } from "../../shared/state/store"
+import { StoreContext } from "@/shared/state/store"
 
 const WithLocalAuthRedirection = ({
 	resolveRedirectPath = (isUserAuthenticated = false) =>

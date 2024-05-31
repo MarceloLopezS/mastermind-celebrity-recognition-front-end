@@ -1,18 +1,18 @@
 import { useCallback } from "react"
 import { useParams, useFetcher } from "react-router-dom"
-import { PATHNAMES } from "../../shared/utils/constants"
+import { PATHNAMES } from "@/shared/utils/constants"
 import {
 	getInvalidConfirmPasswordError,
 	isValidPassword,
 	isValidPasswordConfirmation
-} from "../../shared/utils/functions"
+} from "@/shared/utils/functions"
 import Form, {
 	useInputValidationHandler,
 	handleInputServerErrors,
 	handleFormValidation
-} from "../../shared/ui/Form"
-import Input from "../../shared/ui/Input"
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+} from "@/shared/ui/Form"
+import Input from "@/shared/ui/Input"
+import DoubleSquareLoader from "@/shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
 
 const ResetPasswordForm = () => {

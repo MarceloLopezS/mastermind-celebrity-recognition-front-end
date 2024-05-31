@@ -1,5 +1,5 @@
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
-import DetectionBoundingBox from "../../entities/DetectionBoundingBox"
+import DoubleSquareLoader from "@/shared/ui/DoubleSquareLoader"
+import DetectionBoundingBox from "@/entities/DetectionBoundingBox"
 import styles from "./ui/styles.module.css"
 
 const ImageDetectionContainer = ({
