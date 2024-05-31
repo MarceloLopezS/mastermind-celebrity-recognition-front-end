@@ -1,6 +1,6 @@
-import { PATHNAMES } from "../../shared/utils/constants"
-import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
-import ForgotPasswordForm from "../../widgets/ForgotPasswordForm"
+import { PATHNAMES } from "@/shared/utils/constants"
+import WithLocalAuthRedirection from "@/widgets/WithLocalAuthRedirection"
+import ForgotPasswordForm from "@/widgets/ForgotPasswordForm"
 import { submitForgotPasswordForm } from "./model/ReactRouterActions"
 import styles from "./ui/styles.module.css"
 
