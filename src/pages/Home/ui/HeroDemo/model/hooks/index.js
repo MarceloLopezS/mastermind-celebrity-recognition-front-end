@@ -1,13 +1,17 @@
 import { useState, useCallback, useMemo, useEffect } from "react"
-import getDemoDetectionData from "../../../../../../features/GetDemoDetectionData"
+import { preloadImage } from "@/shared/utils/functions"
+import getDemoDetectionData from "@/features/GetDemoDetectionData"
+import { SCREEN_BREAKPOINTS } from "../../config"
 
 const DEFAULT_DETECTION_ERROR =
   "There was a problem retrieving the detection data."
 
 export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
-  const FIRST_DEMO_THUMBNAIL = useMemo(() => demoThumbnailsArr.reduce((acc, thumbnail) =>
-    thumbnail?.demoId === 0 ? thumbnail : acc
-  ), [demoThumbnailsArr])
+  const FIRST_DEMO_THUMBNAIL = useMemo(
+    () => demoThumbnailsArr.reduce((acc, thumbnail) =>
+      thumbnail?.demoId === 0 ? thumbnail : acc
+    ), [demoThumbnailsArr]
+  )
 
   const [selectedThumbnailId, setSelectedThumbnailId] = useState(
     FIRST_DEMO_THUMBNAIL?.demoId
@@ -66,4 +70,44 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
     detectionData,
     detectionError
   }
+}
+
+export const useSelectedThumbnailsPreloader = (demoThumbnailsArr) => {
+  useEffect(() => {
+    const preloadSelectedThumbnails = async () => {
+      const preloadPromises = demoThumbnailsArr.map(async demoThumbnail => {
+        const srcToPreload = demoThumbnail?.selectedThumbnailSrcSet?.reduce(
+          (acc, srcSetData) => {
+            if (
+              window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`).matches
+              && srcSetData?.width === 500
+            )
+              return srcSetData
+
+            if (
+              !window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`).matches
+              && srcSetData?.width === 600
+            )
+              return srcSetData
+
+            return acc
+          },
+          ""
+        )?.src
+
+        return preloadImage(srcToPreload)
+      })
+
+      try {
+        console.log(preloadPromises);
+        await Promise.allSettled(preloadPromises)
+      } catch (err) {
+        console.error(`Preload error: ${err}`)
+      }
+    }
+
+    preloadSelectedThumbnails()
+  }, [demoThumbnailsArr])
+
+  return null
 }
