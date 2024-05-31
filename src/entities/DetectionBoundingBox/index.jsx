@@ -1,4 +1,4 @@
-import { capitalizeString } from "../../shared/utils/functions"
+import { capitalizeString } from "@/shared/utils/functions"
 import styles from "./ui/styles.module.css"
 
 const DetectionBoundingBox = ({ detectionData }) => {
