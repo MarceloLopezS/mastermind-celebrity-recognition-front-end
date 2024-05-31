@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import ArrowBadgeFilledSVG from "../../../../shared/ui/SVGs/ArrowBadgeFilled"
+import ArrowBadgeFilledSVG from "@/shared/ui/SVGs/ArrowBadgeFilled"
 import styles from "./ui/styles.module.css"
 
 const HeroDescription = () => {

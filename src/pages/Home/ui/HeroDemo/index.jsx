@@ -5,7 +5,7 @@ import {
 	SELECTED_THUMBNAIL_BASE_WIDTH
 } from "./config"
 import { useFaceDetectionDemo } from "./model/hooks"
-import ImageDetectionContainer from "../../../../widgets/ImageDetectionContainer"
+import ImageDetectionContainer from "@/widgets/ImageDetectionContainer"
 import styles from "./ui/styles.module.css"
 
 const HeroDemo = () => {
