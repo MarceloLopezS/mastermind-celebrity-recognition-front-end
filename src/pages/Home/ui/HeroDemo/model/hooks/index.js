@@ -99,7 +99,6 @@ export const useSelectedThumbnailsPreloader = (demoThumbnailsArr) => {
       })
 
       try {
-        console.log(preloadPromises);
         await Promise.allSettled(preloadPromises)
       } catch (err) {
         console.error(`Preload error: ${err}`)
