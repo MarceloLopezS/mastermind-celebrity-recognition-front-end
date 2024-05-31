@@ -1,7 +1,7 @@
-import { PATHNAMES } from "../../shared/utils/constants"
-import WithLocalAuthRedirection from "../../widgets/WithLocalAuthRedirection"
+import { PATHNAMES } from "@/shared/utils/constants"
+import WithLocalAuthRedirection from "@/widgets/WithLocalAuthRedirection"
 import { submitLoginForm } from "./model/reactRouterActions"
-import LoginForm from "../../widgets/LoginForm"
+import LoginForm from "@/widgets/LoginForm"
 import styles from "./ui/styles.module.css"
 
 const Login = () => {
