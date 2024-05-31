@@ -1,16 +1,13 @@
 import { useCallback } from "react"
 import { useFetcher } from "react-router-dom"
-import { PATHNAMES } from "../../shared/utils/constants"
-import {
-	getInvalidEmailError,
-	isValidEmail
-} from "../../shared/utils/functions"
+import { PATHNAMES } from "@/shared/utils/constants"
+import { getInvalidEmailError, isValidEmail } from "@/shared/utils/functions"
 import Form, {
 	useInputValidationHandler,
 	handleInputServerErrors
-} from "../../shared/ui/Form"
-import Input from "../../shared/ui/Input"
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+} from "@/shared/ui/Form"
+import Input from "@/shared/ui/Input"
+import DoubleSquareLoader from "@/shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
 
 const ForgotPasswordForm = () => {

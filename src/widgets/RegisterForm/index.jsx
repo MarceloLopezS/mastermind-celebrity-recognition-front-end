@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { useFetcher, Link } from "react-router-dom"
-import { PATHNAMES } from "../../shared/utils/constants"
+import { PATHNAMES } from "@/shared/utils/constants"
 import {
 	isValidEmail,
 	getInvalidEmailError,
@@ -9,14 +9,14 @@ import {
 	getInvalidPasswordError,
 	isValidPasswordConfirmation,
 	getInvalidConfirmPasswordError
-} from "../../shared/utils/functions"
+} from "@/shared/utils/functions"
 import Form, {
 	useInputValidationHandler,
 	handleFormValidation,
 	handleInputServerErrors
-} from "../../shared/ui/Form"
-import Input from "../../shared/ui/Input"
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+} from "@/shared/ui/Form"
+import Input from "@/shared/ui/Input"
+import DoubleSquareLoader from "@/shared/ui/DoubleSquareLoader"
 import styles from "./ui/styles.module.css"
 
 const RegisterForm = () => {

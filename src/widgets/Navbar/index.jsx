@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import logo from "../../shared/assets/images/mastermind-logo.webp"
-import DoubleSquareLoader from "../../shared/ui/DoubleSquareLoader"
+import logo from "@/shared/assets/images/mastermind-logo.webp"
+import DoubleSquareLoader from "@/shared/ui/DoubleSquareLoader"
 import LogoutButton from "./ui/LogoutButton"
 import styles from "./ui/styles.module.css"
 
