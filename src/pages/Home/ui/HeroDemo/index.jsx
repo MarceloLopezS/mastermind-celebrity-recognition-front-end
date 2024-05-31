@@ -1,11 +1,14 @@
+import ImageDetectionContainer from "@/widgets/ImageDetectionContainer"
 import {
 	DEMO_THUMBNAILS,
 	SCREEN_BREAKPOINTS,
 	THUMBNAIL_BASE_WIDTH,
 	SELECTED_THUMBNAIL_BASE_WIDTH
 } from "./config"
-import { useFaceDetectionDemo } from "./model/hooks"
-import ImageDetectionContainer from "@/widgets/ImageDetectionContainer"
+import {
+	useFaceDetectionDemo,
+	useSelectedThumbnailsPreloader
+} from "./model/hooks"
 import styles from "./ui/styles.module.css"
 
 const HeroDemo = () => {
@@ -16,6 +19,8 @@ const HeroDemo = () => {
 		detectionData,
 		detectionError
 	} = useFaceDetectionDemo(DEMO_THUMBNAILS)
+
+	useSelectedThumbnailsPreloader(DEMO_THUMBNAILS)
 
 	return (
 		<section className={styles["hero__demo--container"]}>

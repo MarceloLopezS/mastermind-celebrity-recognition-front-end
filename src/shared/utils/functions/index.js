@@ -69,3 +69,19 @@ export const isFileInputValid = (files) => {
   const greaterThan5Mb = greaterThan(5 * 1024 * 1024)
   return files?.length !== 0 && !greaterThan5Mb(files[0]?.size)
 }
+
+export const preloadImage = (src = "") => {
+  if (typeof src !== "string")
+    throw new TypeError("Image source is expected to be a string.")
+
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      resolve(img)
+    }
+    img.onerror = img.onabort = () => {
+      reject(`Failed to load src: ${src}`)
+    }
+    img.src = src
+  })
+}
