@@ -2,7 +2,7 @@ import requestEntryIncrement from "./api";
 
 const incrementUserDetectionEntry = async (requestData) => {
   const fetchOptions = {
-    method: "post",
+    method: "put",
     credentials: 'include',
     body: requestData,
     headers: {
