@@ -44,7 +44,7 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
           handleDetectionDataRecieval(data.detectionData)
         }
 
-        if (data.status === "fail") setDetectionError(DEFAULT_DETECTION_ERROR)
+        if (data.status === "fail") setDetectionError(data.fail.message)
       } catch (err) {
         console.error(`Fetch error: ${err}`)
         setDetectionError(DEFAULT_DETECTION_ERROR)
