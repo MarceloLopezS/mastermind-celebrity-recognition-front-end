@@ -77,6 +77,9 @@ const FaceDetectionControl = () => {
 				if (!data || data.status === "unauthorized" || data.status === "fail")
 					return setErrorMessage(DEFAULT_DETECTION_ERROR)
 
+				if (data.status === "ratelimit")
+					return setErrorMessage(data.ratelimit.message)
+
 				if (data.status === "success") {
 					setDetectionData(data.detectionData)
 					submitIncrementEntryRequest()
