@@ -9,7 +9,8 @@ import ImageDetectionContainer from "@/widgets/ImageDetectionContainer"
 import styles from "./ui/styles.module.css"
 
 const INITIAL_SRC = "#"
-const DETECTION_ERROR = "There was a problem retrieving the detection data."
+const DEFAULT_DETECTION_ERROR =
+	"There was a problem retrieving the detection data."
 
 const FaceDetectionControl = () => {
 	const fetcher = useFetcher()
@@ -74,7 +75,7 @@ const FaceDetectionControl = () => {
 
 				setIsRequestLoading(false)
 				if (!data || data.status === "unauthorized" || data.status === "fail")
-					return setErrorMessage(DETECTION_ERROR)
+					return setErrorMessage(DEFAULT_DETECTION_ERROR)
 
 				if (data.status === "success") {
 					setDetectionData(data.detectionData)
@@ -82,7 +83,7 @@ const FaceDetectionControl = () => {
 				}
 			} catch (err) {
 				console.error(`Fetch error: ${err}`)
-				setDetectionData(DETECTION_ERROR)
+				setDetectionData(DEFAULT_DETECTION_ERROR)
 				return setIsRequestLoading(false)
 			}
 		},
