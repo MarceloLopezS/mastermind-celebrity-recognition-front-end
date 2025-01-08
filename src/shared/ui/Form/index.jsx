@@ -1,92 +1,92 @@
-import { useState, useRef, useEffect, forwardRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 export const useInputValidationHandler = (
-	validationFn = inputValueOrFiles => !!inputValueOrFiles,
-	errorMessageHandler = inputValueOrFiles => ""
+  validationFn = inputValueOrFiles => !!inputValueOrFiles,
+  errorMessageHandler = inputValueOrFiles => ""
 ) => {
-	const [isValid, setIsValid] = useState(true)
-	const [errorMessage, setErrorMessage] = useState(null)
-	const inputRef = useRef(null)
+  const [isValid, setIsValid] = useState(true)
+  const [errorMessage, setErrorMessage] = useState(null)
+  const inputRef = useRef(null)
 
-	const validate = () => {
-		let isValidValue = true
-		const validationArg =
-			inputRef.current?.type === "file"
-				? inputRef.current?.files
-				: inputRef.current?.value
+  const validate = () => {
+    let isValidValue = true
+    const validationArg =
+      inputRef.current?.type === "file"
+        ? inputRef.current?.files
+        : inputRef.current?.value
 
-		if (validationFn(validationArg)) {
-			isValidValue = true
-			!isValid && setIsValid(true)
-			errorMessage && setErrorMessage(null)
-		} else {
-			isValidValue = false
-			isValid && setIsValid(false)
-			errorMessageHandler() &&
-				setErrorMessage(errorMessageHandler(validationArg))
-		}
+    if (validationFn(validationArg)) {
+      isValidValue = true
+      !isValid && setIsValid(true)
+      errorMessage && setErrorMessage(null)
+    } else {
+      isValidValue = false
+      isValid && setIsValid(false)
+      errorMessageHandler() &&
+        setErrorMessage(errorMessageHandler(validationArg))
+    }
 
-		return isValidValue
-	}
+    return isValidValue
+  }
 
-	const handleServerValidation = error => {
-		if (!error) return
+  const handleServerValidation = error => {
+    if (!error) return
 
-		isValid && setIsValid(false)
-		!errorMessage && setErrorMessage(error)
-	}
+    isValid && setIsValid(false)
+    !errorMessage && setErrorMessage(error)
+  }
 
-	useEffect(() => {
-		!isValid && (inputRef.current.value = "")
-	}, [isValid])
+  useEffect(() => {
+    !isValid && (inputRef.current.value = "")
+  }, [isValid])
 
-	return {
-		inputRef,
-		validate,
-		isValid,
-		errorMessage,
-		handleServerValidation
-	}
+  return {
+    inputRef,
+    validate,
+    isValid,
+    errorMessage,
+    handleServerValidation
+  }
 }
 
 export const handleFormValidation = (...inputHandlers) => {
-	let isFormValid = true
+  let isFormValid = true
 
-	inputHandlers.forEach(handler => {
-		const { validate } = handler
+  inputHandlers.forEach(handler => {
+    const { validate } = handler
 
-		if (!validate()) {
-			isFormValid = false
-		}
-	})
+    if (!validate()) {
+      isFormValid = false
+    }
+  })
 
-	return isFormValid
+  return isFormValid
 }
 
 export const handleInputServerErrors = ({ errors = [], formInputHandlers }) => {
-	errors.forEach(fieldErrorPair => {
-		const [fieldname, errorMessage] = fieldErrorPair
+  errors.forEach(fieldErrorPair => {
+    const [fieldname, errorMessage] = fieldErrorPair
 
-		formInputHandlers.forEach(handler => {
-			const { inputRef, handleServerValidation } = handler
-			const input = inputRef.current
+    formInputHandlers.forEach(handler => {
+      const { inputRef, handleServerValidation } = handler
+      const input = inputRef.current
 
-			if (
-				input.hasAttribute("name") &&
-				input.getAttribute("name") === fieldname
-			) {
-				handleServerValidation(errorMessage)
-			}
-		})
-	})
+      if (
+        input.hasAttribute("name") &&
+        input.getAttribute("name") === fieldname
+      ) {
+        handleServerValidation(errorMessage)
+      }
+    })
+  })
 }
 
-const Form = forwardRef(({ children, ...attributes }, ref) => {
-	return (
-		<form ref={ref} {...attributes}>
-			{children}
-		</form>
-	)
-})
+const Form = ({ children, ref, ...attributes }) => {
+  return (
+    <form ref={ref} {...attributes}>
+      {children}
+    </form>
+  )
+}
 
 export default Form
