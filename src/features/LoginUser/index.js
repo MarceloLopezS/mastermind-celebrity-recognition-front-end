@@ -1,12 +1,12 @@
 import requestLogin from "./api"
 
-const loginUser = async (formData) => {
+const loginUser = async formData => {
   const fetchOptions = {
     method: "post",
-    credentials: 'include',
+    credentials: "include",
     body: formData,
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   }
 

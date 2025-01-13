@@ -1,17 +1,17 @@
 .boundingBox {
-	position: absolute;
-	background-color: transparent;
-	border: 2px solid var(--clr-detection);
+  position: absolute;
+  background-color: transparent;
+  border: 2px solid var(--clr-detection);
 }
 
 .detection-name {
-	position: absolute;
-	min-width: max-content;
-	background-color: var(--clr-detection-faded-400);
-	font-size: var(--fs-detection);
-	padding: var(--size-15);
-	border-radius: var(--size-15);
-	left: 0;
-	bottom: 0;
-	transform: translate(-30%, 130%);
+  position: absolute;
+  min-width: max-content;
+  background-color: var(--clr-detection-faded-400);
+  font-size: var(--fs-detection);
+  padding: var(--size-15);
+  border-radius: var(--size-15);
+  left: 0;
+  bottom: 0;
+  transform: translate(-30%, 130%);
 }

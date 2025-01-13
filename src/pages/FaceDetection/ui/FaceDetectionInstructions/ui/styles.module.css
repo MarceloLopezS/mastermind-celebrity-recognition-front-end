@@ -1,6 +1,6 @@
 @media (min-width: 69em) {
-	.instructions-heading,
-	.hint {
-		max-width: 70ch;
-	}
+  .instructions-heading,
+  .hint {
+    max-width: 70ch;
+  }
 }

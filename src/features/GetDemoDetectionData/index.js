@@ -1,17 +1,16 @@
-import requestDemoDetectionData from "./api";
+import requestDemoDetectionData from "./api"
 
 const getDemoDetectionData = async (demoId, abortController) => {
   const fetchOptions = {
     method: "post",
-    credentials: 'include',
+    credentials: "include",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({ demoId })
   }
 
-  const response =
-    await requestDemoDetectionData(fetchOptions, abortController)
+  const response = await requestDemoDetectionData(fetchOptions, abortController)
   const data = await response.json()
 
   return data

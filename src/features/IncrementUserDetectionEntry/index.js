@@ -1,12 +1,12 @@
-import requestEntryIncrement from "./api";
+import requestEntryIncrement from "./api"
 
-const incrementUserDetectionEntry = async (requestData) => {
+const incrementUserDetectionEntry = async requestData => {
   const fetchOptions = {
     method: "put",
-    credentials: 'include',
+    credentials: "include",
     body: requestData,
     headers: {
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     }
   }
 

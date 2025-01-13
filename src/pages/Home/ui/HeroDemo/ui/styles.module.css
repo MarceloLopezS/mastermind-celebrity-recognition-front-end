@@ -1,121 +1,121 @@
 .hero__demo--container {
-	display: grid;
-	grid-template-areas: "demo";
+  display: grid;
+  grid-template-areas: "demo";
 }
 
 .hero__demo {
-	--detection-container-space: 85%;
+  --detection-container-space: 85%;
 
-	grid-area: demo;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: min(100%, var(--size-805));
-	aspect-ratio: 5 / 6;
-	background-color: var(--clr-faded-900);
-	border-radius: var(--size-25);
-	overflow: hidden;
+  grid-area: demo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: min(100%, var(--size-805));
+  aspect-ratio: 5 / 6;
+  background-color: var(--clr-faded-900);
+  border-radius: var(--size-25);
+  overflow: hidden;
 }
 
 .demo-thumbnails--container {
-	--gap: 0.5em;
+  --gap: 0.5em;
 
-	width: 100%;
-	flex-grow: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: var(--gap);
-	box-shadow: 0.5px 0 var(--size-25) var(--clr-neutral-100);
-	padding: var(--gap);
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  box-shadow: 0.5px 0 var(--size-25) var(--clr-neutral-100);
+  padding: var(--gap);
 }
 
 .demo-thumbnail {
-	--max-visible-thumbnails: 6;
+  --max-visible-thumbnails: 6;
 
-	max-width: calc(100% / var(--max-visible-thumbnails));
-	aspect-ratio: 1;
-	border-radius: var(--size-25);
-	max-height: 100%;
-	overflow: hidden;
-	opacity: 0.7;
+  max-width: calc(100% / var(--max-visible-thumbnails));
+  aspect-ratio: 1;
+  border-radius: var(--size-25);
+  max-height: 100%;
+  overflow: hidden;
+  opacity: 0.7;
 }
 
 .demo-thumbnail:hover,
 .demo-thumbnail:focus-visible {
-	opacity: 1;
+  opacity: 1;
 }
 
 .demo-thumbnail[data-selected] {
-	opacity: 1;
-	outline: 1px solid var(--clr-highlight);
+  opacity: 1;
+  outline: 1px solid var(--clr-highlight);
 }
 
 .demo-detection--container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: var(--detection-container-space);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: var(--detection-container-space);
 }
 
 .demo-detection--container > .demo-detection {
-	height: 85%;
-	aspect-ratio: 1;
-	text-align: center;
+  height: 85%;
+  aspect-ratio: 1;
+  text-align: center;
 }
 
 .demo-thumbnail > img,
 .demo-detection > img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 69rem) {
-	.hero__demo--container {
-		--demo-offset-top: 13%;
-		--demo-offset-right: 8%;
+  .hero__demo--container {
+    --demo-offset-top: 13%;
+    --demo-offset-right: 8%;
 
-		grid-template-rows:
-			var(--demo-offset-top)
-			calc(100% - var(--demo-offset-top));
-		grid-template-areas:
-			"offset"
-			"demo";
-		padding-inline-end: var(--demo-offset-right);
-	}
+    grid-template-rows:
+      var(--demo-offset-top)
+      calc(100% - var(--demo-offset-top));
+    grid-template-areas:
+      "offset"
+      "demo";
+    padding-inline-end: var(--demo-offset-right);
+  }
 
-	.hero__demo {
-		flex-direction: row;
-		width: clamp(var(--size-800), 37vw, var(--size-850));
-		aspect-ratio: 3 / 2;
-	}
+  .hero__demo {
+    flex-direction: row;
+    width: clamp(var(--size-800), 37vw, var(--size-850));
+    aspect-ratio: 3 / 2;
+  }
 
-	.demo-thumbnails--container {
-		width: unset;
-		height: 100%;
-		flex-direction: column;
-	}
+  .demo-thumbnails--container {
+    width: unset;
+    height: 100%;
+    flex-direction: column;
+  }
 
-	.demo-thumbnail {
-		max-width: unset;
-		max-height: calc(100% / var(--max-visible-thumbnails));
-	}
+  .demo-thumbnail {
+    max-width: unset;
+    max-height: calc(100% / var(--max-visible-thumbnails));
+  }
 
-	.demo-detection--container {
-		width: var(--detection-container-space);
-		height: 100%;
-	}
+  .demo-detection--container {
+    width: var(--detection-container-space);
+    height: 100%;
+  }
 
-	.demo-detection--container > .demo-detection {
-		height: 90%;
-		font-size: 0.85em;
-	}
+  .demo-detection--container > .demo-detection {
+    height: 90%;
+    font-size: 0.85em;
+  }
 }
 
 @media (min-width: 118rem) {
-	.hero__demo--container {
-		--demo-offset-top: 20%;
-	}
+  .hero__demo--container {
+    --demo-offset-top: 20%;
+  }
 }

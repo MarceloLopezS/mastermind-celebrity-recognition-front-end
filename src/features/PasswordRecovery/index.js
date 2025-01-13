@@ -1,12 +1,12 @@
 import requestPasswordRecovery from "./api"
 
-const passwordRecovery = async (formData) => {
+const passwordRecovery = async formData => {
   const fetchOptions = {
     method: "post",
-    credentials: 'include',
+    credentials: "include",
     body: formData,
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   }
 

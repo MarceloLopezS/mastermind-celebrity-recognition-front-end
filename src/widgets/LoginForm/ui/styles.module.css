@@ -1,9 +1,9 @@
 @media (min-width: 28em) {
-	.log-in__form {
-		width: clamp(20rem, 26vw, 26rem);
-	}
+  .log-in__form {
+    width: clamp(20rem, 26vw, 26rem);
+  }
 
-	.log-in__form h2 {
-		padding-block-end: var(--size-50);
-	}
+  .log-in__form h2 {
+    padding-block-end: var(--size-50);
+  }
 }

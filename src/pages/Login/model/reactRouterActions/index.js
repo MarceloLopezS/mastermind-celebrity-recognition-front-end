@@ -15,7 +15,8 @@ export const submitLoginForm = async ({ request }) => {
     return {
       status: "client-error",
       clientError: {
-        message: 'We were not able to process the request. Please try again in a few moments.'
+        message:
+          "We were not able to process the request. Please try again in a few moments."
       }
     }
   }
