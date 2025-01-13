@@ -8,9 +8,11 @@ const DEFAULT_DETECTION_ERROR =
 
 export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
   const FIRST_DEMO_THUMBNAIL = useMemo(
-    () => demoThumbnailsArr.reduce((acc, thumbnail) =>
-      thumbnail?.demoId === 0 ? thumbnail : acc
-    ), [demoThumbnailsArr]
+    () =>
+      demoThumbnailsArr.reduce((acc, thumbnail) =>
+        thumbnail?.demoId === 0 ? thumbnail : acc
+      ),
+    [demoThumbnailsArr]
   )
 
   const [selectedThumbnailId, setSelectedThumbnailId] = useState(
@@ -72,21 +74,23 @@ export const useFaceDetectionDemo = (demoThumbnailsArr = []) => {
   }
 }
 
-export const useSelectedThumbnailsPreloader = (demoThumbnailsArr) => {
+export const useSelectedThumbnailsPreloader = demoThumbnailsArr => {
   useEffect(() => {
     const preloadSelectedThumbnails = async () => {
       const preloadPromises = demoThumbnailsArr.map(async demoThumbnail => {
         const srcToPreload = demoThumbnail?.selectedThumbnailSrcSet?.reduce(
           (acc, srcSetData) => {
             if (
-              window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`).matches
-              && srcSetData?.width === 500
+              window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`)
+                .matches &&
+              srcSetData?.width === 500
             )
               return srcSetData
 
             if (
-              !window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`).matches
-              && srcSetData?.width === 600
+              !window.matchMedia(`(max-width: ${SCREEN_BREAKPOINTS.sm})`)
+                .matches &&
+              srcSetData?.width === 600
             )
               return srcSetData
 

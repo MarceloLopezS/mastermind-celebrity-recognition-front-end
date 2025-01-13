@@ -1,4 +1,5 @@
-export const API_ROOT_URL = "https://mastermind-celebrity-recognition-api.fly.dev"
+export const API_ROOT_URL =
+  "https://mastermind-celebrity-recognition-api.fly.dev"
 export const PATHNAMES = {
   REGISTER: "register",
   EMAIL_VERIFICATION: "email-verification",
@@ -10,5 +11,5 @@ export const PATHNAMES = {
   RESET_SUCCESS: "reset-success",
   LOGIN: "login",
   FACE_DETECTION: "face-detection",
-  LOGOUT: "logout",
+  LOGOUT: "logout"
 }

@@ -1,20 +1,20 @@
 .hero {
-	display: grid;
-	place-items: center;
-	gap: 1.5em;
-	padding-block: 4em;
+  display: grid;
+  place-items: center;
+  gap: 1.5em;
+  padding-block: 4em;
 }
 
 @media (min-width: 69rem) {
-	.hero {
-		grid-template-columns: repeat(2, 1fr);
-		gap: unset;
-		padding-block: 5.25em;
-	}
+  .hero {
+    grid-template-columns: repeat(2, 1fr);
+    gap: unset;
+    padding-block: 5.25em;
+  }
 }
 
 @media (min-width: 115rem) {
-	.hero {
-		padding-block: 4em;
-	}
+  .hero {
+    padding-block: 4em;
+  }
 }

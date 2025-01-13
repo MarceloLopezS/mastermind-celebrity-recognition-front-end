@@ -1,6 +1,6 @@
 import requestDetectionData from "./api"
 
-const getDetectionData = async (formData) => {
+const getDetectionData = async formData => {
   const fetchOptions = {
     method: "post",
     credentials: "include",

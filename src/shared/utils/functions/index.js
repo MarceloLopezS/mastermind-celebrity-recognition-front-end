@@ -4,53 +4,52 @@ export const capitalizeString = (string, separator = " ") => {
   }
 
   const strings = string.split(separator)
-  return strings.map(string => string[0].toUpperCase() + string.substring(1))
+  return strings
+    .map(string => string[0].toUpperCase() + string.substring(1))
     .join(separator)
 }
 
-export const isValidEmail = (string) => {
-  if (typeof string !== "string") throw new Error(
-    "Email to evaluate must be a string."
-  )
+export const isValidEmail = string => {
+  if (typeof string !== "string")
+    throw new Error("Email to evaluate must be a string.")
 
   const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
   return string.match(regex)
 }
 
-export const getInvalidEmailError = (emailValue) => {
+export const getInvalidEmailError = emailValue => {
   if (!isValidEmail(emailValue)) return "Please enter a valid email"
 }
 
-export const isValidInputString = (string) => {
-  if (typeof string !== "string") throw new Error(
-    "String expected to evaluate if empty."
-  )
+export const isValidInputString = string => {
+  if (typeof string !== "string")
+    throw new Error("String expected to evaluate if empty.")
 
   return string.length > 0
 }
 
-export const isValidPassword = (value) => {
+export const isValidPassword = value => {
   return isValidInputString(value) && value?.length > 8
 }
 
-export const getInvalidPasswordError = (value) => {
+export const getInvalidPasswordError = value => {
   if (value?.length === 0) return "Please enter a password"
   if (value?.length < 8) return "Password must have at least 8 characters"
 }
 
 export const isValidPasswordConfirmation =
-  (passwordRef) => (passwordConfirmation) => {
+  passwordRef => passwordConfirmation => {
     const password = passwordRef?.current?.value
 
     return (
-      isValidInputString(passwordConfirmation)
-      && password === passwordConfirmation
+      isValidInputString(passwordConfirmation) &&
+      password === passwordConfirmation
     )
   }
 
 export const getInvalidConfirmPasswordError =
-  (passwordRef) => (passwordConfirmation) => {
+  passwordRef => passwordConfirmation => {
     const password = passwordRef?.current?.value
 
     if (password !== passwordConfirmation) {
@@ -58,14 +57,13 @@ export const getInvalidConfirmPasswordError =
     }
   }
 
-export const getReactRouterFormData = async (request) => {
+export const getReactRouterFormData = async request => {
   return JSON.stringify(Object.fromEntries(await request?.formData()))
 }
 
-export const greaterThan = (comparisonNumber) =>
-  (value) => value > comparisonNumber
+export const greaterThan = comparisonNumber => value => value > comparisonNumber
 
-export const isFileInputValid = (files) => {
+export const isFileInputValid = files => {
   const greaterThan5Mb = greaterThan(5 * 1024 * 1024)
   return files?.length !== 0 && !greaterThan5Mb(files[0]?.size)
 }

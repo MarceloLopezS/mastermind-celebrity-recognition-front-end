@@ -1,47 +1,47 @@
 .hero__description {
-	max-width: min-content;
-	line-height: 1.25;
+  max-width: min-content;
+  line-height: 1.25;
 }
 
 .hero__main-title {
-	font-size: var(--fs-hero-title);
-	font-weight: bold;
+  font-size: var(--fs-hero-title);
+  font-weight: bold;
 }
 
 .hero__subtitle {
-	font-size: var(--fs-hero-subtitle);
+  font-size: var(--fs-hero-subtitle);
 }
 
 .hero__cta {
-	--margin-top: var(--size-150);
+  --margin-top: var(--size-150);
 
-	display: flex;
-	flex-direction: column;
-	gap: calc(var(--margin-top) * 0.4);
-	margin-block: var(--margin-top);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--margin-top) * 0.4);
+  margin-block: var(--margin-top);
 }
 
 .hero__cta--btn {
-	align-self: start;
-	font-weight: bold;
-	text-decoration: none;
-	padding: 0.5em 1em;
-	border-radius: 1em;
+  align-self: start;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 1em;
 }
 
 .hero__cta--secondary {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 }
 
 .arrow {
-	transform: rotate(90deg);
-	transition: transform 500ms ease;
+  transform: rotate(90deg);
+  transition: transform 500ms ease;
 }
 
 @media (min-width: 69rem) {
-	.arrow {
-		transform: unset;
-	}
+  .arrow {
+    transform: unset;
+  }
 }

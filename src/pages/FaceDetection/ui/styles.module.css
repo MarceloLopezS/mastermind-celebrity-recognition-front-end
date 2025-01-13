@@ -1,18 +1,18 @@
 .face-detection {
-	--section-gap: var(--size-50);
+  --section-gap: var(--size-50);
 
-	display: grid;
-	justify-content: center;
-	justify-items: center;
-	text-align: center;
-	gap: var(--section-gap);
-	padding-block: var(--size-150);
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: var(--section-gap);
+  padding-block: var(--size-150);
 }
 
 @media (min-width: 118em) {
-	.face-detection {
-		--section-gap: var(--size-65);
+  .face-detection {
+    --section-gap: var(--size-65);
 
-		padding-block: var(--size-150) var(--size-100);
-	}
+    padding-block: var(--size-150) var(--size-100);
+  }
 }

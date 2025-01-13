@@ -6,15 +6,15 @@ export const StoreContext = createContext(null)
 export const StoreDispatchContext = createContext(null)
 
 const StoreContextProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(rootReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(rootReducer, INITIAL_STATE)
 
-	return (
-		<StoreContext.Provider value={state}>
-			<StoreDispatchContext.Provider value={dispatch}>
-				{children}
-			</StoreDispatchContext.Provider>
-		</StoreContext.Provider>
-	)
+  return (
+    <StoreContext.Provider value={state}>
+      <StoreDispatchContext.Provider value={dispatch}>
+        {children}
+      </StoreDispatchContext.Provider>
+    </StoreContext.Provider>
+  )
 }
 
 export default StoreContextProvider

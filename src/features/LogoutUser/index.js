@@ -1,12 +1,12 @@
 import requestLogout from "./api"
 
-const logoutUser = async (requestData) => {
+const logoutUser = async requestData => {
   const fetchOptions = {
     method: "post",
-    credentials: 'include',
+    credentials: "include",
     body: requestData,
     headers: {
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     }
   }
 

@@ -1,11 +1,11 @@
 .entries {
-	line-height: 0.95;
-	font-size: var(--fs-count);
+  line-height: 0.95;
+  font-size: var(--fs-count);
 }
 
 @media (min-width: 69em) {
-	.user-welcome,
-	.entries {
-		max-width: 70ch;
-	}
+  .user-welcome,
+  .entries {
+    max-width: 70ch;
+  }
 }

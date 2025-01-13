@@ -1,11 +1,11 @@
 @media (min-width: 28em) {
-	.register {
-		padding-block-start: min(2vw, var(--size-150));
-	}
+  .register {
+    padding-block-start: min(2vw, var(--size-150));
+  }
 }
 
 @media (min-width: 118em) {
-	.register {
-		padding-block-start: min(4vw, var(--size-300));
-	}
+  .register {
+    padding-block-start: min(4vw, var(--size-300));
+  }
 }

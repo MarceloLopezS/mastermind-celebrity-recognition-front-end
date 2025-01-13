@@ -1,12 +1,12 @@
 import requestRegistration from "./api"
 
-const registerUser = async (formData) => {
+const registerUser = async formData => {
   const fetchOptions = {
     method: "post",
-    credentials: 'include',
+    credentials: "include",
     body: formData,
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   }
   const response = await requestRegistration(fetchOptions)
