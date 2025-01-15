@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router"
 import RootRoute from "./app"
 import NotFoundRoute from "./pages/NotFound"
 

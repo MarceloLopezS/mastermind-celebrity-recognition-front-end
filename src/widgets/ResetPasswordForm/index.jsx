@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useParams, useFetcher } from "react-router-dom"
+import { useParams, useFetcher } from "react-router"
 import { PATHNAMES } from "@/shared/utils/constants"
 import {
   getInvalidConfirmPasswordError,

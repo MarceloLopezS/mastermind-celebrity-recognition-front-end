@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useFetcher } from "react-router-dom"
+import { useFetcher } from "react-router"
 import DoubleSquareLoader from "../../../../shared/ui/DoubleSquareLoader"
 
 const LogoutButton = () => {

@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react"
-import { useFetcher } from "react-router-dom"
+import { useFetcher } from "react-router"
 import getDetectionData from "@/features/GetDetectionData"
 import { isFileInputValid } from "@/shared/utils/functions"
 import Form, { useInputValidationHandler } from "@/shared/ui/Form"

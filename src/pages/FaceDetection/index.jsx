@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom"
+import { redirect } from "react-router"
 import { PATHNAMES } from "@/shared/utils/constants"
 import getUserData from "@/features/GetUserData"
 import { submitEntryIncrementRequest } from "./model/ReactRouterActions"
