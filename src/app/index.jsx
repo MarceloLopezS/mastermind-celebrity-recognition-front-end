@@ -1,5 +1,5 @@
 import React, { useContext, Suspense, useEffect } from "react"
-import { useLoaderData, Await, Outlet, defer } from "react-router-dom"
+import { useLoaderData, Await, Outlet } from "react-router"
 import checkUserAuthentication from "@/features/CheckUserAuthentication"
 import "./ui/global.css"
 import StoreContextProvider, {
@@ -66,7 +66,7 @@ const RootRoute = {
   loader: async () => {
     const data = checkUserAuthentication()
 
-    return defer({ data })
+    return { data }
   },
   children: [
     { index: true, ...HomeRoute },

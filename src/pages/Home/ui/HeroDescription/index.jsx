@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import ArrowBadgeFilledSVG from "@/shared/ui/SVGs/ArrowBadgeFilled"
 import styles from "./ui/styles.module.css"
 

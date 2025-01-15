@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import { StoreContext } from "@/shared/state/store"
 
 const WithLocalAuthRedirection = ({

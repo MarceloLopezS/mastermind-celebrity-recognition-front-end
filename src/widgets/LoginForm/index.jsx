@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useFetcher, Link } from "react-router-dom"
+import { useFetcher, Link } from "react-router"
 import { PATHNAMES } from "@/shared/utils/constants"
 import {
   isValidEmail,

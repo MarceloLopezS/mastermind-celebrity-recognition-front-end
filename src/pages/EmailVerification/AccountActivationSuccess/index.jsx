@@ -1,5 +1,5 @@
 import { PATHNAMES } from "@/shared/utils/constants"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import WithLocalAuthRedirection from "@/widgets/WithLocalAuthRedirection"
 
 const AccountActivationSuccess = () => {
