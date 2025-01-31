@@ -1,5 +1,4 @@
-export const API_ROOT_URL =
-  "https://mastermind-celebrity-recognition-api.fly.dev"
+export const API_ROOT_URL = import.meta.env.VITE_API_ROOT_URL
 export const PATHNAMES = {
   REGISTER: "register",
   EMAIL_VERIFICATION: "email-verification",
