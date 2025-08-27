@@ -19,13 +19,6 @@ const Footer = () => {
         </a>
         <a
           className={styles["contact-info__link"]}
-          href="mailto:marcelo-lo@outlook.com"
-        >
-          <MailSVG />
-          marcelo-lo@outlook.com
-        </a>
-        <a
-          className={styles["contact-info__link"]}
           href="https://github.com/MarceloLopezS/face-detection-app-back-end"
           target="_blank"
           rel="noreferrer"
