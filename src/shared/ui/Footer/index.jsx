@@ -1,5 +1,4 @@
 import GithubSVG from "../SVGs/Github"
-import MailSVG from "../SVGs/Mail"
 import AboutSVG from "../SVGs/About"
 import styles from "./ui/styles.module.css"
 
